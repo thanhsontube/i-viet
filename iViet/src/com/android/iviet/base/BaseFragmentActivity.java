@@ -25,7 +25,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 	abstract protected int getFragmentContentId();
 
-	protected final Stack<String> mFragmentTagStack = new Stack<>();
+	protected final Stack<String> mFragmentTagStack = new Stack<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
