@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.android.iviet.R;
-import com.android.iviet.base.AbsFragmentActivity;
+import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.main.fragment.MainFragment;
 
-public class MainActivity extends AbsFragmentActivity{
+public class MainActivity extends BaseFragmentActivity{
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {

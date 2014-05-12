@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.android.iviet.utils.FilterLog;
 
-abstract public class AbsFragmentActivity extends FragmentActivity implements
+abstract public class BaseFragmentActivity extends FragmentActivity implements
 		OnBackStackChangedListener {
 
 	protected static final String FRAGMENT_KEY = "fragment-key";

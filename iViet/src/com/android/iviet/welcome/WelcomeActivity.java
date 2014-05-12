@@ -10,11 +10,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.android.iviet.R;
-import com.android.iviet.base.AbsFragmentActivity;
+import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.main.MainActivity;
 import com.android.iviet.welcome.fragment.SlideFragment;
 
-public class WelcomeActivity extends AbsFragmentActivity implements OnClickListener{
+public class WelcomeActivity extends BaseFragmentActivity implements OnClickListener{
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
