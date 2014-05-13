@@ -18,5 +18,9 @@
     <string name="welcome_message_4">Chia sẻ để thành công</string>
     <string name="welcome_topic_5">Thông điệp 5</string>
     <string name="welcome_message_5">iViệt niềm tin từ tri thức Việt</string>
+    <string name="email">Email</string>
+    <string name="pass">Mật khẩu</string>
+    <string name="dang_nhap">Đăng Nhập</string>
+    <string name="quen_mat_khau">Quên mật khẩu?</string>
 
 </resources>
