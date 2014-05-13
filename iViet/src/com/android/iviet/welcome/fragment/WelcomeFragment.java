@@ -4,12 +4,10 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import com.android.iviet.welcome.adapter.WelcomeFragmentAdapter;
 import com.android.iviet.welcome.lib.CirclePageIndicator;
 
 public class WelcomeFragment extends Fragment implements OnPageChangeListener {
-	private static final int TIMEOUT_SWITCH_PAGE = 5000;
+	private static final int TIMEOUT_SWITCH_PAGE = 7000;
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
 	 * to access previous and next wizard steps.
@@ -58,6 +56,13 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener {
 
 	@Override
 	public void onPageScrollStateChanged(int arg0) {
+		if (arg0 == ViewPager.SCROLL_STATE_DRAGGING) {
+			mAutoSwitchPageTask.cancel(true);
+		} else if (arg0 == ViewPager.SCROLL_STATE_SETTLING) {
+			mAutoSwitchPageTask.cancel(true);
+			mAutoSwitchPageTask = new AutoSwitchPageTask();
+			mAutoSwitchPageTask.execute();
+		}
 
 	}
 
@@ -73,9 +78,6 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener {
 				"ic_iviet_background_" + (arg0 + 1), "drawable", getActivity()
 						.getPackageName()));
 		mWelcomeBackground.setBackgroundDrawable(drawable);
-		mAutoSwitchPageTask.cancel(true);
-		mAutoSwitchPageTask = new AutoSwitchPageTask();
-		mAutoSwitchPageTask.execute();
 	}
 
 	private class AutoSwitchPageTask extends AsyncTask<Void, Void, Void> {
