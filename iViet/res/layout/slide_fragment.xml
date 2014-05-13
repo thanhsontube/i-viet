@@ -5,20 +5,25 @@
     android:orientation="vertical" >
 
     <TextView
-        android:layout_marginTop="200dp"
-        android:layout_gravity="center"
-        android:id="@+id/textView1"
+        android:id="@+id/welcome_tv_topic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thong diep 1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:text="@string/welcome_topic_1"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_gravity="center"
-        android:id="@+id/textView2"
+        android:id="@+id/welcome_tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Noi chia se cong dong Viet"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0"
+        android:text="@string/welcome_message_1"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

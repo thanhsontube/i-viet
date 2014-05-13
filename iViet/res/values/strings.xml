@@ -4,5 +4,19 @@
     <string name="app_name">iViet</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <!-- Wellcome Screen -->
+    <string name="welcome_chao_mung">Chào mừng</string>
+    <string name="welcome_cham_mo">Chạm Mở</string>
+     <string name="welcome_cham_dong">Chạm Đóng</string>
+    <string name="welcome_topic_1">Thông điệp 1</string>
+    <string name="welcome_message_1">Tự hào iViệt | Tự hào tri thức Việt</string>
+    <string name="welcome_topic_2">Thông điệp 2</string>
+    <string name="welcome_message_2">Hỏi là có | Tìm là thấy</string>
+    <string name="welcome_topic_3">Thông điệp 3</string>
+    <string name="welcome_message_3">Nơi chia sẻ của cộng đồng Việt</string>
+    <string name="welcome_topic_4">Thông điệp 4</string>
+    <string name="welcome_message_4">Chia sẻ để thành công</string>
+    <string name="welcome_topic_5">Thông điệp 5</string>
+    <string name="welcome_message_5">iViệt niềm tin từ tri thức Việt</string>
 
 </resources>

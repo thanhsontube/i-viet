@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_panel"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#aa000000"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageButton
+        android:id="@+id/login_btn_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/layer_login_email"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/login_btn_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/layer_login_facebook"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/login_btn_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/layer_login_google"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/login_btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/layer_login_register"
+        android:visibility="invisible" />
+
+</LinearLayout>
