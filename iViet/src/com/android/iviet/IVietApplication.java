@@ -6,6 +6,8 @@ import android.app.Application;
 
 import com.android.iviet.connection.BasicAccessPathGenerator;
 import com.android.iviet.connection.ContentManager;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class IVietApplication extends Application {
 	
@@ -17,6 +19,9 @@ public class IVietApplication extends Application {
 		try {
 			mContentManager = new ContentManager(this, 10);
 			mBasicAccessPathGenerator = new BasicAccessPathGenerator(getApplicationContext());
+			ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+            .build();
+			ImageLoader.getInstance().init(config);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}

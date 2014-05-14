@@ -109,6 +109,7 @@ public class Top1Fragment extends Fragment {
 				public void onContentLoaderSucceed(DataRootDto entity) {
 					log.d("NECVN>>>" + "onContentLoaderSucceed");
 					// TODO Auto-generated method stub
+					log.d("NECVN>>>" + "size:" + entity.getList().size());
 					adapter.setData(entity.getList());
 					
 					

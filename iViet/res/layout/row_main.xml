@@ -15,6 +15,7 @@
         <!-- avatar -->
 
         <ImageView
+            android:id="@+id/user_avatar"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/appicon_58" />
@@ -28,6 +29,7 @@
             android:padding="8dp" >
 
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nhu Thay Ay Nhi"
@@ -35,12 +37,14 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/created_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hoi 4 gio truoc"
                 android:textColor="@color/body_text_2" />
 
             <TextView
+                android:id="@+id/topic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Danh ngon"
@@ -48,7 +52,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- User -->
+        <!-- User answer -->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,6 +61,7 @@
             android:padding="8dp" >
 
             <TextView
+                android:id="@+id/answer_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dieu Linh"
@@ -64,6 +69,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/recent_answer_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tra loi 2 gio truoc"
@@ -74,9 +80,9 @@
     <!-- MIDDLE image -->
 
     <ImageView
+        android:id="@+id/snapshot_img"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
         android:src="@drawable/appicon_58" />
     <!-- BUTTOM 1 -->
 
@@ -87,6 +93,7 @@
         android:padding="8dp" >
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -95,6 +102,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/snapshot_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -120,6 +128,7 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:id="@+id/vote_ups"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chi Tiet"
@@ -141,6 +150,7 @@
             <!-- like -->
 
             <LinearLayout
+                android:id="@+id/vote_ups"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -166,6 +176,7 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/number_answers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="50"
@@ -177,7 +188,7 @@
                     android:src="@drawable/comment" />
             </LinearLayout>
 
-            <!-- saw -->
+            <!-- view -->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -186,6 +197,7 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/number_views"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="50"

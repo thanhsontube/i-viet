@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.android.iviet.json.BaseObject;
-import com.android.iviet.json.DataObject;
 import com.android.iviet.main.dto.DataRootDto;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.utils.FilterLog;
@@ -68,6 +67,7 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 			log.d("NECVN>>>" + "ja:" + ja.length());
 			
 			List<BaseObject> list = new ArrayList<BaseObject>();
+			List<MainDto> listdMainDto = new ArrayList<MainDto>();
 			for (int i = 0; i < ja.length(); i ++) {
 				JSONObject jo2 = ja.getJSONObject(i);
 				if (!jo2.isNull("cursor")) {
@@ -83,30 +83,44 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 					log.d("NECVN>>>" + "ja2:" + ja2.length());
 					for (int j = 0; j < ja2.length(); j++) {
 						JSONObject jo3 = ja2.getJSONObject(j);
-						String userAvatar = jo3.getString("user_avatar");
-						String topicName = jo3.getString("topic_name");
-						String snapshotContent = jo3.getString("snapshot_content");
-						String snapshotImg = jo3.getString("snapshot_img");
-						BaseObject baseObject = new BaseObject();
-						baseObject.setUser_avatar(userAvatar);
-						baseObject.setTopic_name(topicName);
-						baseObject.setSnapshot_content(snapshotContent);
-						baseObject.setSnapshot_img(snapshotImg);
+						
+						String user_avatar = jo3.getString("user_avatar");
+						
+						String user_name = jo3.getString("user_name");
+						String created_on = jo3.getString("created_on");
+						
+						String answer_user_name = jo3.getString("answer_user_name");
+						String recent_answer_date = jo3.getString("recent_answer_date");
+						
+						String snapshot_img = jo3.getString("snapshot_img");
+						
+						String title = jo3.getString("title");
+						String snapshot_content = jo3.getString("snapshot_content");
+						
+						int vote_ups = jo3.getInt("vote_ups");
+						int number_answers = jo3.getInt("number_answers");
+						int number_views = jo3.getInt("number_views");
+						
+						
+						
+						String user_id = jo3.getString("user_id");
+						String topic_icon = jo3.getString("topic_icon");
+						String topic_name = jo3.getString("topic_name");
+						String theme_color = jo3.getString("theme_color");
+						String is_anonymous = jo3.getString("is_anonymous");
+						String question_id = jo3.getString("question_id");
+						
+						
+						BaseObject baseObject = new BaseObject(user_avatar, user_name, created_on, answer_user_name, recent_answer_date, snapshot_img, title, snapshot_content, vote_ups, number_answers, number_views, user_id, topic_icon, topic_name, theme_color, is_anonymous, question_id);
 						list.add(baseObject);
+						MainDto dataObject = new MainDto();
+						dataObject.setListdata(list);
+						listdMainDto.add(dataObject);
                     }
-					
+					dto.setList(listdMainDto);
 				}
-				MainDto dataObject = new MainDto();
-				dataObject.setListdata(list);
-				List<MainDto> listdDataObjects = new ArrayList<MainDto>();
-				listdDataObjects.add(dataObject);
-				dto.setList(listdDataObjects);
-				return dto;
-				
-				
 			}
-			
-			return null;
+			return dto;
         } catch (Exception e) {
         	Log.e(TAG, "NECVN>>>" + "handleJson:" + e.toString());
         	return null;
