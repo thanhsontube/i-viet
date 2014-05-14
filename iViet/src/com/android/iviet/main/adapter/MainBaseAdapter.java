@@ -55,6 +55,8 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			holder.numberAnswers = (TextView) v.findViewById(R.id.number_answers);
 			holder.numberViews = (TextView) v.findViewById(R.id.number_views);
 			holder.themColor = (LinearLayout) v.findViewById(R.id.them_color2);
+			
+			holder.snapshotImg.setTag(position);
 			v.setTag(holder);
 		} else {
 			holder = (Holder) v.getTag();
@@ -73,11 +75,11 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		holder.voteUps.setText(String.valueOf(base.vote_ups));
 		holder.numberAnswers.setText(String.valueOf(base.number_answers));
 		holder.numberViews.setText(String.valueOf(base.number_views));
-		v.setBackgroundColor(Color.parseColor("#"+base.theme_color));
+//		v.setBackgroundColor(Color.parseColor("#"+base.theme_color));
 		
 		//avatar
-		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar);
 		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg);
+		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar);
 		
 		return v;
 	}
