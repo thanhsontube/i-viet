@@ -1,5 +1,6 @@
 package com.android.iviet.welcome;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.main.MainActivity;
 import com.android.iviet.welcome.fragment.WelcomeFragment;
 
 public class WelcomeActivity extends BaseFragmentActivity {
@@ -91,12 +93,14 @@ public class WelcomeActivity extends BaseFragmentActivity {
 	}
 
 	private void onTouchToOpen() {
-		int visible = mLoginPanel.getVisibility();
-		if (visible == View.GONE) {
-			showLoginPanel();
-		} else {
-			hideLoginPanel();
-		}
+//		int visible = mLoginPanel.getVisibility();
+//		if (visible == View.GONE) {
+//			showLoginPanel();
+//		} else {
+//			hideLoginPanel();
+//		}
+		
+		startActivity(new Intent(this, MainActivity.class));
 	}
 
 	private void showLoginPanel() {

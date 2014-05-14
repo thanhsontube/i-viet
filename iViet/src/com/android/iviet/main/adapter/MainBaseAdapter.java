@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.iviet.R;
 import com.android.iviet.main.dto.MainDto;
 
 public class MainBaseAdapter extends ArrayAdapter<MainDto>{
@@ -31,7 +32,16 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		return super.getView(position, convertView, parent);
+		View v = convertView;
+		final Holder holder;
+		if (v == null) {
+			v = inflater.inflate(R.layout.row_main, parent, false);
+			holder = new Holder();
+			v.setTag(holder);
+		} else {
+			holder = (Holder) v.getTag();
+		}
+		return v;
 	}
 	
 	static class Holder {

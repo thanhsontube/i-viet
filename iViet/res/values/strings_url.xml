@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_url">http://www.iviet.com/</string>
+    <!-- <string name="url_everything">m/questions/all?cursor=\&userToken=u50</string> -->
+   <!--  <string name="url_newest">"m/questions/all?cursor=&userToken=u50"</string>
+    <string name="url_featured">"m/questions/all?cursor=&userToken=u50"</string>
+    <string name="url_interesting">"m/questions/all?cursor=&userToken=u50"</string> -->
+</resources>
