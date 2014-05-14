@@ -20,7 +20,7 @@ import android.os.AsyncTask;
 import com.android.iviet.utils.FilterLog;
 
 public abstract class ContentLoader<T> {
-	private static final String TAG = "ContentLoader";
+	protected static final String TAG = "ContentLoader";
 
 	public abstract void onContentLoaderStart();
 

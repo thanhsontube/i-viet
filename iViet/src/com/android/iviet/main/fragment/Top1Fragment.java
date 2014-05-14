@@ -22,6 +22,7 @@ import com.android.iviet.connection.BasicAccessPathGenerator;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.MainLoader;
 import com.android.iviet.main.adapter.MainBaseAdapter;
+import com.android.iviet.main.dto.DataRootDto;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.utils.FilterLog;
 
@@ -105,9 +106,11 @@ public class Top1Fragment extends Fragment {
 			mContentManager.load(new MainLoader(httpGet, false) {
 				
 				@Override
-				public void onContentLoaderSucceed(MainDto entity) {
+				public void onContentLoaderSucceed(DataRootDto entity) {
 					log.d("NECVN>>>" + "onContentLoaderSucceed");
 					// TODO Auto-generated method stub
+					adapter.setData(entity.getList());
+					
 					
 				}
 				

@@ -2,58 +2,47 @@ package com.android.iviet.json;
 
 import java.util.List;
 
-import com.android.iviet.main.dto.MainDto;
-
 public class DataObject {
 	String cursor;
-	List<BaseObject> newest;
+	List<BaseObject> listdata;
 	String more;
-	List<BaseObject> featured;
-	List<BaseObject> yours;
+	
 
 	public DataObject() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public String getCursor() {
 		return cursor;
 	}
+
 
 	public void setCursor(String cursor) {
 		this.cursor = cursor;
 	}
 
-	public List<BaseObject> getNewest() {
-		return newest;
+
+	public List<BaseObject> getListdata() {
+		return listdata;
 	}
 
-	public void setNewest(List<BaseObject> newest) {
-		this.newest = newest;
+
+	public void setListdata(List<BaseObject> listdata) {
+		this.listdata = listdata;
 	}
+
 
 	public String getMore() {
 		return more;
 	}
 
+
 	public void setMore(String more) {
 		this.more = more;
 	}
 
-	public List<BaseObject> getFeatured() {
-		return featured;
-	}
-
-	public void setFeatured(List<BaseObject> featured) {
-		this.featured = featured;
-	}
-
-	public List<BaseObject> getYours() {
-		return yours;
-	}
-
-	public void setYours(List<BaseObject> yours) {
-		this.yours = yours;
-	}
+	
 
 }
