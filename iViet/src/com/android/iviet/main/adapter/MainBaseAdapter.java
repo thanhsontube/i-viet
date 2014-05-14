@@ -75,7 +75,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		holder.voteUps.setText(String.valueOf(base.vote_ups));
 		holder.numberAnswers.setText(String.valueOf(base.number_answers));
 		holder.numberViews.setText(String.valueOf(base.number_views));
-//		v.setBackgroundColor(Color.parseColor("#"+base.theme_color));
+		holder.themColor.setBackgroundColor(Color.parseColor("#"+base.theme_color));
 		
 		//avatar
 		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg);

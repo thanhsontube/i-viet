@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/user_avatar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/appicon_58" />
 
         <!-- Question title -->
@@ -25,8 +25,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp" >
+            android:layout_marginLeft="@dimen/lv1"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/user_name"
@@ -44,6 +44,7 @@
                 android:textColor="@color/body_text_2" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/topic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,8 +58,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp" >
+            android:layout_marginLeft="@dimen/lv1"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/answer_user_name"
@@ -80,9 +81,10 @@
     <!-- MIDDLE image -->
 
     <ImageView
+        android:layout_marginTop="@dimen/lv1"
         android:id="@+id/snapshot_img"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:scaleType="fitXY"
         android:src="@drawable/appicon_58" />
     <!-- BUTTOM 1 -->
@@ -97,7 +99,9 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
+            android:scrollHorizontally="true"
             android:text="@string/test1"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -106,18 +110,20 @@
             android:id="@+id/snapshot_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
+            android:scrollHorizontally="true"
             android:text="@string/test2"
-            android:textColor="@color/body_text_2" />
+            android:textColor="@color/black"
+            android:textStyle="italic" />
     </LinearLayout>
 
     <!-- buttom 2 -->
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:padding="8dp" >
+        android:orientation="horizontal" >
 
         <!-- left -->
 
@@ -127,17 +133,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/blue1"
+            android:gravity="center"
             android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chi Tiet"
-                android:textColor="@color/body_text_2" />
+                android:layout_gravity="center"
+                android:text="@string/chi_tiet"
+                android:textColor="@color/white" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/lv1"
                 android:src="@drawable/right" />
         </LinearLayout>
         <!-- right -->
@@ -151,13 +161,14 @@
             <!-- like -->
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <TextView
-                  android:id="@+id/vote_ups"
+                    android:id="@+id/vote_ups"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="50"
@@ -171,8 +182,9 @@
             <!-- Comment -->
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
 
@@ -184,16 +196,17 @@
                     android:textColor="@color/black" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/comment" />
             </LinearLayout>
 
             <!-- view -->
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
 
@@ -205,8 +218,8 @@
                     android:textColor="@color/black" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/saw" />
             </LinearLayout>
         </LinearLayout>
