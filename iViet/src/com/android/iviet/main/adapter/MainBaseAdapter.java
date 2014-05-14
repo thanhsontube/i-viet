@@ -3,11 +3,13 @@ package com.android.iviet.main.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.iviet.R;
@@ -52,6 +54,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			holder.voteUps = (TextView) v.findViewById(R.id.vote_ups);
 			holder.numberAnswers = (TextView) v.findViewById(R.id.number_answers);
 			holder.numberViews = (TextView) v.findViewById(R.id.number_views);
+			holder.themColor = (LinearLayout) v.findViewById(R.id.them_color2);
 			v.setTag(holder);
 		} else {
 			holder = (Holder) v.getTag();
@@ -70,10 +73,12 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		holder.voteUps.setText(String.valueOf(base.vote_ups));
 		holder.numberAnswers.setText(String.valueOf(base.number_answers));
 		holder.numberViews.setText(String.valueOf(base.number_views));
+		v.setBackgroundColor(Color.parseColor("#"+base.theme_color));
 		
 		//avatar
-		imageLoader.displayImage(dto.getListdata().get(position).getUser_avatar(), holder.userAvatar);
-		imageLoader.displayImage(dto.getListdata().get(position).getSnapshot_img(), holder.snapshotImg);
+		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar);
+		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg);
+		
 		return v;
 	}
 	
@@ -89,6 +94,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		public TextView voteUps;
 		public TextView numberAnswers;
 		public TextView numberViews;
+		public LinearLayout themColor;
 		
 	}
 	
