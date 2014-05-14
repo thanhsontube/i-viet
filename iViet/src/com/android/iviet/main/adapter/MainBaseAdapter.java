@@ -4,17 +4,21 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.iviet.R;
 import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.dto.MainDto;
+import com.android.iviet.main.fragment.Top1Fragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainBaseAdapter extends ArrayAdapter<MainDto>{
@@ -22,12 +26,14 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 	Context context;
 	LayoutInflater inflater;
 	ImageLoader imageLoader;
-	public MainBaseAdapter (Context context, List<MainDto> list) {
+	Top1Fragment f;
+	public MainBaseAdapter (Context context, List<MainDto> list, Top1Fragment f) {
 		super(context, 0, list);
 		this.context = context;
 		this.list = list; 
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = ImageLoader.getInstance();
+		this.f = f;
 	}
 	
 	public void setData(List<MainDto> objects) {
@@ -62,8 +68,8 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			holder = (Holder) v.getTag();
 		}
 		
-		MainDto dto = list.get(0);
-		BaseObject base = dto.getListdata().get(position);
+		final MainDto dto = list.get(0);
+		final BaseObject base = dto.getListdata().get(position);
 		
 		
 		holder.userName.setText(base.user_name);
@@ -80,6 +86,18 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		//avatar
 		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg);
 		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar);
+		
+		holder.userAvatar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "Avatar click", Toast.LENGTH_SHORT).show();
+				if(f.mListener != null) {
+					f.mListener.onTop1AvatarClicked(dto);
+				}
+				
+			}
+		});
 		
 		return v;
 	}

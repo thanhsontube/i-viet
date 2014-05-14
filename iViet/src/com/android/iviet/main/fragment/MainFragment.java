@@ -15,13 +15,19 @@ import android.view.ViewGroup;
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.base.OnBackPressListener;
+import com.android.iviet.main.dto.MainDto;
+import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.utils.ActionBarUtils;
+import com.android.iviet.utils.FilterLog;
 
-public class MainFragment extends Fragment implements OnPageChangeListener, OnBackPressListener{
+public class MainFragment extends Fragment implements OnPageChangeListener, OnBackPressListener, ITop1FragmentListener 
+{
 	
+	private static final String TAG = "MainFragment";
 	private MainPagerAdapter mMainPagerAdapter;
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
+	FilterLog log = new FilterLog(TAG);
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -172,5 +178,19 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 			return "iViet";
 		}
 
+	}
+
+	@Override
+	public void onTop1AvatarClicked(MainDto dto) {
+		// TODO Auto-generated method stub
+		log.d("NECVN>>> " + "onTop1AvatarClicked");
+		
+	}
+
+	@Override
+	public void onTop1ContentClicked(MainDto dto) {
+		// TODO Auto-generated method stub
+		log.d("NECVN>>> " + "onTop1ContentClicked");
+		
 	}
 }

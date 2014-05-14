@@ -1,7 +1,5 @@
 package com.android.iviet.main.fragment;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
@@ -29,7 +28,7 @@ import com.android.iviet.utils.FilterLog;
 public class Top1Fragment extends Fragment {
 	private static final String TAG = "Top1Fragment";
 	private ListView listview;
-	private ITop1FragmentListener mListener;
+	public ITop1FragmentListener mListener;
 	private MainBaseAdapter adapter;
 	private List<MainDto> list = new ArrayList<MainDto>();
 	private ContentManager mContentManager;
@@ -53,17 +52,17 @@ public class Top1Fragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.top1_fragment, container, false);
 		listview = (ListView) v.findViewById(R.id.main_listview);
-		adapter = new MainBaseAdapter(getActivity(), list);
+		adapter = new MainBaseAdapter(getActivity(), list, Top1Fragment.this);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new ListView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+				log.v("NECVN>>> " + "onItemClick mListener:" + mListener);
+				Toast.makeText(getActivity(), "Row CLick", Toast.LENGTH_SHORT).show();
 				if (mListener == null) {
 					return;
 				}
-
 				MainDto item = (MainDto)adapter.getItemAtPosition(position);
-				mListener.onTop1AvatarClicked(item);
 				mListener.onTop1ContentClicked(item);
 			}
 		});
