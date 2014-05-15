@@ -23,5 +23,6 @@
     <string name="dang_nhap">Đăng Nhập</string>
     <string name="quen_mat_khau">Quên mật khẩu?</string>
     <string name="chi_tiet">Chi tiết</string>
+    <string name="waiting">Vui lòng đợi...</string>
 
 </resources>

@@ -107,11 +107,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:id="@+id/snapshot_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:singleLine="true"
             android:scrollHorizontally="true"
             android:text="@string/test2"
             android:textColor="@color/black"
@@ -151,6 +153,7 @@
         <!-- right -->
 
         <LinearLayout
+            android:background="@drawable/right_infomationi_background"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

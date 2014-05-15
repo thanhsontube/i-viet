@@ -34,6 +34,7 @@ public class Top1Fragment extends Fragment {
 	private ContentManager mContentManager;
 	private BasicAccessPathGenerator mBasicAccessPathGenerator;
 	FilterLog log = new FilterLog(TAG);
+	private View empty;
 	
 	public static interface ITop1FragmentListener {
 		void onTop1AvatarClicked(Top1Fragment f, MainDto dto);
@@ -66,6 +67,9 @@ public class Top1Fragment extends Fragment {
 				mListener.onTop1ContentClicked(Top1Fragment.this, item);
 			}
 		});
+		
+		empty = v.findViewById(android.R.id.empty);
+		inflater.inflate(R.layout.waiting, (ViewGroup) empty, true);
 		return v;
 
 	}
@@ -107,6 +111,7 @@ public class Top1Fragment extends Fragment {
 				@Override
 				public void onContentLoaderSucceed(DataRootDto entity) {
 					log.d("NECVN>>>" + "onContentLoaderSucceed");
+					empty.setVisibility(View.GONE);
 					// TODO Auto-generated method stub
 					log.d("NECVN>>>" + "size:" + entity.getList().size());
 					adapter.setData(entity.getList());

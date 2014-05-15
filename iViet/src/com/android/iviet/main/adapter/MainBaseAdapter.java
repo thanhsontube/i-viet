@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -76,6 +75,10 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		holder.createdName.setText(base.created_on);
 		holder.answerUserName.setText(base.answer_user_name);
 		holder.recentAnswerDate.setText(base.recent_answer_date);
+		if(base.getNumber_answers() < 1) {
+			holder.answerUserName.setVisibility(View.GONE);
+			holder.recentAnswerDate.setVisibility(View.GONE);
+		}
 		holder.title.setText(base.title);
 		holder.snapshotContent.setText(base.snapshot_content);
 		holder.voteUps.setText(String.valueOf(base.vote_ups));
