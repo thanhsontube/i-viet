@@ -2,7 +2,10 @@ package com.android.iviet.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 public class DatetimeUtils {
@@ -19,7 +22,8 @@ public class DatetimeUtils {
 
 	private static final String MY_DATE_FORMAT = "yyyy-MM-dd (E) HH:mm:ss";
 
-	public static String getTimtFromLongTime(String format, long time){
+	@SuppressLint("SimpleDateFormat")
+    public static String getTimtFromLongTime(String format, long time){
 		String s = "";
 		try {
 			Calendar calendar = Calendar.getInstance();
@@ -48,12 +52,11 @@ public class DatetimeUtils {
             // if timestamp given in seconds, convert to millis
             time *= 1000;
         }
-
-        long now = System.currentTimeMillis();
+        Calendar c = Calendar.getInstance();
+        long now = c.getTimeInMillis();
         if (time > now || time <= 0) {
             return null;
         }
-
         final long diff = now - time;
         if (diff < MINUTE) {
             return "just now";
@@ -70,6 +73,79 @@ public class DatetimeUtils {
         } else {
             return diff / DAY + " days ago";
         }
+    }
+    
+    public static String getTimeAgoVnAsk(long time, Context ctx) {
+        // TODO: use DateUtils methods instead
+//        if (time < 1000000000000L) {
+//            // if timestamp given in seconds, convert to millis
+//            time *= 1000;
+//        }
+        Calendar c = Calendar.getInstance();
+        long now = c.getTimeInMillis();
+        if (time > now || time <= 0) {
+            return null;
+        }
+        final long diff = now - time;
+        if (diff < MINUTE) {
+            return "Vừa mới hỏi";
+        } else if (diff < 2 * MINUTE) {
+            return "Hỏi 1 phút trước";
+        } else if (diff < 50 * MINUTE) {
+            return "Hỏi " + diff / MINUTE + " phút trước";
+        } else if (diff < 90 * MINUTE) {
+            return "Hỏi 1 giờ trước";
+        } else if (diff < 24 * HOUR) {
+            return "Hỏi " + diff / HOUR + " giờ trước";
+        } else if (diff < 48 * HOUR) {
+            return "Hỏi ngày hôm qua";
+        } else {
+            return "Hỏi " + diff / DAY + " ngày trước";
+        }
+    }
+    
+    public static String getTimeAgoVnAnswer(long time, Context ctx) {
+        // TODO: use DateUtils methods instead
+        if (time < 1000000000000L) {
+            // if timestamp given in seconds, convert to millis
+            time *= 1000;
+        }
+        Calendar c = Calendar.getInstance();
+        long now = c.getTimeInMillis();
+        if (time > now || time <= 0) {
+            return null;
+        }
+        final long diff = now - time;
+        if (diff < MINUTE) {
+            return "Vừa mới trả lời";
+        } else if (diff < 2 * MINUTE) {
+            return "Trả lời 1 phút trước";
+        } else if (diff < 50 * MINUTE) {
+        	return "Trả lời " + diff / MINUTE + " phút trước";
+        } else if (diff < 90 * MINUTE) {
+            return "Trả lời 1 giờ trước";
+        } else if (diff < 24 * HOUR) {
+        	 return "Trả lời " + diff / HOUR + " giờ trước";
+        } else if (diff < 48 * HOUR) {
+            return "Trả lời ngày hôm qua";
+        } else {
+            return "Trả lời " + diff / DAY + " ngày trước";
+        }
+    }
+    
+    @SuppressLint("SimpleDateFormat")
+    public static long stringToDate(String str) {
+    	//2014-05-15T03:26:30.833010
+//    	str = str.substring(0, 19);
+//    	String dtStart = "2010-10-15T09:27:37Z"; 
+    	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");  
+    	try {  
+    	    Date date = format.parse(str);  
+    	    return date.getTime();
+    	} catch (Exception e) {  
+    	    e.printStackTrace();  
+    	    return 0;
+    	}
     }
 
 }

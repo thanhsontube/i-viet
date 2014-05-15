@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +19,7 @@ import com.android.iviet.R;
 import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.Top1Fragment;
+import com.android.iviet.utils.DatetimeUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainBaseAdapter extends ArrayAdapter<MainDto>{
@@ -72,9 +74,10 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		
 		
 		holder.userName.setText(base.user_name);
-		holder.createdName.setText(base.created_on);
+		holder.createdName.setText(getDayAgo(base.created_on, true));
+		
 		holder.answerUserName.setText(base.answer_user_name);
-		holder.recentAnswerDate.setText(base.recent_answer_date);
+		holder.recentAnswerDate.setText(getDayAgo(base.recent_answer_date, false));
 		if(base.getNumber_answers() < 1) {
 			holder.answerUserName.setVisibility(View.GONE);
 			holder.recentAnswerDate.setVisibility(View.GONE);
@@ -119,6 +122,22 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		public TextView numberViews;
 		public LinearLayout themColor;
 		
+	}
+	
+	public String getDayAgo(String str, boolean isAsk) {
+		Log.v("", "NECVN>>>" + "str:" + str);
+		try {
+			long dateLong = DatetimeUtils.stringToDate(str);
+			Log.v("", "NECVN>>>" + "dateLong:" + dateLong);
+			if (isAsk) {
+				return DatetimeUtils.getTimeAgoVnAsk(dateLong, context);
+
+			}
+			return DatetimeUtils.getTimeAgoVnAnswer(dateLong, context);
+
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 }
