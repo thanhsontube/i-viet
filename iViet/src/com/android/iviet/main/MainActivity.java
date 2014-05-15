@@ -1,7 +1,11 @@
 package com.android.iviet.main;
 
+import android.app.ActionBar;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
@@ -32,6 +36,15 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBar.setDisplayShowTitleEnabled(false);
+
+		LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = inflator.inflate(R.layout.actionbar_custom, null);
+
+		actionBar.setCustomView(v);
 	}
 
 	@Override
