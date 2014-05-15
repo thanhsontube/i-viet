@@ -24,5 +24,6 @@
     <string name="quen_mat_khau">Quên mật khẩu?</string>
     <string name="chi_tiet">Chi tiết</string>
     <string name="waiting">Vui lòng đợi...</string>
+    <string name="user_info">Thông tin</string>
 
 </resources>
