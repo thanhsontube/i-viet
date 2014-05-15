@@ -22,6 +22,12 @@
     <string name="pass">Mật khẩu</string>
     <string name="dang_nhap">Đăng Nhập</string>
     <string name="quen_mat_khau">Quên mật khẩu?</string>
+    <string name="cap_lai_mat_khau">Cấp lại mật khầu</string>
+    <string name="quet_qua_phai_quay_ve">Quét qua phải để quay về</string>
+    <string name="dong">Đóng</string>
+    <string name="loi">Lỗi</string>
+    <string name="email_pass_khong_hop_le">Sai email hoặc password</string>
+    <string name="kiem_tra_ket_noi_internet">Kiểm tra kết nối Internet</string>
     <string name="chi_tiet">Chi tiết</string>
     <string name="waiting">Vui lòng đợi...</string>
     <string name="user_info">Thông tin</string>
