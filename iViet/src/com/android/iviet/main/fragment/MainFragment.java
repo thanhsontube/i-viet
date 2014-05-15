@@ -1,6 +1,7 @@
 package com.android.iviet.main.fragment;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,7 +21,7 @@ import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
-public class MainFragment extends Fragment implements OnPageChangeListener, OnBackPressListener, ITop1FragmentListener 
+public class MainFragment extends Fragment implements OnPageChangeListener, OnBackPressListener 
 {
 	
 	private static final String TAG = "MainFragment";
@@ -28,6 +29,28 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	FilterLog log = new FilterLog(TAG);
+	
+	private IMainFragmentListener listener;
+	
+	
+	public static interface IMainFragmentListener {
+		public void onIMainFragmentStart(MainFragment f, int i);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+	    // TODO Auto-generated method stub
+	    super.onAttach(activity);
+	    if (activity instanceof IMainFragmentListener) {
+	    	listener = (IMainFragmentListener) activity;
+	    }
+	}
+	
+	@Override
+	public void onDetach() {
+	    super.onDetach();
+	    listener = null;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -43,6 +66,10 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		mViewPager.setCurrentItem(MsConst.INDEX_TOP);
 		mViewPager.setOnPageChangeListener(this);
 		ActionBarUtils.setTitle(mActionBar, getApplicationTitle(MsConst.INDEX_TOP));
+		
+		if (listener != null) {
+			listener.onIMainFragmentStart(this, 10);
+		}
 		
 		return rootView;
 	}
@@ -178,19 +205,5 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 			return "iViet";
 		}
 
-	}
-
-	@Override
-	public void onTop1AvatarClicked(MainDto dto) {
-		// TODO Auto-generated method stub
-		log.d("NECVN>>> " + "onTop1AvatarClicked");
-		
-	}
-
-	@Override
-	public void onTop1ContentClicked(MainDto dto) {
-		// TODO Auto-generated method stub
-		log.d("NECVN>>> " + "onTop1ContentClicked");
-		
 	}
 }

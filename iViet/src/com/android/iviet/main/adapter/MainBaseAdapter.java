@@ -93,7 +93,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			public void onClick(View v) {
 				Toast.makeText(context, "Avatar click", Toast.LENGTH_SHORT).show();
 				if(f.mListener != null) {
-					f.mListener.onTop1AvatarClicked(dto);
+					f.mListener.onTop1AvatarClicked(f, dto);
 				}
 				
 			}

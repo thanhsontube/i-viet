@@ -36,8 +36,8 @@ public class Top1Fragment extends Fragment {
 	FilterLog log = new FilterLog(TAG);
 	
 	public static interface ITop1FragmentListener {
-		void onTop1AvatarClicked(MainDto dto);
-		void onTop1ContentClicked(MainDto dto);
+		void onTop1AvatarClicked(Top1Fragment f, MainDto dto);
+		void onTop1ContentClicked(Top1Fragment f, MainDto dto);
 	}
 	/**
 	 * get data from server
@@ -63,7 +63,7 @@ public class Top1Fragment extends Fragment {
 					return;
 				}
 				MainDto item = (MainDto)adapter.getItemAtPosition(position);
-				mListener.onTop1ContentClicked(item);
+				mListener.onTop1ContentClicked(Top1Fragment.this, item);
 			}
 		});
 		return v;
