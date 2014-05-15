@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.base.OnBackPressListener;
-import com.android.iviet.main.dto.MainDto;
-import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
@@ -35,6 +33,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 	
 	public static interface IMainFragmentListener {
 		public void onIMainFragmentStart(MainFragment f, int i);
+//		public void onIMainFragmentSwipe(MainFragment f, int i, CharSequence title);
 	}
 	
 	@Override
@@ -65,10 +64,10 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		mViewPager.setAdapter(mMainPagerAdapter);
 		mViewPager.setCurrentItem(MsConst.INDEX_TOP);
 		mViewPager.setOnPageChangeListener(this);
-		ActionBarUtils.setTitle(mActionBar, getApplicationTitle(MsConst.INDEX_TOP));
+		ActionBarUtils.update(mActionBar, MsConst.INDEX_TOP, getApplicationTitle(MsConst.INDEX_TOP));
 		
 		if (listener != null) {
-			listener.onIMainFragmentStart(this, 10);
+			listener.onIMainFragmentStart(MainFragment.this, 10);
 		}
 		
 		return rootView;
@@ -134,7 +133,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 //				}
 //			}
 //		}
-		ActionBarUtils.setTitle(mActionBar, getApplicationTitle(position));
+		ActionBarUtils.update(mActionBar, position, getApplicationTitle(position));
 		
 	}
 	
@@ -194,11 +193,11 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
 			case 0:
-				return "DE CAO";
+				return "Đề cao";
 			case 1:
-				return "MOI NHAT";
+				return "Mới nhất";
 			case 2:
-				return "CAU HOI CUA BAN";
+				return "Câu hỏi của bạn";
 			default:
 				break;
 			}
