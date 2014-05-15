@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.main.MainActivity;
+import com.android.iviet.welcome.fragment.LoginEmailFragment;
 import com.android.iviet.welcome.fragment.WelcomeFragment;
 
 public class WelcomeActivity extends BaseFragmentActivity {
@@ -73,6 +74,7 @@ public class WelcomeActivity extends BaseFragmentActivity {
 		case R.id.login_btn_mail:
 			Toast.makeText(WelcomeActivity.this, "Email", Toast.LENGTH_SHORT)
 					.show();
+			onLoginEmail();
 			break;
 		case R.id.login_btn_facebook:
 			Toast.makeText(WelcomeActivity.this, "Facebook", Toast.LENGTH_SHORT)
@@ -90,6 +92,12 @@ public class WelcomeActivity extends BaseFragmentActivity {
 			break;
 		}
 
+	}
+
+	private void onLoginEmail() {
+		// TODO Auto-generated method stub
+		showFragment(new LoginEmailFragment(), true);
+		
 	}
 
 	private void onTouchToOpen() {

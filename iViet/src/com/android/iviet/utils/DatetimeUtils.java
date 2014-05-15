@@ -133,12 +133,12 @@ public class DatetimeUtils {
         }
     }
     
-    @SuppressLint("SimpleDateFormat")
+    
     public static long stringToDate(String str) {
     	//2014-05-15T03:26:30.833010
 //    	str = str.substring(0, 19);
 //    	String dtStart = "2010-10-15T09:27:37Z"; 
-    	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");  
+    	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault());  
     	try {  
     	    Date date = format.parse(str);  
     	    return date.getTime();
