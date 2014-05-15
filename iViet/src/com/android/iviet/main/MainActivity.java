@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -56,16 +58,22 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerList.setAdapter(getDrawerAdapter());
-		mDrawerList.setOnItemClickListener(null);
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
-		actionBar.setDisplayShowCustomEnabled(true);
-		actionBar.setDisplayShowTitleEnabled(false);
+			@Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	            
+            }
+		});
+
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setDisplayShowCustomEnabled(true);
+        getActionBar().setDisplayShowTitleEnabled(false);
 		LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflator.inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(v);
+		getActionBar().setCustomView(v);
 	}
 	
 	@Override
@@ -74,11 +82,6 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	    mDrawerToggle.syncState();
 	}
 	
-	@Override
-	protected void onResume() {
-	    super.onResume();
-	}
-
 	@Override
     public void onIMainFragmentStart(MainFragment f, int i) {
 	    // TODO Auto-generated method stub
