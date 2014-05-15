@@ -27,6 +27,7 @@
     <string name="dong">Đóng</string>
     <string name="loi">Lỗi</string>
     <string name="email_pass_khong_hop_le">Sai email hoặc password</string>
+    <string name="email_khong_hop_le">Sai email</string>
     <string name="kiem_tra_ket_noi_internet">Kiểm tra kết nối Internet</string>
     <string name="chi_tiet">Chi tiết</string>
     <string name="waiting">Vui lòng đợi...</string>

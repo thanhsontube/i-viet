@@ -19,26 +19,25 @@ import com.android.iviet.utils.CommonUtils;
 import com.android.iviet.utils.PreferenceUtil;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 
-public class LoginEmailFragment extends Fragment implements OnTouchListener {
+public class LoginEmailForgetPassFragment extends Fragment implements
+		OnTouchListener {
 	private EditText mEdtEmail;
-	private EditText mEdtPass;
 	private GestureDetector mGestureDetector;
 	private static BaseInterface mBaseInterface;
 
-	public static LoginEmailFragment createLoginEmailFragment(
+	public static LoginEmailForgetPassFragment createLoginEmailForgetPassFragment(
 			BaseInterface baseInterface) {
 		mBaseInterface = baseInterface;
-		return new LoginEmailFragment();
+		return new LoginEmailForgetPassFragment();
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.login_email_layout,
-				container, false);
-		mEdtEmail = (EditText) rootView.findViewById(R.id.login_email_edt_mail);
-		mEdtPass = (EditText) rootView.findViewById(R.id.login_email_edt_pass);
+		View rootView = inflater.inflate(
+				R.layout.login_email_forget_pass_layout, container, false);
+		mEdtEmail = (EditText) rootView
+				.findViewById(R.id.login_email_edt_forgetpass_email);
 		String email = PreferenceUtil.getPreference(getActivity(),
 				CommonConstants.LOGIN_EMAIL_KEY, null);
 		if (email != null) {
@@ -50,31 +49,25 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 	}
 
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if (mBaseInterface == null) {
 			return;
 		}
 		switch (v.getId()) {
-		case R.id.login_email_btn_login:
-			checkLogin();
-			break;
-		case R.id.login_tv_forget_pass:
-			mBaseInterface.onClickInFragment(getClass().getName(),
-					R.id.login_tv_forget_pass);
+		case R.id.login_email_btn_get_pass:
+			checkEmailAddress();
 			break;
 		default:
 			break;
 		}
 	}
 
-	private void checkLogin() {
+	private void checkEmailAddress() {
 		boolean isValid = CommonUtils.isEmptyEditext(mEdtEmail)
-				|| CommonUtils.isEmailValid(mEdtEmail.getText().toString())
-				|| CommonUtils.isEmptyEditext(mEdtPass);
+				|| CommonUtils.isEmailValid(mEdtEmail.getText().toString());
 		if (!isValid) {
 			CommonUtils.showInfoDialog(getActivity(),
 					getActivity().getString(R.string.loi), getActivity()
-							.getString(R.string.email_pass_khong_hop_le));
+							.getString(R.string.email_khong_hop_le));
 			return;
 		}
 		if (!CommonUtils.isWifiOn(getActivity())
@@ -84,14 +77,14 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 							.getString(R.string.kiem_tra_ket_noi_internet));
 			return;
 		}
-		mBaseInterface.onClickInFragment(getClass().getName(), R.id.login_email_btn_login);
+		mBaseInterface.onClickInFragment(getClass().getName(),
+				R.id.login_email_btn_get_pass);
 	}
 
 	private GestureDetector.SimpleOnGestureListener mGestureListener = new SimpleOnGestureListener() {
 		public boolean onScroll(android.view.MotionEvent e1,
 				android.view.MotionEvent e2, float distanceX, float distanceY) {
 			Log.e("tag", "delta X " + distanceX);
-
 			if (distanceX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 			}
@@ -101,7 +94,6 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
 		mGestureDetector.onTouchEvent(event);
 		return false;
 	}
