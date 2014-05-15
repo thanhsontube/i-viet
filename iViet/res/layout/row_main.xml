@@ -23,9 +23,10 @@
         <!-- Question title -->
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lv1"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <TextView
@@ -40,6 +41,9 @@
                 android:id="@+id/created_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Hoi 4 gio truoc"
                 android:textColor="@color/body_text_2" />
 
@@ -56,9 +60,10 @@
         <!-- User answer -->
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lv1"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <TextView
@@ -73,6 +78,9 @@
                 android:id="@+id/recent_answer_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Tra loi 2 gio truoc"
                 android:textColor="@color/body_text_2" />
         </LinearLayout>
@@ -107,14 +115,14 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:id="@+id/snapshot_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:singleLine="true"
             android:scrollHorizontally="true"
+            android:singleLine="true"
             android:text="@string/test2"
             android:textColor="@color/black"
             android:textStyle="italic" />
@@ -153,10 +161,10 @@
         <!-- right -->
 
         <LinearLayout
-            android:background="@drawable/right_infomationi_background"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/right_infomationi_background"
             android:orientation="horizontal" >
 
             <!-- like -->
