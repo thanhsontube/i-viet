@@ -43,6 +43,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/img_chat"
         style="@style/main_img_style"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

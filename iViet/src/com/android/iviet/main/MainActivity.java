@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
@@ -72,6 +75,15 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
         getActionBar().setDisplayShowTitleEnabled(false);
 		LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflator.inflate(R.layout.actionbar_custom, null);
+		ImageView imgChat = (ImageView) v.findViewById(R.id.img_chat);
+		imgChat.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(MainActivity.this, "Chat click", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
 		getActionBar().setCustomView(v);
 	}
 	

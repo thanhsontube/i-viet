@@ -1,12 +1,11 @@
 package com.android.iviet.utils;
 
-import com.android.iviet.R;
-
 import android.app.ActionBar;
-import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.iviet.R;
 
 public class ActionBarUtils {
 	
