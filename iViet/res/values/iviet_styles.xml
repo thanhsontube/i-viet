@@ -1,0 +1,9 @@
+<resources>
+    
+    <style name="main_img_style">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</resources>
