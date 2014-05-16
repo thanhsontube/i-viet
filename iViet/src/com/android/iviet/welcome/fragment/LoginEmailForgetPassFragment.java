@@ -43,7 +43,7 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 			mEdtEmail.setText(email);
 		}
 		rootView.setOnTouchListener(this);
-		mGestureDetector = new GestureDetector(getActivity(), mGestureListener);
+		mGestureDetector = new GestureDetector(getActivity(), new Gesture());
 		return rootView;
 	}
 
@@ -80,19 +80,25 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 				R.id.login_email_btn_get_pass);
 	}
 
-	private GestureDetector.SimpleOnGestureListener mGestureListener = new SimpleOnGestureListener() {
-		public boolean onScroll(android.view.MotionEvent e1,
-				android.view.MotionEvent e2, float distanceX, float distanceY) {
-			if (distanceX > 0 && getActivity() instanceof BaseFragmentActivity) {
+	private class Gesture extends SimpleOnGestureListener {
+		@Override
+		public boolean onDown(MotionEvent e) {
+			return true;
+		}
+
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 			}
-			return false;
-		};
-	};
+			return super.onFling(e1, e2, velocityX, velocityY);
+		}
+
+	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		mGestureDetector.onTouchEvent(event);
-		return false;
+		return mGestureDetector.onTouchEvent(event);
 	}
 }

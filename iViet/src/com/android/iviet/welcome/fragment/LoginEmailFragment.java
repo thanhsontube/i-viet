@@ -8,9 +8,12 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
@@ -19,9 +22,12 @@ import com.android.iviet.utils.CommonUtils;
 import com.android.iviet.utils.PreferenceUtil;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 
-public class LoginEmailFragment extends Fragment implements OnTouchListener {
+public class LoginEmailFragment extends Fragment implements OnTouchListener,
+		OnClickListener {
 	private EditText mEdtEmail;
 	private EditText mEdtPass;
+	private TextView mTvForgetPass;
+	private Button mBtnLogin;
 	private GestureDetector mGestureDetector;
 	private static BaseInterface mBaseInterface;
 
@@ -39,18 +45,23 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 				container, false);
 		mEdtEmail = (EditText) rootView.findViewById(R.id.login_email_edt_mail);
 		mEdtPass = (EditText) rootView.findViewById(R.id.login_email_edt_pass);
+		mTvForgetPass = (TextView) rootView
+				.findViewById(R.id.login_tv_forget_pass);
+		mBtnLogin = (Button) rootView.findViewById(R.id.login_email_btn_login);
+		mBtnLogin.setOnClickListener(this);
+		mTvForgetPass.setOnClickListener(this);
 		String email = PreferenceUtil.getPreference(getActivity(),
 				CommonConstants.LOGIN_EMAIL_KEY, "");
 		if (!email.equalsIgnoreCase("")) {
 			mEdtEmail.setText(email);
 		}
 		rootView.setOnTouchListener(this);
-		mGestureDetector = new GestureDetector(getActivity(), mGestureListener);
+		mGestureDetector = new GestureDetector(getActivity(), new Gesture());
 		return rootView;
 	}
 
+	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if (mBaseInterface == null) {
 			return;
 		}
@@ -91,21 +102,24 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 				R.id.login_email_btn_login);
 	}
 
-	private GestureDetector.SimpleOnGestureListener mGestureListener = new SimpleOnGestureListener() {
-		public boolean onScroll(android.view.MotionEvent e1,
-				android.view.MotionEvent e2, float distanceX, float distanceY) {
-			Log.e("tag", "distanceX "+distanceX);
-			if (distanceX > 0 && getActivity() instanceof BaseFragmentActivity) {
+	private class Gesture extends SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+        		float velocityY) {
+        	if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 			}
-			return false;
-		};
-	};
+        	return super.onFling(e1, e2, velocityX, velocityY);
+        }
+        @Override
+        public boolean onDown(MotionEvent e) {
+        	return true;
+        }
+    }
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
-		mGestureDetector.onTouchEvent(event);
-		return false;
+		return mGestureDetector.onTouchEvent(event);
 	}
+
 }

@@ -83,6 +83,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 			final FragmentTransaction ft = fm.beginTransaction();
 			String tag = mFragmentTagStack.pop();
 			if(fm.findFragmentByTag(tag) != null) {
+				ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 				ft.remove(fm.findFragmentByTag(tag));
 			}
 			ft.commit();
@@ -107,6 +108,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 		if (fm.findFragmentByTag(tag) == null) {
 			ft.add(getFragmentContentId(), f, tag);
 		} else {
+			ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 			ft.replace(getFragmentContentId(), f, tag);
 		}
 

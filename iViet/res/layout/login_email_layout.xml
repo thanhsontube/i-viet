@@ -63,14 +63,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/btn_login_email_register"
-        android:onClick="onClick"
         android:text="@string/dang_nhap"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:onClick="onClick"
         android:id="@+id/login_tv_forget_pass"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
