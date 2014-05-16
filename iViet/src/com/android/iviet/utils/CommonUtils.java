@@ -3,6 +3,7 @@ package com.android.iviet.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -34,7 +35,7 @@ public class CommonUtils {
 		return isValid;
 	}
 
-	public static final void showInfoDialog(Context context, String title,
+	public static final void showInfoDialog(Activity context, String title,
 			String message) {
 		AlertDialog.Builder builder = new Builder(context);
 		AlertDialog dialog = builder.create();

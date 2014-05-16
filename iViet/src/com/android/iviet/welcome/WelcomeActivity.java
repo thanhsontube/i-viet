@@ -25,7 +25,7 @@ public class WelcomeActivity extends BaseFragmentActivity implements
 
 	@Override
 	protected int getFragmentContentId() {
-		return R.id.welcome_v_background;
+		return R.id.welcome_fm_layout;
 	}
 
 	@Override

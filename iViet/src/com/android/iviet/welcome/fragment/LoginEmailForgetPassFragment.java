@@ -61,8 +61,8 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 	}
 
 	private void checkEmailAddress() {
-		boolean isValid = CommonUtils.isEmptyEditext(mEdtEmail)
-				|| CommonUtils.isEmailValid(mEdtEmail.getText().toString());
+		boolean isValid = !CommonUtils.isEmptyEditext(mEdtEmail)
+				&& CommonUtils.isEmailValid(mEdtEmail.getText().toString());
 		if (!isValid) {
 			CommonUtils.showInfoDialog(getActivity(),
 					getActivity().getString(R.string.loi), getActivity()

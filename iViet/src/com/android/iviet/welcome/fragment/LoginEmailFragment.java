@@ -2,7 +2,6 @@ package com.android.iviet.welcome.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
@@ -79,9 +78,9 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener,
 	}
 
 	private void checkLogin() {
-		boolean isValid = CommonUtils.isEmptyEditext(mEdtEmail)
-				|| CommonUtils.isEmailValid(mEdtEmail.getText().toString())
-				|| CommonUtils.isEmptyEditext(mEdtPass);
+		boolean isValid = !CommonUtils.isEmptyEditext(mEdtEmail)
+				&& CommonUtils.isEmailValid(mEdtEmail.getText().toString())
+				&& !CommonUtils.isEmptyEditext(mEdtPass);
 		if (!isValid) {
 			CommonUtils.showInfoDialog(getActivity(),
 					getActivity().getString(R.string.loi), getActivity()
