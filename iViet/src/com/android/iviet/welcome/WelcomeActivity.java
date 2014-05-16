@@ -1,5 +1,6 @@
 package com.android.iviet.welcome;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Window;
@@ -7,6 +8,7 @@ import android.view.WindowManager;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.main.MainActivity;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 import com.android.iviet.welcome.fragment.LoginEmailForgetPassFragment;
 import com.android.iviet.welcome.fragment.LoginEmailFragment;
@@ -45,6 +47,7 @@ public class WelcomeActivity extends BaseFragmentActivity implements
 			case R.id.login_email_btn_login:
 				// TODO
 				// API login
+				startActivity(new Intent(this, MainActivity.class));
 				break;
 			case R.id.login_tv_forget_pass:
 			
