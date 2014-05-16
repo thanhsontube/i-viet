@@ -7,5 +7,10 @@ public class MsConst {
 	
 	public static final String BROADCAST_TIMEOUT = "BROADCAST_TIMEOUT";
 	
-	public static final int INDEX_TOP = 0;
+	public static final int INDEX_NEWEST = 0;
+	public static final int INDEX_FEATURED = 1;
+	public static final int INDEX_YOUR_QUESTION = 2;
+	
+	//bundle
+	public static String BUNDLE_TRANSITION = "BUNDLE_TRANSITION";
 }

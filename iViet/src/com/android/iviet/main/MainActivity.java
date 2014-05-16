@@ -15,7 +15,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.main.dto.MainDto;
@@ -93,10 +92,22 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	    mDrawerToggle.syncState();
 	}
 	
+	//interface of MAIN FRAGMENT
 	@Override
     public void onIMainFragmentStart(MainFragment f, int i) {
 	    // TODO Auto-generated method stub
 		log.d("log>>>" + "onIMainFragmentStart");
+	    
+    }
+	@Override
+    public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
+	    // TODO Auto-generated method stub
 	    
     }
 
@@ -113,8 +124,10 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
     }
 	
 	protected ListAdapter getDrawerAdapter() {
-		final IVietApplication app = (IVietApplication) getApplication();
+//		final IVietApplication app = (IVietApplication) getApplication();
 		return null;
 	}
+
+	
 
 }
