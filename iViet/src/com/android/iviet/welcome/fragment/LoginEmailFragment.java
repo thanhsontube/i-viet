@@ -2,7 +2,6 @@ package com.android.iviet.welcome.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
@@ -90,7 +89,6 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 	private GestureDetector.SimpleOnGestureListener mGestureListener = new SimpleOnGestureListener() {
 		public boolean onScroll(android.view.MotionEvent e1,
 				android.view.MotionEvent e2, float distanceX, float distanceY) {
-			Log.e("tag", "delta X " + distanceX);
 
 			if (distanceX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
