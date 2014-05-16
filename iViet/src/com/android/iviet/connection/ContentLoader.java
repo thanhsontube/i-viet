@@ -66,7 +66,7 @@ public abstract class ContentLoader<T> {
 
 		@Override
 		protected void onPreExecute() {
-			log.d("NECVN>>>" + "AsyncTask >>>>>>task onPreExecute");
+			log.d("log>>>" + "AsyncTask >>>>>>task onPreExecute");
 			if (isCancelled()) {
 				return;
 			}
@@ -94,7 +94,7 @@ public abstract class ContentLoader<T> {
 					client.getCredentialsProvider()
 					        .setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(auth));
 				}
-				log.d("necvn>>>ContentLoader request: " + request);
+				log.d("log>>>ContentLoader request: " + request);
 
 				return client.execute(request, new ResponseHandler<T>() {
 

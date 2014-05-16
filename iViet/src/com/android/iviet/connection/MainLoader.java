@@ -38,7 +38,7 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 			while ((buf = br.read()) >= 0) {
 				sb.append((char) buf);
 			}
-//			log.d("necvn>>>" + sb.toString());
+//			log.d("log>>>" + sb.toString());
 			
 			return handleJson(sb.toString());
 //			return handleJson(new JSONObject(sb.toString()));
@@ -59,12 +59,12 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 		try {
 			//link json:
 			//http://www.iviet.com/m/questions/all?cursor=&userToken=u50
-//			log.d("NECVN>>>" + "handleJson");
+//			log.d("log>>>" + "handleJson");
 //	        Gson gson = new Gson();
 //	        return gson.fromJson(json, MainDto.class);
 			DataRootDto dto = new DataRootDto();
 			JSONArray ja = new JSONArray(json);
-			log.d("NECVN>>>" + "ja:" + ja.length());
+			log.d("log>>>" + "ja:" + ja.length());
 			
 			List<BaseObject> list = new ArrayList<BaseObject>();
 			List<MainDto> listdMainDto = new ArrayList<MainDto>();
@@ -72,15 +72,15 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 				JSONObject jo2 = ja.getJSONObject(i);
 				if (!jo2.isNull("cursor")) {
 					String cursor = jo2.getString("cursor");
-					log.d("NECVN>>>" + "cursor:" + cursor) ;
+					log.d("log>>>" + "cursor:" + cursor) ;
 					
 				} else {
-					log.d("NECVN>>>" + "NULL cursor:"+ i);
+					log.d("log>>>" + "NULL cursor:"+ i);
 				}
 				
 				if(!jo2.isNull("newest")) {
 					JSONArray ja2 = jo2.getJSONArray("newest");
-					log.d("NECVN>>>" + "ja2:" + ja2.length());
+					log.d("log>>>" + "ja2:" + ja2.length());
 					for (int j = 0; j < ja2.length(); j++) {
 						JSONObject jo3 = ja2.getJSONObject(j);
 						
@@ -122,7 +122,7 @@ public abstract class MainLoader extends ContentLoader<DataRootDto> {
 			}
 			return dto;
         } catch (Exception e) {
-        	Log.e(TAG, "NECVN>>>" + "handleJson:" + e.toString());
+        	Log.e(TAG, "log>>>" + "handleJson:" + e.toString());
         	return null;
         }
 	}

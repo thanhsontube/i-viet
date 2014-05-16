@@ -125,10 +125,10 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 	}
 	
 	public String getDayAgo(String str, boolean isAsk) {
-		Log.v("", "NECVN>>>" + "str:" + str);
+		Log.v("", "log>>>" + "str:" + str);
 		try {
 			long dateLong = DatetimeUtils.stringToDate(str);
-			Log.v("", "NECVN>>>" + "dateLong:" + dateLong);
+			Log.v("", "log>>>" + "dateLong:" + dateLong);
 			if (isAsk) {
 				return DatetimeUtils.getTimeAgoVnAsk(dateLong, context);
 

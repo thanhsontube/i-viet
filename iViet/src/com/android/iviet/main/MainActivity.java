@@ -96,19 +96,19 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	@Override
     public void onIMainFragmentStart(MainFragment f, int i) {
 	    // TODO Auto-generated method stub
-		log.d("NECVN>>>" + "onIMainFragmentStart");
+		log.d("log>>>" + "onIMainFragmentStart");
 	    
     }
 
 	@Override
     public void onTop1AvatarClicked(Top1Fragment f,MainDto dto) {
-		log.d("NECVN>>>" + "onTop1AvatarClicked");
+		log.d("log>>>" + "onTop1AvatarClicked");
 	    
     }
 
 	@Override
     public void onTop1ContentClicked(Top1Fragment f,MainDto dto) {
-		log.d("NECVN>>>" + "onTop1ContentClicked");
+		log.d("log>>>" + "onTop1ContentClicked");
 	    
     }
 	

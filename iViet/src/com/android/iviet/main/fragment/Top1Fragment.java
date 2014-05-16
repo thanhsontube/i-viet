@@ -58,7 +58,7 @@ public class Top1Fragment extends Fragment {
 		listview.setOnItemClickListener(new ListView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-				log.v("NECVN>>> " + "onItemClick mListener:" + mListener);
+				log.v("log>>> " + "onItemClick mListener:" + mListener);
 				Toast.makeText(getActivity(), "Row CLick", Toast.LENGTH_SHORT).show();
 				if (mListener == null) {
 					return;
@@ -104,16 +104,16 @@ public class Top1Fragment extends Fragment {
 		
 		@Override
 		public void load() {
-			log.d("NECVN>>>" + "LOAD:" + mBasicAccessPathGenerator.newest());
+			log.d("log>>>" + "LOAD:" + mBasicAccessPathGenerator.newest());
 			HttpGet httpGet = new HttpGet(mBasicAccessPathGenerator.newest());
 			mContentManager.load(new MainLoader(httpGet, false) {
 				
 				@Override
 				public void onContentLoaderSucceed(DataRootDto entity) {
-					log.d("NECVN>>>" + "onContentLoaderSucceed");
+					log.d("log>>>" + "onContentLoaderSucceed");
 					empty.setVisibility(View.GONE);
 					// TODO Auto-generated method stub
-					log.d("NECVN>>>" + "size:" + entity.getList().size());
+					log.d("log>>>" + "size:" + entity.getList().size());
 					adapter.setData(entity.getList());
 					
 					
@@ -122,14 +122,14 @@ public class Top1Fragment extends Fragment {
 				@Override
 				public void onContentLoaderStart() {
 					// TODO Auto-generated method stub
-					log.d("NECVN>>>" + "onContentLoaderStart");
+					log.d("log>>>" + "onContentLoaderStart");
 					
 				}
 				
 				@Override
 				public void onContentLoaderFailed(Throwable e) {
 					// TODO Auto-generated method stub
-					log.d("NECVN>>>" + "onContentLoaderFailed");
+					log.d("log>>>" + "onContentLoaderFailed");
 					
 				}
 				
@@ -141,21 +141,21 @@ public class Top1Fragment extends Fragment {
 //
 //		@Override
 //		public void onContentLoaderStart() {
-//			log.d("NECVN>>>" + "onContentLoaderStart");
+//			log.d("log>>>" + "onContentLoaderStart");
 //			// TODO Auto-generated method stub
 //			
 //		}
 //
 //		@Override
 //		public void onContentLoaderSucceed(MainDto entity) {
-//			log.d("NECVN>>>" + "onContentLoaderSucceed");
+//			log.d("log>>>" + "onContentLoaderSucceed");
 //			// TODO Auto-generated method stub
 //			
 //		}
 //
 //		@Override
 //		public void onContentLoaderFailed(Throwable e) {
-//			log.d("NECVN>>>" + "onContentLoaderFailed");
+//			log.d("log>>>" + "onContentLoaderFailed");
 //			// TODO Auto-generated method stub
 //			
 //		}

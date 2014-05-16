@@ -30,7 +30,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		log.d("NECVN>>>" + "onCreate savedInstanceState:" + savedInstanceState);
+		log.d("log>>>" + "onCreate savedInstanceState:" + savedInstanceState);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager()
@@ -48,7 +48,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	
 	@Override
 	protected void onResumeFragments() {
-		log.d("NECVN>>>" + "onResumeFragments");
+		log.d("log>>>" + "onResumeFragments");
 		super.onResumeFragments();
 //		restoreFragmentsState();
 		
