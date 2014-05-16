@@ -38,8 +38,8 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 		mEdtEmail = (EditText) rootView
 				.findViewById(R.id.login_email_edt_forgetpass_email);
 		String email = PreferenceUtil.getPreference(getActivity(),
-				CommonConstants.LOGIN_EMAIL_KEY, null);
-		if (email != null) {
+				CommonConstants.LOGIN_EMAIL_KEY, "");
+		if (!email.equalsIgnoreCase("")) {
 			mEdtEmail.setText(email);
 		}
 		rootView.setOnTouchListener(this);

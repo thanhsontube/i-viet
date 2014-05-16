@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -82,6 +83,7 @@ public class DatetimeUtils {
 //            time *= 1000;
 //        }
         Calendar c = Calendar.getInstance();
+        
         long now = c.getTimeInMillis();
         if (time > now || time <= 0) {
             return null;
@@ -138,6 +140,7 @@ public class DatetimeUtils {
     	//2014-05-15T03:26:30.833010
 //    	str = str.substring(0, 19);
 //    	String dtStart = "2010-10-15T09:27:37Z"; 
+    	str = "2014-05-15T03:26:30.833010";
     	SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault());  
     	try {  
     	    Date date = format.parse(str);  

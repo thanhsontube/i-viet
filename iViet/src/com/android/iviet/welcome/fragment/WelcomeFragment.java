@@ -34,7 +34,6 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.welcome_fragment, container, false);
 		mWelcomeBackground = getActivity().findViewById(

@@ -2,6 +2,7 @@ package com.android.iviet.welcome.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
@@ -39,8 +40,8 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 		mEdtEmail = (EditText) rootView.findViewById(R.id.login_email_edt_mail);
 		mEdtPass = (EditText) rootView.findViewById(R.id.login_email_edt_pass);
 		String email = PreferenceUtil.getPreference(getActivity(),
-				CommonConstants.LOGIN_EMAIL_KEY, null);
-		if (email != null) {
+				CommonConstants.LOGIN_EMAIL_KEY, "");
+		if (!email.equalsIgnoreCase("")) {
 			mEdtEmail.setText(email);
 		}
 		rootView.setOnTouchListener(this);
@@ -83,13 +84,17 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener {
 							.getString(R.string.kiem_tra_ket_noi_internet));
 			return;
 		}
-		mBaseInterface.onClickInFragment(getClass().getName(), R.id.login_email_btn_login);
+		PreferenceUtil
+				.setPreference(getActivity(), CommonConstants.LOGIN_EMAIL_KEY,
+						mEdtEmail.getText().toString());
+		mBaseInterface.onClickInFragment(getClass().getName(),
+				R.id.login_email_btn_login);
 	}
 
 	private GestureDetector.SimpleOnGestureListener mGestureListener = new SimpleOnGestureListener() {
 		public boolean onScroll(android.view.MotionEvent e1,
 				android.view.MotionEvent e2, float distanceX, float distanceY) {
-
+			Log.e("tag", "distanceX "+distanceX);
 			if (distanceX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 			}
