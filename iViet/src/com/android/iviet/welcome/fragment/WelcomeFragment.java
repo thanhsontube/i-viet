@@ -1,7 +1,6 @@
 package com.android.iviet.welcome.fragment;
 
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -119,16 +118,16 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 	}
 
 	@Override
-	public void onPageSelected(int arg0) {
+	public void onPageSelected(final int arg0) {
 		try {
 			Resources resources = getActivity().getResources();
-			Drawable drawable = resources.getDrawable(resources.getIdentifier(
-					"ic_iviet_background_" + (arg0 + 1), "drawable", getActivity()
-							.getPackageName()));
-			mWelcomeBackground.setBackgroundDrawable(drawable);
+			int resid = resources.getIdentifier("ic_iviet_background_"
+					+ (arg0 + 1), "drawable", getActivity().getPackageName());
+			mWelcomeBackground.setBackgroundResource(resid);
+
 		} catch (Exception e) {
 		}
-		
+
 	}
 
 	private class AutoSwitchPageTask extends AsyncTask<Void, Void, Void> {
