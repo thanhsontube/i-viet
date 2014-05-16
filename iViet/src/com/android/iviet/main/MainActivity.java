@@ -1,5 +1,7 @@
 package com.android.iviet.main;
 
+import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -9,24 +11,26 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.MainFragment;
-import com.android.iviet.main.fragment.MainFragment.IMainFragmentListener;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.utils.FilterLog;
 
-public class MainActivity extends BaseFragmentActivity implements
-		ITop1FragmentListener, IMainFragmentListener {
+public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener {
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -52,8 +56,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.user_info, 0) {
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.user_info, 0) {
 			public void onDrawerOpened(View drawerView) {
 			}
 		};
@@ -65,8 +68,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 			}
 		});
@@ -75,16 +77,14 @@ public class MainActivity extends BaseFragmentActivity implements
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayShowTitleEnabled(false);
-		LayoutInflater inflator = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflator.inflate(R.layout.actionbar_custom, null);
 		ImageView imgChat = (ImageView) v.findViewById(R.id.img_chat);
 		imgChat.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity.this, "Chat click",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "Chat click", Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -106,27 +106,6 @@ public class MainActivity extends BaseFragmentActivity implements
 		mDrawerToggle.syncState();
 	}
 
-	// interface of MAIN FRAGMENT
-	@Override
-	public void onIMainFragmentStart(MainFragment f, int i) {
-		// TODO Auto-generated method stub
-		log.d("log>>>" + "onIMainFragmentStart");
-
-	}
-
-	@Override
-	public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onMainFragmentPageDeSelected(MainFragment main,
-			Fragment selected) {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void onTop1AvatarClicked(Top1Fragment f, MainDto dto) {
 		log.d("log>>>" + "onTop1AvatarClicked");
@@ -140,8 +119,19 @@ public class MainActivity extends BaseFragmentActivity implements
 	}
 
 	protected ListAdapter getDrawerAdapter() {
-		// final IVietApplication app = (IVietApplication) getApplication();
+		final IVietApplication app = (IVietApplication) getApplication();
+//		return new DrawerAdapter(app.getDrawerItemGenerator().generateMain());
 		return null;
+	}
+	
+	class DrawerAdapter extends ArrayAdapter<FragmentChangeDrawerItem> {
+		public DrawerAdapter(List<FragmentChangeDrawerItem> objects) {
+			super(MainActivity.this, 0, objects);
+		}
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			return getItem(position).getView(getLayoutInflater(), convertView, parent);
+		}
 	}
 
 }

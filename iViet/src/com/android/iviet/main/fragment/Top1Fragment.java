@@ -23,9 +23,10 @@ import com.android.iviet.connection.MainLoader;
 import com.android.iviet.main.adapter.MainBaseAdapter;
 import com.android.iviet.main.dto.DataRootDto;
 import com.android.iviet.main.dto.MainDto;
+import com.android.iviet.main.fragment.MainFragment.IMainFragmentListener;
 import com.android.iviet.utils.FilterLog;
 
-public class Top1Fragment extends Fragment {
+public class Top1Fragment extends Fragment implements IMainFragmentListener{
 	private static final String TAG = "Top1Fragment";
 	private ListView listview;
 	public ITop1FragmentListener mListener;
@@ -137,34 +138,24 @@ public class Top1Fragment extends Fragment {
 		}
 	};
 	
-//	MainLoader mainLoader = new MainLoader(new HttpGet(mBasicAccessPathGenerator.newest()), false) {
-//
-//		@Override
-//		public void onContentLoaderStart() {
-//			log.d("log>>>" + "onContentLoaderStart");
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//		@Override
-//		public void onContentLoaderSucceed(MainDto entity) {
-//			log.d("log>>>" + "onContentLoaderSucceed");
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//		@Override
-//		public void onContentLoaderFailed(Throwable e) {
-//			log.d("log>>>" + "onContentLoaderFailed");
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//		@Override
-//		protected MainDto handleStream(InputStream in) throws IOException {
-//			// TODO Auto-generated method stub
-//			return null;
-//		}
-//		
-//	};
+	// interface of MAIN FRAGMENT
+	@Override
+    public void onIMainFragmentStart(MainFragment f, int i) {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
+		log.d("log>>>" + "onMainFragmentPageSelected");
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
+	    // TODO Auto-generated method stub
+	    
+    }
+	
 }
