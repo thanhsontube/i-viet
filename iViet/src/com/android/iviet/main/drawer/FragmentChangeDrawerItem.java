@@ -39,7 +39,7 @@ public class FragmentChangeDrawerItem extends DrawerItem<Fragment> {
 		} else {
 			holder.title.setVisibility(View.GONE);
 		}
-		return null;
+		return convertView;
 	}
 
 	static class ViewHolder {

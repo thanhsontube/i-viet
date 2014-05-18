@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -125,10 +124,8 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 	}
 	
 	public String getDayAgo(String str, boolean isAsk) {
-		Log.v("", "log>>>" + "str:" + str);
 		try {
 			long dateLong = DatetimeUtils.stringToDate(str);
-			Log.v("", "log>>>" + "dateLong:" + dateLong);
 			if (isAsk) {
 				return DatetimeUtils.getTimeAgoVnAsk(dateLong, context);
 
