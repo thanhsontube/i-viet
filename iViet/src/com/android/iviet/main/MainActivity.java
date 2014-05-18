@@ -69,7 +69,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+				Toast.makeText(MainActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -120,10 +120,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	protected ListAdapter getDrawerAdapter() {
 		final IVietApplication app = (IVietApplication) getApplication();
-		List<FragmentChangeDrawerItem>  list = app.getDrawerItemGenerator().generateMain();
-		log.d("log>>> " + "list size:" + list.size());
 		return new DrawerAdapter(app.getDrawerItemGenerator().generateMain());
-//		return null;
 	}
 	
 	class DrawerAdapter extends ArrayAdapter<FragmentChangeDrawerItem> {
@@ -133,11 +130,6 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getItem(position).getView(getLayoutInflater(), convertView, parent);
-//			return null;
-			
-//			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//			View v = inflater.inflate(R.layout.row_main, parent, false);
-//			return v;
 		}
 	}
 
