@@ -3,6 +3,7 @@ package com.android.iviet.base;
 import java.util.Collection;
 import java.util.Stack;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -96,6 +97,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	}
 
 	public void showFragment(Fragment f, boolean isTransit) {
+		String ftag = f.getTag();
 		final String tag = String.format("%s:%d", getClass().getName(), mFragmentTagStack.size());
 		log.d("log>>>" + "showFragment:" + tag);
 		final FragmentManager fm = getSupportFragmentManager();
@@ -108,11 +110,11 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 			final Fragment ff = fm.findFragmentByTag(FRAGMENT_KEY);
 			ft.hide(ff);
 		}
-		if (fm.findFragmentByTag(tag) == null) {
+		if (fm.findFragmentByTag(ftag) == null) {
 			ft.add(getFragmentContentId(), f, tag);
 			ft.show(f);
 		} else {
-			ft.replace(getFragmentContentId(), f, tag);
+			ft.replace(getFragmentContentId(), f);
 			ft.show(f);
 		}
 		if(isTransit){
@@ -121,7 +123,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 			ft.addToBackStack(null);
 		}
 		ft.commit();
-		mFragmentTagStack.add(tag);
+		mFragmentTagStack.add(tag);	
 	}
 	/**
 	 * duplicate
