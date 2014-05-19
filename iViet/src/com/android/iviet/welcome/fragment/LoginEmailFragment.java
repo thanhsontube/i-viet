@@ -100,20 +100,5 @@ public class LoginEmailFragment extends SwipeToCloseFragent implements
 				R.id.login_email_btn_login);
 	}
 
-	private class Gesture extends SimpleOnGestureListener {
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-				float velocityY) {
-			if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
-				((BaseFragmentActivity) getActivity()).onBackPressed();
-			}
-			return super.onFling(e1, e2, velocityX, velocityY);
-		}
-
-		@Override
-		public boolean onDown(MotionEvent e) {
-			return true;
-		}
-	}
 
 }
