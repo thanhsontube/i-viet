@@ -4,8 +4,10 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.MainFragment;
@@ -37,6 +40,9 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	protected ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	FilterLog log = new FilterLog(TAG);
+	
+	private final Handler mHandler = new Handler();
+	private static final long DELAY_ON_DRAWER_CLICK = 250L;
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
@@ -65,13 +71,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerList.setAdapter(getDrawerAdapter());
-		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(MainActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
-			}
-		});
+		mDrawerList.setOnItemClickListener(itemClickListener);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
@@ -90,6 +90,42 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 		getActionBar().setCustomView(v);
 	}
+
+	/**
+	 * item left-drawer click
+	 */
+	OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			final FragmentManager fm = getSupportFragmentManager();
+			if (parent.getId() == R.id.left_drawer) {
+				final DrawerItem<?> item = (DrawerItem<?>) mDrawerList.getAdapter().getItem(position);
+				if (item instanceof FragmentChangeDrawerItem) {
+//					while (mFragmentTagStack.size() > 0) {
+//						fm.popBackStackImmediate();
+//					}
+					Fragment f = ((FragmentChangeDrawerItem) item).getParam();
+					if (f == null) {
+						MainFragment fmain = (MainFragment) fm.findFragmentByTag(FRAGMENT_KEY);
+						fmain.changeViewPager(0);
+					} else {
+						
+						showFragment(f, false);
+					}
+					mHandler.postDelayed(new Runnable() {
+						
+						@Override
+						public void run() {
+							mDrawerLayout.closeDrawer(mDrawerList);
+							
+						}
+					}, DELAY_ON_DRAWER_CLICK);
+				}
+			}
+
+		}
+	};
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -122,11 +158,12 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		final IVietApplication app = (IVietApplication) getApplication();
 		return new DrawerAdapter(app.getDrawerItemGenerator().generateMain());
 	}
-	
-	class DrawerAdapter extends ArrayAdapter<FragmentChangeDrawerItem> {
-		public DrawerAdapter(List<FragmentChangeDrawerItem> objects) {
+
+	class DrawerAdapter extends ArrayAdapter<DrawerItem<?>> {
+		public DrawerAdapter(List<DrawerItem<?>> objects) {
 			super(MainActivity.this, 0, objects);
 		}
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getItem(position).getView(getLayoutInflater(), convertView, parent);

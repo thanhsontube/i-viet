@@ -96,6 +96,39 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	}
 
 	public void showFragment(Fragment f, boolean isTransit) {
+		final String tag = String.format("%s:%d", getClass().getName(), mFragmentTagStack.size());
+		log.d("log>>>" + "showFragment:" + tag);
+		final FragmentManager fm = getSupportFragmentManager();
+		final FragmentTransaction ft = fm.beginTransaction();
+		
+		if (mFragmentTagStack.size() > 0) {
+			final Fragment ff = fm.findFragmentByTag(mFragmentTagStack.peek());
+			ft.hide(ff);
+		} else {
+			final Fragment ff = fm.findFragmentByTag(FRAGMENT_KEY);
+			ft.hide(ff);
+		}
+		if (fm.findFragmentByTag(tag) == null) {
+			ft.add(getFragmentContentId(), f, tag);
+			ft.show(f);
+		} else {
+			ft.replace(getFragmentContentId(), f, tag);
+			ft.show(f);
+		}
+		if(isTransit){
+			ft.addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		} else {
+			ft.addToBackStack(null);
+		}
+		ft.commit();
+		mFragmentTagStack.add(tag);
+	}
+	/**
+	 * duplicate
+	 * @param f
+	 * @param isTransit
+	 */
+	public void showFragment2(Fragment f, boolean isTransit) {
 		String tag = String.format("%s:%d", getClass().getName(),
 				mFragmentTagStack.size());
 		final FragmentManager fm = getSupportFragmentManager();
