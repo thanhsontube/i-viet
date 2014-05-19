@@ -97,8 +97,9 @@ public class WelcomeActivity extends BaseFragmentActivity implements
 				// API dang ky
 				break;
 			case R.id.register_tv_agree:
-				// TODO
-				// Mo man hinh policy
+				showFragment(
+						PolicyFragment
+								.createPolicyFragment(WelcomeActivity.this),true);
 				break;
 
 			default:

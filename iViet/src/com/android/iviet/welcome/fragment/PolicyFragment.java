@@ -6,17 +6,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.iviet.R;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 
 public class PolicyFragment extends SwipeToCloseFragent implements
 		OnClickListener {
-	private Button mBtnBack;
+	private ImageButton mBtnBack;
 	// private GestureDetector mGestureDetector;
 	private static BaseInterface mBaseInterface;
 
-	public static PolicyFragment createRegisterFragment(
+	public static PolicyFragment createPolicyFragment(
 			BaseInterface baseInterface) {
 		mBaseInterface = baseInterface;
 		return new PolicyFragment();
@@ -25,9 +26,9 @@ public class PolicyFragment extends SwipeToCloseFragent implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.register_layout, container,
+		View rootView = inflater.inflate(R.layout.register_policy_layout, container,
 				false);
-		mBtnBack = (Button) rootView
+		mBtnBack = (ImageButton) rootView
 				.findViewById(R.id.register_policy_btn_back);
 		mBtnBack.setOnClickListener(this);
 		return rootView;
@@ -49,7 +50,7 @@ public class PolicyFragment extends SwipeToCloseFragent implements
 
 	private void goBack() {
 		mBaseInterface.onClickInFragment(getClass().getName(),
-				R.id.register_btn_register);
+				R.id.register_policy_btn_back);
 	}
 
 }
