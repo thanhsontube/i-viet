@@ -1,27 +1,20 @@
 package com.android.iviet.welcome.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.iviet.R;
-import com.android.iviet.base.BaseFragmentActivity;
-import com.android.iviet.utils.CommonConstants;
 import com.android.iviet.utils.CommonUtils;
-import com.android.iviet.utils.PreferenceUtil;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 
-public class LoginEmailForgetPassFragment extends Fragment implements
-		OnTouchListener {
+public class LoginEmailForgetPassFragment extends SwipeToCloseFragent implements OnClickListener {
 	private EditText mEdtEmail;
-	private GestureDetector mGestureDetector;
+	private Button mBtnGetPass;
 	private static BaseInterface mBaseInterface;
 
 	public static LoginEmailForgetPassFragment createLoginEmailForgetPassFragment(
@@ -37,16 +30,16 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 				R.layout.login_email_forget_pass_layout, container, false);
 		mEdtEmail = (EditText) rootView
 				.findViewById(R.id.login_email_edt_forgetpass_email);
-		String email = PreferenceUtil.getPreference(getActivity(),
-				CommonConstants.LOGIN_EMAIL_KEY, "");
-		if (!email.equalsIgnoreCase("")) {
-			mEdtEmail.setText(email);
-		}
-		rootView.setOnTouchListener(this);
-		mGestureDetector = new GestureDetector(getActivity(), new Gesture());
+		mBtnGetPass = (Button) rootView.findViewById(R.id.login_email_btn_get_pass);
+		mBtnGetPass.setOnClickListener(this);
+//		String email = PreferenceUtil.getPreference(getActivity(),
+//				CommonConstants.LOGIN_EMAIL_KEY, "");
+//		if (!email.equalsIgnoreCase("")) {
+//			mEdtEmail.setText(email);
+//		}
 		return rootView;
 	}
-
+	@Override
 	public void onClick(View v) {
 		if (mBaseInterface == null) {
 			return;
@@ -80,25 +73,4 @@ public class LoginEmailForgetPassFragment extends Fragment implements
 				R.id.login_email_btn_get_pass);
 	}
 
-	private class Gesture extends SimpleOnGestureListener {
-		@Override
-		public boolean onDown(MotionEvent e) {
-			return true;
-		}
-
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-				float velocityY) {
-			if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
-				((BaseFragmentActivity) getActivity()).onBackPressed();
-			}
-			return super.onFling(e1, e2, velocityX, velocityY);
-		}
-
-	}
-
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		return mGestureDetector.onTouchEvent(event);
-	}
 }

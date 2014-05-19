@@ -97,21 +97,20 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 		final FragmentManager fm = getSupportFragmentManager();
 		final FragmentTransaction ft = fm.beginTransaction();
 
-		if (mFragmentTagStack.size() > 0) {
-			final Fragment ff = fm.findFragmentByTag(tag);
-			ft.hide(ff);
-		} else {
-			final Fragment ff = fm.findFragmentByTag(FRAGMENT_KEY);
-			ft.hide(ff);
-		}
-
+//		if (mFragmentTagStack.size() > 0) {
+//			final Fragment ff = fm.findFragmentByTag(tag);
+//			ft.hide(ff);
+//		} else {
+//			final Fragment ff = fm.findFragmentByTag(FRAGMENT_KEY);
+//			ft.hide(ff);
+//		}
+		ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 		if (fm.findFragmentByTag(tag) == null) {
 			ft.add(getFragmentContentId(), f, tag);
 		} else {
-			ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+			
 			ft.replace(getFragmentContentId(), f, tag);
 		}
-
 		if (isTransit) {
 			ft.addToBackStack(null).setTransition(
 					FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -125,6 +124,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	protected void restoreFragmentsState() {
 		final FragmentManager fm = getSupportFragmentManager();
 		final FragmentTransaction ft = fm.beginTransaction();
+		ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 		if (mFragmentTagStack.size() == 0) {
 			ft.show(fm.findFragmentByTag(FRAGMENT_KEY));
 		} else {

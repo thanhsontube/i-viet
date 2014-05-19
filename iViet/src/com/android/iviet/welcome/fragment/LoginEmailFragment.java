@@ -21,13 +21,13 @@ import com.android.iviet.utils.CommonUtils;
 import com.android.iviet.utils.PreferenceUtil;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 
-public class LoginEmailFragment extends Fragment implements OnTouchListener,
+public class LoginEmailFragment extends SwipeToCloseFragent implements
 		OnClickListener {
 	private EditText mEdtEmail;
 	private EditText mEdtPass;
 	private TextView mTvForgetPass;
 	private Button mBtnLogin;
-	private GestureDetector mGestureDetector;
+	// private GestureDetector mGestureDetector;
 	private static BaseInterface mBaseInterface;
 
 	public static LoginEmailFragment createLoginEmailFragment(
@@ -54,8 +54,7 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener,
 		if (!email.equalsIgnoreCase("")) {
 			mEdtEmail.setText(email);
 		}
-		rootView.setOnTouchListener(this);
-		mGestureDetector = new GestureDetector(getActivity(), new Gesture());
+		// mGestureDetector = new GestureDetector(getActivity(), new Gesture());
 		return rootView;
 	}
 
@@ -102,23 +101,19 @@ public class LoginEmailFragment extends Fragment implements OnTouchListener,
 	}
 
 	private class Gesture extends SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-        		float velocityY) {
-        	if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			if (velocityX > 0 && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 			}
-        	return super.onFling(e1, e2, velocityX, velocityY);
-        }
-        @Override
-        public boolean onDown(MotionEvent e) {
-        	return true;
-        }
-    }
+			return super.onFling(e1, e2, velocityX, velocityY);
+		}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		return mGestureDetector.onTouchEvent(event);
+		@Override
+		public boolean onDown(MotionEvent e) {
+			return true;
+		}
 	}
 
 }

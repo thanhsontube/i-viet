@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/forgotpass_email"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -24,16 +24,19 @@
         <EditText
             android:id="@+id/login_email_edt_forgetpass_email"
             android:layout_width="wrap_content"
+            android:hint="@string/email"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
             android:ellipsize="middle"
             android:inputType="textEmailAddress"
+            android:paddingLeft="5dp"
             android:singleLine="true" />
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/login_email_btn_get_pass"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/btn_login_email_register"
@@ -41,7 +44,7 @@
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 
-     <TextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
