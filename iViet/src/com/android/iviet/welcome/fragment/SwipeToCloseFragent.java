@@ -13,6 +13,7 @@ import com.android.iviet.base.BaseFragmentActivity;
 public class SwipeToCloseFragent extends Fragment {
 	private GestureDetector mGestureDetector;
 	private boolean mIsSwipe = false;
+	private static final int MIN_SCROLL_DISTANCE = 20;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -30,10 +31,8 @@ public class SwipeToCloseFragent extends Fragment {
 	private class Gesture extends SimpleOnGestureListener {
 
 		@Override
-		public boolean onScroll(MotionEvent e1, MotionEvent e2,
-				float distanceX, float distanceY) {
-			if (!mIsSwipe && distanceX < 0
-					&& getActivity() instanceof BaseFragmentActivity) {
+		public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+			if (!mIsSwipe && distanceX < -MIN_SCROLL_DISTANCE && getActivity() instanceof BaseFragmentActivity) {
 				((BaseFragmentActivity) getActivity()).onBackPressed();
 				mIsSwipe = true;
 			}

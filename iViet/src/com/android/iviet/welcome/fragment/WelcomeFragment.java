@@ -305,8 +305,13 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 			}
 			break;
 		case R.id.login_btn_facebook:
+			
 			break;
 		case R.id.login_btn_google:
+			if (mBaseInterface != null) {
+				mBaseInterface.onClickInFragment(getClass().getName(),
+						R.id.login_btn_google);
+			}
 			break;
 		case R.id.login_btn_register:
 			if (mBaseInterface != null) {

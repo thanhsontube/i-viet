@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.main.MainActivity;
+import com.android.iviet.utils.CommonUtils;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 import com.android.iviet.welcome.fragment.LoginEmailForgetPassFragment;
 import com.android.iviet.welcome.fragment.LoginEmailFragment;
@@ -30,10 +30,6 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 		OnConnectionFailedListener {
 
 	private static final int RC_SIGN_IN = 0;
-
-	// Profile pic image size in pixels
-	private static final int PROFILE_PIC_SIZE = 400;
-
 	// Google client to interact with Google API
 	private GoogleApiClient mGoogleApiClient;
 	private ConnectionResult mConnectionResult;
@@ -67,15 +63,14 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 			case R.id.login_email_btn_login:
 				// TODO
 				// API login
-				startActivity(new Intent(this, MainActivity.class));
+				login();
 				break;
 			case R.id.login_tv_forget_pass:
 
 				showFragment(LoginEmailForgetPassFragment.createLoginEmailForgetPassFragment(WelcomeActivity.this),
 						true);
-			case R.id.login_btn_google:
-				signInWithGplus();
 				break;
+			
 			default:
 				break;
 			}
@@ -93,6 +88,9 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 			switch (id) {
 			case R.id.login_btn_mail:
 				showFragment(LoginEmailFragment.createLoginEmailFragment(WelcomeActivity.this), true);
+				break;
+			case R.id.login_btn_google:
+				signInWithGplus();
 				break;
 			case R.id.login_btn_register:
 				showFragment(RegisterFragment.createRegisterFragment(WelcomeActivity.this), true);
@@ -123,26 +121,39 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 			}
 		}
 	}
-	 /**
-     * Sign-in into google
-     * */
-    private void signInWithGplus() {
-        if (!mGoogleApiClient.isConnecting()) {
-            resolveSignInError();
-        }
-    }
-    /**
-     * Method to resolve any signin errors
-     * */
-    private void resolveSignInError() {
-        if (mConnectionResult.hasResolution()) {
-            try {
-                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
-            } catch (SendIntentException e) {
-                mGoogleApiClient.connect();
-            }
-        }
-    }
+
+	private void login() {
+		startActivity(new Intent(this, MainActivity.class));
+	}
+
+	/**
+	 * Sign-in into google
+	 * */
+	private void signInWithGplus() {
+		if (!CommonUtils.isWifiOn(WelcomeActivity.this) && !CommonUtils.is3GOn(WelcomeActivity.this)) {
+			CommonUtils.showInfoDialog(WelcomeActivity.this, WelcomeActivity.this.getString(R.string.loi),
+					WelcomeActivity.this.getString(R.string.kiem_tra_ket_noi_internet));
+			return;
+		}
+		if (!mGoogleApiClient.isConnecting()) {
+			mGoogleApiClient.connect();
+//			resolveSignInError();
+		}
+	}
+
+	/**
+	 * Method to resolve any signin errors
+	 * */
+	private void resolveSignInError() {
+		if (mConnectionResult.hasResolution()) {
+			try {
+				mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+			} catch (SendIntentException e) {
+				mGoogleApiClient.connect();
+			}
+		}
+	}
+
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
 		if (!result.hasResolution()) {
@@ -166,17 +177,10 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 	@Override
 	protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
 		if (requestCode == RC_SIGN_IN) {
-			if (responseCode != RESULT_OK) {
-			}
-			if (!mGoogleApiClient.isConnecting()) {
-				mGoogleApiClient.connect();
+			if (responseCode == RESULT_OK) {
+				Toast.makeText(WelcomeActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
 			}
 		}
-	}
-
-	protected void onStart() {
-		super.onStart();
-		mGoogleApiClient.connect();
 	}
 
 	protected void onStop() {
@@ -195,12 +199,15 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 			if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
 				Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 				String personName = currentPerson.getDisplayName();
-				String personPhotoUrl = currentPerson.getImage().getUrl();
-				String personGooglePlusProfile = currentPerson.getUrl();
-				String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+				// String personPhotoUrl = currentPerson.getImage().getUrl();
+				// String personGooglePlusProfile = currentPerson.getUrl();
+				// String email =
+				// Plus.AccountApi.getAccountName(mGoogleApiClient);
+				Toast.makeText(WelcomeActivity.this, "Hello " + personName, Toast.LENGTH_SHORT).show();
 
-				Log.e("TAG", "Name: " + personName + ", plusProfile: " + personGooglePlusProfile + ", email: " + email
-						+ ", Image: " + personPhotoUrl);
+				// Log.e("TAG", "Name: " + personName + ", plusProfile: " +
+				// personGooglePlusProfile + ", email: " + email
+				// + ", Image: " + personPhotoUrl);
 
 				// txtName.setText(personName);
 				// txtEmail.setText(email);
@@ -208,12 +215,11 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 				// by default the profile url gives 50x50 px image only
 				// we can replace the value with whatever dimension we want by
 				// replacing sz=X
-				personPhotoUrl = personPhotoUrl.substring(0, personPhotoUrl.length() - 2) + PROFILE_PIC_SIZE;
+				// personPhotoUrl = personPhotoUrl.substring(0,
+				// personPhotoUrl.length() - 2) + PROFILE_PIC_SIZE;
 				//
 				// new LoadProfileImage(imgProfilePic).execute(personPhotoUrl);
-
-			} else {
-				Toast.makeText(getApplicationContext(), "Person information is null", Toast.LENGTH_LONG).show();
+				login();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
