@@ -7,7 +7,7 @@
     <!-- Wellcome Screen -->
     <string name="welcome_chao_mung">Chào mừng</string>
     <string name="welcome_cham_mo">Chạm Mở</string>
-     <string name="welcome_cham_dong">Chạm Đóng</string>
+    <string name="welcome_cham_dong">Chạm Đóng</string>
     <string name="welcome_topic_1">Thông điệp 1</string>
     <string name="welcome_message_1">Tự hào iViệt | Tự hào tri thức Việt</string>
     <string name="welcome_topic_2">Thông điệp 2</string>
@@ -43,8 +43,55 @@
     <string name="dang_ky">Đăng Ký</string>
     <string name="user_name">Tên người dùng</string>
     <string name="confirm_pass">Nhập lại mật khẩu</string>
-    <string name="policy">Quy định điều khoản sử dụng </string>
+    <string name="policy">Quy định &amp; điều khoản sử dụng
+
+Chấp nhận các điều khoản: 
+Thông qua việc sử dụng dịch vụ của iVIET.com hoặc sau khi đánh dấu vào ô “Đồng ý” tại phần “Điều khoản sử dụng dịch vụ” trong bản đăng ký sử dụng dịch vụ, bạn (được hiểu là người sử dụng dịch vụ) được coi là đã chấp nhận sử dụng và đồng ý với các điều khoản dưới đây, - còn được gọi là Quy định sử dụng (QĐSD). Bạn cần kiểm tra lại bản QĐSD này trong suốt quá trình sử dụng dịch vụ bởi vì chủ sở hữu của iVIET.com có quyền cập nhật, chỉnh sửa nội dung các điều khoản khi cần thiết mà không cần báo trước. 
+
+Quyền sử dụng dịch vụ: 
+Sau khi bạn chấp thuận bản QĐSD này và đóng các khoản phí (trong trường hợp sử dụng dịch vụ có thu phí), iVIET cấp cho bạn quyền sử dụng dịch vụ với điều kiện bạn tuân thủ các quy định trong bản QĐSD này. 
+
+Tính trung thực của thông tin cá nhân: 
+Bạn phải đảm bảo các thông tin cá nhân (bao gồm họ và tên, tuổi, địa chỉ, email, số điện thoại liên hệ,…) mà bạn đang sử dụng cung cấp cho chúng tôi là trung thực, mới nhất, đầy đủ và chính xác về bản thân Bạn theo hướng dẫn trong mẫu đơn đăng ký sử dụng Dịch Vụ. Đồng thời bạn luôn duy trì và cập nhật kịp thời Dữ Liệu Đăng Ký để bảo đảm rằng dữ liệu này là mới nhất, đầy đủ, trung thực và chính xác.
+
+Nội dung website: 
+Bạn cần đồng ý và đảm bảo rằng các nội dung do bạn đưa lên website là không vi phạm pháp luật và thuần phong mỹ tục Việt Nam cũng như không vi phạm luật sở hữu trí tuệ của Việt Nam và Quốc Tế. Bạn cần đảm bảo các file nhạc, phim, hình ảnh khi đưa lên iVIET không vi phạm Luật sở hữu trí tuệ của Việt Nam và Quốc Tế. Bạn hoàn toàn chịu trách nhiệm trước pháp luật về các nội dung thông tin do bạn đưa lên. iVIET có quyền kiểm tra các thông tin bạn đưa lên và trong trường hợp phát hiện ra các sai phạm, iVIET có quyền tạm dừng hoặc hủy cung cấp dịch vụ cho của bạn mà không cần báo trước.
+
+Quảng cáo Đối với một số dịch vụ: 
+iVIET có quyền đặt các thông tin và hình ảnh quảng cáo trên website và trên các nội dụng khách hàng cung cấp. Thông tin chi tiết về việc có đặt quảng cáo hay không được ghi trong phần thông tin chi tiết của từng dịch vụ.
+
+Bản quyền: 
+iVIET giữ bản quyền về các nội dung trên iVIET.com. Bạn có thể yêu cầu iVIET dừng sử dụng các nội dung do bạn đưa lên website tại bất kỳ thời điểm nào. 
+
+Dừng cung cấp dịch vụ. 
+iVIET có trách nhiệm dừng cung cấp dịch vụ và xóa toàn bộ các thông tin có liên quan đến tài khoản của bạn trên máy chủ do iVIET quản lý khi bạn có yêu cầu. iVIET cũng có quyền dừng cung cấp dịch vụ nếu bạn không tuân thủ một trong các điều khoản trong bản QĐSD dịch vụ này. 
+
+BỒI THƯỜNG VI PHẠM NỘI DUNG ĐĂNG TẢI 
+Bạn đồng ý bồi thường và giữ cho iVIET và các công ty mẹ, công ty con, các công ty liên kết và các công ty liên quan, các tổ chức liên kết, các viên chức, các đại diện, các đối tác, nhà cung cấp, nhân viên của iVIET, được vô hại đối với các yêu cầu bồi thường, bao gồm các khoản phí luật sư hợp lý, của bất kỳ bên thứ ba nào do hoặc phát sinh từ Nội Dung mà Bạn gửi, đăng, truyền tải hoặc cung cấp dưới hình thức khác trên website www.iVIET.com  hoặc các website thuộc quyền sở hữu của iVIET, phát sinh từ việc Bạn bạn đăng tải Nội Dung lên website www.iVIET.com , việc Bạn vi phạm QĐSD hoặc vi phạm bất kỳ quyền của bất kỳ người nào khác, hoặc vi phạm luật pháp hiện hành,...
+
+KHÔNG BÁN LẠI DỊCH VỤ 
+Bạn đồng ý không tái bản, sao chụp, bán, bán lại hoặc lợi dụng vì các mục đích thương mại, bất kỳ Dịch Vụ nào của iVIET (bao gồm cả Tài Khoản của Bạn).
+
+SỬA ĐỔI ĐỐI VỚI DỊCH VỤ 
+iVIET giữ quyền, tại bất kỳ thời điểm nào và tại từng thời điểm, sửa đổi hoặc ngừng tạm thời hoặc vĩnh viễn, Dịch Vụ (hoặc bất kỳ phần nào của Dịch Vụ) cho dù có hoặc không có thông báo, vì bất kỳ lý do nào, cho dù áp dụng chung đối với tất cả mọi người hoặc chỉ giới hạn đối với bạn. Bạn đồng ý rằng iVIET không có nghĩa vụ dưới bất kỳ hình thức nào đối với Bạn hoặc bất kỳ bên thứ ba nào về việc điều chỉnh, tạm ngừng hoặc ngừng cung cấp Dịch Vụ.
+
+THÔNG BÁO 
+iVIET có thể (nhưng không là nghĩa vụ) cung cấp cho Bạn các thông báo, bao gồm cả các thông báo về các thay đổi liên quan tới QĐSD thông qua thư điện tử, thư thông thường hoặc đăng trên www.iVIET.com  Bạn đồng ý rằng các thông báo bằng thư điện tử hoăc thư thường đó, và việc hiển thị thông báo và các đường liên kết tới các thông báo cho Bạn trên www.iVIET.com  sẽ được coi là thông báo đầy đủ cho Bạn về các vấn đề có trong thông báo đó.
+
+THÔNG TIN VỀ THƯƠNG HIỆU, BẢN QUYỀN HOẶC QUYỀN VỀ SỞ HỮU TRÍ TUỆ 
+Các khẩu hiệu của iVIET, logo của iVIET, và các nhãn hiệu dịch vụ, các biểu tượng, tên sản phẩm và tên dịch vụ của iVIET là các thương hiệu của iVIET (tùy theo từng trường hợp) cùng các tài sản trí tuệ khác của iVIET (sau đây được gọi là "Các Tài Sản Trí Tuệ của iVIET "), nếu không có sự cho phép trước của iVIET, tùy từng trường hợp, Bạn đồng ý không trưng bày hoặc sử dụng dưới bất kỳ hình thức nào các Tài Sản Trí Tuệ của iVIET.
+iVIET có thể, tùy từng trường hợp và theo quyết định của mình, xóa và/hoặc chấm dứt Tài Khoản của Bạn nếu Bạn vi phạm hoặc tái phạm các quy định về Quyền Sở Hữu Trí Tuệ hoặc vi phạm các quy định của iVIET.
+
+NHỮNG QUY ĐỊNH CHUNG
+
+Lựa chọn pháp luật và cơ quan giải quyết tranh chấp: QĐSD và mối quan hệ giữa Bạn và iVIET sẽ được điều chỉnh bởi pháp luật Việt Nam mà không liên quan đến các quy định về xung đột pháp luật của Việt Nam.
+
+Giới hạn: Bạn đồng ý rằng cho dù một điều luật hoặc luật nào khác có quy định trái với QĐSD, các trường hợp yêu cầu bồi thường hoặc khiếu kiện phát sinh từ hoặc liên quan tới QĐSD phải được đệ trình trong vòng một (1) tháng sau khi sự kiện đó phát sinh hoặc sẽ vĩnh viễn bị cấm.
+
+THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM 
+Đề nghị thông báo mọi trường hợp vi phạm QĐSD hoặc các trường hợp vi phạm khác cho Bộ phận quản lý website  của chúng tôi.</string>
     <string name="chua_nhap_du_thong_tin">Bạn chưa nhập đủ thông tin</string>
     <string name="chua_dong_y">Bạn chưa đồng ý với điều khoản của iViệt</string>
     <string name="mat_khau_khong_khop">Mật khẩu không trùng khớp</string>
+
 </resources>
