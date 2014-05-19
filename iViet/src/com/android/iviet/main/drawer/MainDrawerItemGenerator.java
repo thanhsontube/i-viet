@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.android.iviet.R;
+import com.android.iviet.about.AboutFragment;
+import com.android.iviet.help.HelpFragment;
 import com.android.iviet.main.fragment.MainFragment;
+import com.android.iviet.newfeed.NewFeedFragment;
 import com.android.iviet.test.Test1Fragment;
 import com.android.iviet.test.Test2Fragment;
 
@@ -23,12 +26,12 @@ public class MainDrawerItemGenerator implements DrawerItemGenerator<com.android.
 		final List<DrawerItem<?>> list = new ArrayList<DrawerItem<?>>();
 		list.add(new FragmentProfileDrawerItem(0, context.getText(R.string.home), "profile", "profile", null));
 		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.home), "home", "home", new MainFragment()));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.notification), "notification", "notification", new Test1Fragment()));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.help), "help", "help", new Test2Fragment()));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.about), "about", "about", null));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.search), "search", "search", null));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.logout), "logout", "logout", null));
-		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.sologan), "sologan", "sologan", null));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.notification), "notification", "notification", new NewFeedFragment()));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.help), "help", "help", new HelpFragment()));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.about), "about", "about", new AboutFragment()));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.search), "search", "search", new MainFragment()));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.logout), "logout", "logout", new MainFragment()));
+		list.add(new FragmentChangeDrawerItem(0, context.getText(R.string.sologan), "sologan", "sologan", new MainFragment()));
 	    return list;
     }
 

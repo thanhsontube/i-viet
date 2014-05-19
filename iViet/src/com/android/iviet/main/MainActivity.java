@@ -102,23 +102,26 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			if (parent.getId() == R.id.left_drawer) {
 				final DrawerItem<?> item = (DrawerItem<?>) mDrawerList.getAdapter().getItem(position);
 				if (item instanceof FragmentChangeDrawerItem) {
-//					while (mFragmentTagStack.size() > 0) {
-//						fm.popBackStackImmediate();
-//					}
 					Fragment f = ((FragmentChangeDrawerItem) item).getParam();
-					if (f == null) {
+					if (f instanceof MainFragment) {
+						log.d("log>>>" + "f instanceof MainFragment");
+						while (mFragmentTagStack.size() > 0) {
+							fm.popBackStackImmediate();
+							log.d("log>>>" + "fm.popBackStackImmediate()");
+						}
+						log.d("log>>>" + "f instanceof MainFragment:" +mFragmentTagStack.size() );
 						MainFragment fmain = (MainFragment) fm.findFragmentByTag(FRAGMENT_KEY);
 						fmain.changeViewPager(0);
 					} else {
-						
+						log.d("log>>>" + "showFragment");
 						showFragment(f, false);
 					}
 					mHandler.postDelayed(new Runnable() {
-						
+
 						@Override
 						public void run() {
 							mDrawerLayout.closeDrawer(mDrawerList);
-							
+
 						}
 					}, DELAY_ON_DRAWER_CLICK);
 				}

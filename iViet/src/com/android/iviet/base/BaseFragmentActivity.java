@@ -1,6 +1,5 @@
 package com.android.iviet.base;
 
-import java.util.Collection;
 import java.util.Stack;
 
 import android.graphics.Color;
@@ -18,7 +17,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 	protected static final String FRAGMENT_KEY = "fragment-key";
 	protected static final String SAVE_KEY_STACK = "tag_stack";
-	private static final String TAG = "AbsFragmentActivity";
+	private static final String TAG = "BaseFragmentActivity";
 	FilterLog log = new FilterLog(TAG);
 
 	abstract protected Fragment createFragmentMain(Bundle savedInstanceState);
@@ -42,9 +41,9 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 							FRAGMENT_KEY)
 					.setTransition(FragmentTransaction.TRANSIT_NONE).commit();
 		} else {
-			mFragmentTagStack.addAll((Collection<String>) savedInstanceState
-					.getSerializable(SAVE_KEY_STACK));
-			restoreFragmentsState();
+//			mFragmentTagStack.addAll((Collection<String>) savedInstanceState
+//					.getSerializable(SAVE_KEY_STACK));
+//			restoreFragmentsState();
 		}
 
 		getSupportFragmentManager().addOnBackStackChangedListener(this);
@@ -60,6 +59,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
+		log.d("log>>>" + "onBackPressed");
 		final FragmentManager fm = getSupportFragmentManager();
 		final Fragment f;
 		if (mFragmentTagStack.size() > 0) {
@@ -70,6 +70,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 		if (f instanceof OnBackPressListener) {
 			if (((OnBackPressListener) f).onBackPress()) {
+				log.d("log>>>" + "f instanceof OnBackPressListener");
 				return;
 			}
 		}
@@ -78,18 +79,22 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackStackChanged() {
+		log.d("log>>>" + "onBackStackChanged:" + mFragmentTagStack.size());
 		FragmentManager fm = getSupportFragmentManager();
 		if (fm.getBackStackEntryCount() == mFragmentTagStack.size()) {
+			log.d("log>>>" + "======");
 			return;
 		}
 
 		if (mFragmentTagStack.size() > 0) {
 			final FragmentTransaction ft = fm.beginTransaction();
 			String tag = mFragmentTagStack.pop();
+			log.d("log>>>" + "tag:" + tag);
 			if (fm.findFragmentByTag(tag) != null) {
 				ft.setCustomAnimations(mAnimationInResourceId,
 						mAnimationOutResourceId);
 				ft.remove(fm.findFragmentByTag(tag));
+				log.d("log>>>" + "remove:" + tag);
 			}
 			ft.commit();
 		}
