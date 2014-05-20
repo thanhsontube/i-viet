@@ -114,6 +114,10 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 						fmain.changeViewPager(0);
 					} else {
 						log.d("log>>>" + "showFragment");
+						while (mFragmentTagStack.size() > 0) {
+							fm.popBackStackImmediate();
+							log.d("log>>>" + "fm.popBackStackImmediate()");
+						}
 						showFragment(f, false);
 					}
 					mHandler.postDelayed(new Runnable() {
