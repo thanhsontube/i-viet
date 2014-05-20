@@ -46,5 +46,6 @@ public class FragmentChangeDrawerItem extends DrawerItem<Fragment> {
 		ImageView icon;
 		TextView title;
 	}
+	
 
 }
