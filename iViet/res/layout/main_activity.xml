@@ -18,8 +18,9 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="#ffffff"
-        android:divider="@null"
+        android:background="@drawable/art5"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/customline"
         android:orientation="vertical" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -40,7 +40,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	protected ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	FilterLog log = new FilterLog(TAG);
-	
+
 	private final Handler mHandler = new Handler();
 	private static final long DELAY_ON_DRAWER_CLICK = 250L;
 
@@ -70,9 +70,10 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		View footer = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.menu_list_drawer_footer, null);
+		mDrawerList.addFooterView(footer);
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
@@ -109,7 +110,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 							fm.popBackStackImmediate();
 							log.d("log>>>" + "fm.popBackStackImmediate()");
 						}
-						log.d("log>>>" + "f instanceof MainFragment:" +mFragmentTagStack.size() );
+						log.d("log>>>" + "f instanceof MainFragment:" + mFragmentTagStack.size());
 						MainFragment fmain = (MainFragment) fm.findFragmentByTag(FRAGMENT_KEY);
 						fmain.changeViewPager(0);
 					} else {
