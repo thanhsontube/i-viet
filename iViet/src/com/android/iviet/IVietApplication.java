@@ -41,4 +41,6 @@ public class IVietApplication extends Application {
 	public MainDrawerItemGenerator getDrawerItemGenerator() {
 		return mMainDrawerItemGenerator;
 	}
+	
+	
 }

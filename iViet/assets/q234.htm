@@ -109,7 +109,7 @@
                         <div class="clear"></div>
                     </div>
                     
-                    <a href="http://www.iviet.com/m/answers/post?question_id=q234&user_id=u10" class="add-answer">TRẢ LỜI CÂU HỎI</a>
+                    <a href="http://www.iviet.com/m/answers/post?question_id=q234&user_id=u10" class="add-answer" onClick = "onAnswer()">TRẢ LỜI CÂU HỎI</a>
                     
                 </div>
 
@@ -241,6 +241,19 @@
 <script type="text/javascript" src="./q234_files/jquery-1.10.1.min.js"></script>
 
 <script type="text/javascript">
+ function onDetail() {
+    	Android.onDetail();
+    }
+function onAnswer()
+{
+	Android.onAnswer();
+}
+
+function onCmt()
+{
+	Android.onCmt();
+}
+
 $(document).ready(function() {
 
     /* Wrap the Question/Answer images with links to implement FancyBox functionality */

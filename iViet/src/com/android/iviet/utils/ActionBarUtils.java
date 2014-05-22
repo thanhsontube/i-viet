@@ -11,7 +11,7 @@ public class ActionBarUtils {
 	
 	private static final FilterLog log = new FilterLog(ActionBarUtils.class.getSimpleName());
 
-	public static void setTitle(ActionBar actionBar, CharSequence title) {
+	public static void setTitleDefault(ActionBar actionBar, CharSequence title) {
 		if (actionBar == null) {
 			return;
 		}
@@ -28,6 +28,21 @@ public class ActionBarUtils {
 		log.v("actionBar.setTitle: " + v);
 		actionBar.setTitle(title);
 		actionBar.setSubtitle(null);
+		actionBar.show();
+	}
+	
+	public static void setTitle(ActionBar actionBar, CharSequence title) {
+		if (actionBar == null) {
+			return;
+		}
+		final View v = actionBar.getCustomView();
+		if (v != null) {
+			final TextView text = (TextView) v.findViewById(R.id.actionbar_title);
+			if (text != null) {
+				text.setText(title);
+				return;
+			}
+		}
 		actionBar.show();
 	}
 	
@@ -74,6 +89,38 @@ public class ActionBarUtils {
 		log.v("actionBar.setTitle: " + v);
 		actionBar.setTitle(title);
 		actionBar.setSubtitle(null);
+		actionBar.show();
+	}
+	
+	public static void hideChat(ActionBar actionBar, boolean isHide) {
+		if (actionBar == null) {
+			return;
+		}
+		final View v = actionBar.getCustomView();
+		if (v != null) {
+			final ImageView imgChat = (ImageView) v.findViewById(R.id.img_chat);
+			if (isHide) {
+				imgChat.setVisibility(View.GONE);
+			} else {
+				imgChat.setVisibility(View.VISIBLE);
+			}
+		}
+		actionBar.show();
+	}
+	
+	public static void hideDot(ActionBar actionBar, boolean isHide) {
+		if (actionBar == null) {
+			return;
+		}
+		final View v = actionBar.getCustomView();
+		if (v != null) {
+			final View viewDot = v.findViewById(R.id.actionbar_dot);
+			if (isHide) {
+				viewDot.setVisibility(View.GONE);
+			} else {
+				viewDot.setVisibility(View.VISIBLE);
+			}
+		}
 		actionBar.show();
 	}
 }

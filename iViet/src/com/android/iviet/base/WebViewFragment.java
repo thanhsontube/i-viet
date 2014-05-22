@@ -3,6 +3,7 @@ package com.android.iviet.base;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.android.iviet.R;
+import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
 public class WebViewFragment extends Fragment implements OnBackPressListener{
@@ -25,6 +28,9 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 	ViewGroup empty;
 	WebView webview;
 	URI mUri = null;
+	private MenuItem menuSend;
+	private MenuItem menuAddPicture;
+	ActionBar actionBar;
 	
 	public static WebViewFragment newInstance (String url) {
 		WebViewFragment f = new WebViewFragment();
@@ -52,7 +58,7 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 				e.printStackTrace();
 			}
 		}
-		
+		actionBar = getActivity().getActionBar();
 		setHasOptionsMenu(true);
 	}
 	
@@ -67,7 +73,7 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 		webview.getSettings().setSupportZoom(false);
 		webview.setVerticalScrollbarOverlay(true);
 		webview.setHorizontalScrollBarEnabled(false);
-		webview.addJavascriptInterface(new AndroidBridge(), "android");
+		webview.addJavascriptInterface(new AndroidBridge(), "Android");
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -122,19 +128,44 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 		log.d("log>>>" + "onCreateOptionsMenu");
+		menuSend = menu.add(Menu.NONE, 1, Menu.NONE, "Send"); 
+		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menuSend.setIcon(R.drawable.answer);
+		
+		menuAddPicture = menu.add(Menu.NONE, 2, Menu.NONE, "Chèn Ảnh");
+		menuAddPicture.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menuAddPicture.setIcon(R.drawable.add_picture);
+		
+		ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
+		ActionBarUtils.hideChat(actionBar, true);
+		ActionBarUtils.hideDot(actionBar, true);
+		
 	}
 	
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 	    super.onPrepareOptionsMenu(menu);
 	    log.d("log>>>" + "onPrepareOptionsMenu");
+//	    menuSend.setVisible(false);
 	}
 	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		log.d("log>>>" + "onOptionsItemSelected");
-	    return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case 1:
+			Toast.makeText(getActivity(), "Send", Toast.LENGTH_SHORT).show();;
+			break;
+		case 2:
+			
+
+		default:
+			break;
+		}
+//		getActivity().invalidateOptionsMenu();
+		return true;
+//	    return super.onOptionsItemSelected(item);
 	}
 	
 	class AndroidBridge {
@@ -142,8 +173,14 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 			
 		}
 		
+		public void onDetail() {
+//			menuSend.setVisible(true);
+		}
+		
 		public void onAnswer() {
-			
+			log.d("log>>>" + "onAnswer");
+			menuSend.setVisible(true);
+			menuAddPicture.setVisible(true);
 		}
 	}
 }
