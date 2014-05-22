@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.dto.MainDto;
@@ -159,6 +160,10 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	@Override
 	public void onTop1ContentClicked(Top1Fragment f, MainDto dto) {
 		log.d("log>>>" + "onTop1ContentClicked");
+//		WebViewFragment f1 = WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
+		String url = "file:///android_asset/q234.htm";
+		WebViewFragment f1 = WebViewFragment.newInstance(url);
+		showFragment(f1, false);
 
 	}
 

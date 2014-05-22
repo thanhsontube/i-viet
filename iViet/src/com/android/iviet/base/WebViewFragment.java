@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -49,6 +52,8 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 				e.printStackTrace();
 			}
 		}
+		
+		setHasOptionsMenu(true);
 	}
 	
 	@Override
@@ -62,6 +67,7 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 		webview.getSettings().setSupportZoom(false);
 		webview.setVerticalScrollbarOverlay(true);
 		webview.setHorizontalScrollBarEnabled(false);
+		webview.addJavascriptInterface(new AndroidBridge(), "android");
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -110,5 +116,34 @@ public class WebViewFragment extends Fragment implements OnBackPressListener{
 	@Override
 	public boolean onBackPress() {
 		return mController.dispatchBackPress();
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		log.d("log>>>" + "onCreateOptionsMenu");
+	}
+	
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+	    super.onPrepareOptionsMenu(menu);
+	    log.d("log>>>" + "onPrepareOptionsMenu");
+	}
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		log.d("log>>>" + "onOptionsItemSelected");
+	    return super.onOptionsItemSelected(item);
+	}
+	
+	class AndroidBridge {
+		public AndroidBridge() {
+			
+		}
+		
+		public void onAnswer() {
+			
+		}
 	}
 }
