@@ -104,6 +104,7 @@ public class ActionBarUtils {
 			} else {
 				imgChat.setVisibility(View.VISIBLE);
 			}
+			return;
 		}
 		actionBar.show();
 	}
@@ -120,6 +121,7 @@ public class ActionBarUtils {
 			} else {
 				viewDot.setVisibility(View.VISIBLE);
 			}
+			return;
 		}
 		actionBar.show();
 	}

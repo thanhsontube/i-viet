@@ -2,7 +2,6 @@ package com.android.iviet.base;
 
 import java.util.Stack;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -59,7 +58,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-		log.d("log>>>" + "onBackPressed");
+		log.d("log>>>" + "onBackPressed mFragmentTagStack.size():" + mFragmentTagStack.size());
 		final FragmentManager fm = getSupportFragmentManager();
 		final Fragment f;
 		if (mFragmentTagStack.size() > 0) {

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.base.OnBackPressListener;
 import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
@@ -32,6 +33,7 @@ import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
+import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener {
@@ -138,9 +140,28 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
+		}
+		
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			log.d("log>>>" + "onOptionsItemSelected home:" + mFragmentTagStack.size());
+			if (mFragmentTagStack.size() > 0) {
+				Fragment f = getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+				if (f instanceof WebViewFragment) {
+					if (!((OnBackPressListener) f).onBackPress()) {
+						log.d("log>>>" + "webview BACK");
+						getSupportFragmentManager().popBackStackImmediate();
+					}
+				} else {
+					getSupportFragmentManager().popBackStackImmediate();
+				}
+			}
+			break;
+
+		default:
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -192,6 +213,8 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
+	    
+	    
 	}
 
 }

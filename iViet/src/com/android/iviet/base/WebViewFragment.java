@@ -21,7 +21,7 @@ import com.android.iviet.R;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
-public class WebViewFragment extends Fragment {
+public class WebViewFragment extends Fragment implements OnBackPressListener {
 
 	private static final String TAG = "WebViewFragment";
 	FilterLog log = new FilterLog(TAG);
@@ -151,21 +151,27 @@ public class WebViewFragment extends Fragment {
 			;
 			break;
 		case 2:
+			
+		case android.R.id.home:
+			mController.dispatchBackPress();
+			break;
 
 		default:
-			
-			if (!mController.dispatchBackPress()) {
-				getActivity().getSupportFragmentManager().popBackStack();
-				return true;
-			} else {
-				return true;
-			}
+			return mController.dispatchBackPress();
+//			if (!mController.dispatchBackPress()) {
+//				getActivity().getSupportFragmentManager().popBackStack();
+//				ActionBarUtils.hideChat(actionBar, false);
+//				ActionBarUtils.hideDot(actionBar, false);
+//				return true;
+//			} else {
+//				return true;
+//			}
 //			return onBackPress();
 			// break;
 		}
 		getActivity().invalidateOptionsMenu();
-		// return true;
-		return super.onOptionsItemSelected(item);
+		 return true;
+//		return super.onOptionsItemSelected(item);
 	}
 
 	public class AndroidBridge {
