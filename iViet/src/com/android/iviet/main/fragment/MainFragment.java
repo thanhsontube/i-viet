@@ -99,6 +99,13 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		}
 		return false;
 	}
+	
+	public void update() {
+		ActionBarUtils.hideChat(getActivity().getActionBar(), false);
+		ActionBarUtils.hideDot(getActivity().getActionBar(), false);
+		int position = mViewPager.getCurrentItem();
+		ActionBarUtils.update(getActivity().getActionBar(), position, getApplicationTitle(position));
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -214,48 +221,26 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 			return pageTitle[position];
 		}
 	}
+		
+		@Override
+		public void onHiddenChanged(boolean hidden) {
+			super.onHiddenChanged(hidden);
+			if (hidden) {
+				setMenuVisibility(false);
+				if (mMainPagerAdapter != null && mMainPagerAdapter.getCurrentFragment() != null) {
+					mMainPagerAdapter.getCurrentFragment().setMenuVisibility(false);
+				}
+			} else {
+				setMenuVisibility(true);
+				if (mMainPagerAdapter != null && mMainPagerAdapter.getCurrentFragment() != null) {
+					mMainPagerAdapter.getCurrentFragment().setMenuVisibility(true);
+				}
+				if (mActionBar != null) {
+//					ActionBarUtils.setTitle(mActionBar, getApplicationTitle(mViewPager.getCurrentItem()));
+//					mActionBar.setTitle(getApplicationTitle(mViewPager.getCurrentItem()));
+					update();
+				}
+			}
+		}
 
-//	private class MainPagerAdapter extends FragmentPagerAdapter {
-//
-//		public MainPagerAdapter(FragmentManager fm, Context context) {
-//			super(fm);
-//		}
-//
-//		@Override
-//		public Fragment getItem(int arg0) {
-//			switch (arg0) {
-//			case 0:
-//				return new Top1Fragment();
-//			case 1:
-//				return new Top2Fragment();
-//			case 2:
-//				return new Top3Fragment();
-//
-//			}
-//
-//			return null;
-//
-//		}
-//
-//		@Override
-//		public int getCount() {
-//			return 3;
-//		}
-//
-//		@Override
-//		public CharSequence getPageTitle(int position) {
-//			switch (position) {
-//			case 0:
-//				return "Đề cao";
-//			case 1:
-//				return "Mới nhất";
-//			case 2:
-//				return "Câu hỏi của bạn";
-//			default:
-//				break;
-//			}
-//			return "iViet";
-//		}
-//
-//	}
 }
