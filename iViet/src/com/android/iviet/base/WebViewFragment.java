@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -72,6 +73,7 @@ public class WebViewFragment extends Fragment implements OnBackPressListener {
 		View view = inflater.inflate(R.layout.webview_fragment, container, false);
 		empty = (ViewGroup) view.findViewById(android.R.id.empty);
 		inflater.inflate(R.layout.waiting, empty, true);
+		empty.findViewById(R.id.waiting_txt).setVisibility(View.GONE);
 		webview = (WebView) view.findViewById(R.id.webview);
 
 		webview.getSettings().setJavaScriptEnabled(true);
@@ -79,7 +81,7 @@ public class WebViewFragment extends Fragment implements OnBackPressListener {
 		webview.setVerticalScrollbarOverlay(true);
 		webview.setHorizontalScrollBarEnabled(false);
 		webview.addJavascriptInterface(new AndroidBridge(), "Android");
-		webview.getSettings().setDomStorageEnabled(true);
+//		webview.getSettings().setDomStorageEnabled(true);
 		webview.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
@@ -95,10 +97,18 @@ public class WebViewFragment extends Fragment implements OnBackPressListener {
 
 	private final Controller mController = new Controller() {
 		@Override
-		public void load(URI uri) {
+		public void load(final URI uri) {
+			log.d("log>>>" + "load:" + uri.toASCIIString());
 			mUri = uri;
 			if (webview != null) {
 				webview.loadUrl(uri.toASCIIString());
+//				Handler handler = new Handler();
+//				handler.post(new Runnable() {
+//					
+//					@Override
+//					public void run() {
+//					}
+//				});
 			}
 		}
 
@@ -157,17 +167,17 @@ public class WebViewFragment extends Fragment implements OnBackPressListener {
 			break;
 
 		default:
-			return mController.dispatchBackPress();
-//			if (!mController.dispatchBackPress()) {
-//				getActivity().getSupportFragmentManager().popBackStack();
-//				ActionBarUtils.hideChat(actionBar, false);
-//				ActionBarUtils.hideDot(actionBar, false);
-//				return true;
-//			} else {
-//				return true;
-//			}
-//			return onBackPress();
-			// break;
+//			return mController.dispatchBackPress();
+////			if (!mController.dispatchBackPress()) {
+////				getActivity().getSupportFragmentManager().popBackStack();
+////				ActionBarUtils.hideChat(actionBar, false);
+////				ActionBarUtils.hideDot(actionBar, false);
+////				return true;
+////			} else {
+////				return true;
+////			}
+////			return onBackPress();
+//			// break;
 		}
 		getActivity().invalidateOptionsMenu();
 		 return true;
@@ -195,8 +205,14 @@ public class WebViewFragment extends Fragment implements OnBackPressListener {
 		@JavascriptInterface
 		public void onComment() {
 			Toast.makeText(getActivity(), "onComment", Toast.LENGTH_SHORT).show();
+//			try {
+//	            mController.load(new URI("http://www.iviet.com/m/comments/q234?userToken=u10"));
+//            } catch (URISyntaxException e) {
+//	            log.d("log>>>" + "error loadL:" + e.toString());
+//            }
 			menuSend.setVisible(true);
 			setHasOptionsMenu(true);
+			webview.loadUrl("http://www.iviet.com/m/comments/q234?userToken=u10");
 
 		}
 
