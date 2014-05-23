@@ -1,0 +1,38 @@
+<html>
+<head>
+<script type="text/javascript">
+
+ function search() {
+    	var myTextField = document.getElementById('nameid').value;
+        Android.search(myTextField);
+    }
+function getDownloadNum()
+{
+	var name = Android.getFreeDownloadNum();
+	document.getElementById('downloadId').value = name;
+}
+
+function openLyricPage() {
+        Android.openLyricPage("sonnt");
+    }
+    
+function sendToAndroid(){
+	$s = "huyen hien";
+	window.Android.sendToAndroid($s) ;
+}
+</script>
+</head>
+<body>
+
+<input type="button" onclick="getDownloadNum()" value="get download NUM" />
+<INPUT TYPE="TEXT" NAME="download" id = "downloadId"><BR>
+<p>Search</p>
+name search: <INPUT TYPE="TEXT" NAME="name" id = "nameid"><BR>
+<input type="button" value="Submit" onClick = "search()" />
+<p>
+<div id = "mydiv"> son123 </div>
+<div id = "divCount"> divCount </div>
+<p><input type = "button" value = "Open Lyric page" onClick = "openLyricPage()" />
+<p><input type = "button" value = "Send Text To Android" onClick = "sendToAndroid()" />
+</body>
+</html>

@@ -92,19 +92,19 @@
                     </div>
                     <div class="buttons">
                         <div class="button">
-                            <a href="viewcomment:q234"><i class="fa fa-comments"></i>0 Lời Bình</a>
+                            <a  onClick = "onComment()"><i class="fa fa-comments" ></i>0 Lời Bình</a>
                         </div>
 
                         
                         <div class="button">    
-                            <a class="follow" href="javascript:void(0)"><i class="fa fa-heart-o"></i>Theo</a>
+                            <a class="follow" href="javascript:void(0)" onClick = "onFollow()"><i class="fa fa-heart-o" ></i>Theo</a>
                         </div>
                         
                         <div class="button">
-                            <a href="flag:q234"><i class="fa fa-flag"></i>Lỗi</a>
+                            <a  onClick = "onError()"><i class="fa fa-flag" ></i>Lỗi</a>
                         </div>
                         <div class="button last">
-                            <a href="sharefacebook:q234"><i class="fa fa-share-square"></i>Chia Sẻ</a>
+                            <a  onClick = "onShare()"><i class="fa fa-share-square" ></i>Chia Sẻ</a>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -249,10 +249,28 @@ function onAnswer()
 	Android.onAnswer();
 }
 
-function onCmt()
+function onComment()
 {
-	Android.onCmt();
+	Android.onComment();
 }
+
+function onFollow()
+{
+	Android.onFollow();
+}
+
+function onError()
+{
+$s = 'this is a error';
+	Android.onError($s);
+}
+
+function onShare()
+{
+	$s = 'I share';
+	Android.onShare($s);
+}
+
 
 $(document).ready(function() {
 

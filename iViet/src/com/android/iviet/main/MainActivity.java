@@ -67,7 +67,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			public void onDrawerOpened(View drawerView) {
 			}
 		};
-
+		
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -80,8 +80,8 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayShowTitleEnabled(false);
 		LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = inflator.inflate(R.layout.actionbar_custom, null);
-		ImageView imgChat = (ImageView) v.findViewById(R.id.img_chat);
+		View customViewActionBar = inflator.inflate(R.layout.actionbar_custom, null);
+		ImageView imgChat = (ImageView) customViewActionBar.findViewById(R.id.img_chat);
 		imgChat.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -90,7 +90,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			}
 		});
 
-		getActionBar().setCustomView(v);
+		getActionBar().setCustomView(customViewActionBar);
 	}
 
 	/**
@@ -162,6 +162,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		log.d("log>>>" + "onTop1ContentClicked");
 //		WebViewFragment f1 = WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
 		String url = "file:///android_asset/q234.htm";
+//		String url = "file:///android_asset/hello.html";
 		WebViewFragment f1 = WebViewFragment.newInstance(url);
 		showFragment(f1, false);
 
@@ -180,6 +181,16 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getItem(position).getView(getLayoutInflater(), convertView, parent);
+		}
+	}
+	
+	@Override
+	public void onBackStackChanged() {
+	    super.onBackStackChanged();
+	    if (mFragmentTagStack.size() > 0) {
+			mDrawerToggle.setDrawerIndicatorEnabled(false);
+		} else {
+			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
 	}
 
