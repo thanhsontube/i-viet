@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
@@ -29,11 +30,11 @@ import com.android.iviet.base.OnBackPressListener;
 import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
+import com.android.iviet.main.drawer.FragmentProfileDrawerItem;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
-import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener {
@@ -75,6 +76,32 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		View footer = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.menu_list_drawer_footer, null);
 		mDrawerList.addFooterView(footer);
+		
+		View convertView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.fragment_profile_drawer_item, null);
+		mDrawerList.addHeaderView(convertView);
+		
+		ImageView imgProfile = (ImageView) convertView.findViewWithTag("img_button_profile");
+		ImageView imgNew = (ImageView) convertView.findViewWithTag("img_button_new");
+		ImageView imgAvatar = (ImageView) convertView.findViewWithTag("img_hexagon");
+		TextView name = (TextView) convertView.findViewWithTag("drawer_profile_name");
+		imgProfile.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				log.d("log>>>" + "holder.imgProfile.setOnClickListener");
+			}
+		});
+		
+		imgNew.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				log.d("log>>>" + "holder.imgNew.setOnClickListener");
+			}
+		});
+		name.setText("Taylor Swift");
+		
+		
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
 		getActionBar().setDisplayHomeAsUpEnabled(true);

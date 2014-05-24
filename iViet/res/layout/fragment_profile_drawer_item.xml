@@ -5,6 +5,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:layout_marginTop="@dimen/lv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -12,18 +13,18 @@
 
         <ImageView
             android:tag="img_button_profile"
-            style="@style/main_img_style"
+            style="@style/main_img_profile"
             android:src="@drawable/button_profile_selector" />
 
         <ImageView
             android:tag="img_hexagon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/hexagon_view" />
 
         <ImageView
             android:tag="img_button_new"
-            style="@style/main_img_style"
+            style="@style/main_img_profile"
             android:src="@drawable/button_new_selector" />
     </LinearLayout>
 
@@ -35,6 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/lv1"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:text="@string/app_name"
         android:textStyle="bold" />
 

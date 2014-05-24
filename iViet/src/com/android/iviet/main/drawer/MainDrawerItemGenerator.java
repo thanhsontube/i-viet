@@ -26,8 +26,8 @@ public class MainDrawerItemGenerator implements
 	@Override
 	public List<DrawerItem<?>> generateMain() {
 		final List<DrawerItem<?>> list = new ArrayList<DrawerItem<?>>();
-		 list.add(new FragmentProfileDrawerItem(0,
-		 context.getText(R.string.home), "profile", "profile", null));
+//		 list.add(new FragmentProfileDrawerItem(0,
+//		 context.getText(R.string.home), "profile", "profile", null));
 		list.add(new FragmentChangeDrawerItem(R.drawable.home, context.getText(R.string.home), "home", "home",
 				new MainFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.notification, context.getText(R.string.notification),

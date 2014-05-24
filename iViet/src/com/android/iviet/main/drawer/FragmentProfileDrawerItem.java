@@ -17,7 +17,7 @@ public class FragmentProfileDrawerItem extends DrawerItem<Fragment> {
 	FilterLog log = new FilterLog(TAG);
 
 
-	protected FragmentProfileDrawerItem(int icon, CharSequence title, CharSequence id, CharSequence extra, Fragment param) {
+	public FragmentProfileDrawerItem(int icon, CharSequence title, CharSequence id, CharSequence extra, Fragment param) {
 		super(icon, title, id, extra, param);
 	}
 
