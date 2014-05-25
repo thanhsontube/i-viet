@@ -8,8 +8,12 @@ import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.transition.Transition;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -32,6 +37,7 @@ import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.drawer.FragmentProfileDrawerItem;
 import com.android.iviet.main.dto.MainDto;
+import com.android.iviet.main.fragment.FriendFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
@@ -47,6 +53,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	private final Handler mHandler = new Handler();
 	private static final long DELAY_ON_DRAWER_CLICK = 250L;
+	private FrameLayout mRightDrawer;
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
@@ -69,39 +76,46 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.user_info, 0) {
 			public void onDrawerOpened(View drawerView) {
 			}
+			@Override
+			public boolean onOptionsItemSelected(MenuItem item) {
+				// TODO Auto-generated method stub
+				return onDrawerSelected(item.getItemId());
+			}
+
 		};
-		
+
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		View footer = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.menu_list_drawer_footer, null);
+		View footer = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
+				R.layout.menu_list_drawer_footer, null);
 		mDrawerList.addFooterView(footer);
-		
-		View convertView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.fragment_profile_drawer_item, null);
+
+		View convertView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
+				R.layout.fragment_profile_drawer_item, null);
 		mDrawerList.addHeaderView(convertView);
-		
+
 		ImageView imgProfile = (ImageView) convertView.findViewWithTag("img_button_profile");
 		ImageView imgNew = (ImageView) convertView.findViewWithTag("img_button_new");
 		ImageView imgAvatar = (ImageView) convertView.findViewWithTag("img_hexagon");
 		TextView name = (TextView) convertView.findViewWithTag("drawer_profile_name");
 		imgProfile.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				log.d("log>>>" + "holder.imgProfile.setOnClickListener");
 			}
 		});
-		
+
 		imgNew.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				log.d("log>>>" + "holder.imgNew.setOnClickListener");
 			}
 		});
 		name.setText("Taylor Swift");
-		
-		
+
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -112,14 +126,16 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		View customViewActionBar = inflator.inflate(R.layout.actionbar_custom, null);
 		ImageView imgChat = (ImageView) customViewActionBar.findViewById(R.id.img_chat);
 		imgChat.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity.this, "Chat click", Toast.LENGTH_SHORT).show();
+				onDrawerSelected(v.getId());
 			}
 		});
 
 		getActionBar().setCustomView(customViewActionBar);
+
+		// Right Drawer
+		mRightDrawer = (FrameLayout) findViewById(R.id.right_drawer);
 	}
 
 	/**
@@ -170,7 +186,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		
+
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			log.d("log>>>" + "onOptionsItemSelected home:" + mFragmentTagStack.size());
@@ -180,8 +196,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 					if (!((OnBackPressListener) f).onBackPress()) {
 						log.d("log>>>" + "webview BACK");
 						getSupportFragmentManager().popBackStackImmediate();
-						
-						
+
 					}
 				} else {
 					getSupportFragmentManager().popBackStackImmediate();
@@ -210,9 +225,10 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	@Override
 	public void onTop1ContentClicked(Top1Fragment f, MainDto dto) {
 		log.d("log>>>" + "onTop1ContentClicked");
-//		WebViewFragment f1 = WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
+		// WebViewFragment f1 =
+		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
 		String url = "file:///android_asset/q234.htm";
-//		String url = "file:///android_asset/hello.html";
+		// String url = "file:///android_asset/hello.html";
 		WebViewFragment f1 = WebViewFragment.newInstance(url);
 		showFragment(f1, false);
 
@@ -233,17 +249,51 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			return getItem(position).getView(getLayoutInflater(), convertView, parent);
 		}
 	}
-	
+
 	@Override
 	public void onBackStackChanged() {
-	    super.onBackStackChanged();
-	    if (mFragmentTagStack.size() > 0) {
+		super.onBackStackChanged();
+		if (mFragmentTagStack.size() > 0) {
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
-	    
-	    
+
 	}
 
+	private boolean onDrawerSelected(int id) {
+		switch (id) {
+		case android.R.id.home:
+			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+				mDrawerLayout.closeDrawer(Gravity.LEFT);
+				break;
+			}
+			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+				mDrawerLayout.closeDrawer(Gravity.RIGHT);
+			}
+			mDrawerLayout.openDrawer(Gravity.LEFT);
+			break;
+		case R.id.img_chat:
+			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+				mDrawerLayout.closeDrawer(Gravity.RIGHT);
+				break;
+			}
+			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+				mDrawerLayout.closeDrawer(Gravity.LEFT);
+			}
+			mDrawerLayout.openDrawer(Gravity.RIGHT);
+			openFriendList();
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
+
+	private void openFriendList() {
+		// TODO Auto-generated method stub
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		ft.replace(R.id.right_drawer, new FriendFragment());
+		ft.commit();
+	}
 }
