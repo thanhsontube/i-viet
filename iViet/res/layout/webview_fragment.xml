@@ -7,6 +7,7 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <FrameLayout
         android:id="@android:id/empty"
         android:layout_width="wrap_content"
@@ -14,5 +15,21 @@
         android:layout_gravity="center" >
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/webview_img_go_top"
+        style="@style/main_img_style"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/lv1"
+        android:layout_marginRight="@dimen/lv1"
+        android:src="@drawable/go_top" />
+
+    <ImageView
+        android:id="@+id/webview_img_add_picture"
+        style="@style/main_img_style"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/lv3"
+        android:layout_marginRight="@dimen/lv1"
+        android:src="@drawable/btopt"
+         />
 
 </FrameLayout>
