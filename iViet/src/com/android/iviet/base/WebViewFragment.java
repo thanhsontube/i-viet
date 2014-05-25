@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.iviet.R;
+import com.android.iviet.dialog.AddPictureDialog;
+import com.android.iviet.dialog.ReportDialog;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
@@ -204,7 +207,9 @@ public class WebViewFragment extends Fragment implements OnBackPressListener, On
 
 		@JavascriptInterface
 		public void onError(String str) {
-			Toast.makeText(getActivity(), "onError", Toast.LENGTH_SHORT).show();
+			DialogFragment f = new ReportDialog();
+			getActivity().getSupportFragmentManager().beginTransaction().add(f, f.getClass().getName())
+					.commitAllowingStateLoss();
 		}
 
 		@JavascriptInterface
@@ -221,13 +226,18 @@ public class WebViewFragment extends Fragment implements OnBackPressListener, On
 		case R.id.webview_img_go_top:
 			webview.scrollTo(0, 0);
 			break;
-			
+
 		case R.id.webview_img_add_picture:
+
+			DialogFragment f = new AddPictureDialog();
+			getActivity().getSupportFragmentManager().beginTransaction().add(f, f.getClass().getName())
+					.commitAllowingStateLoss();
+
 			break;
 
 		default:
 			break;
 		}
-		
+
 	}
 }

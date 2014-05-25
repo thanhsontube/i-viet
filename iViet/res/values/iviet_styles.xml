@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     
     
     
@@ -18,6 +18,14 @@
         <item name="android:layout_width">10dp</item>
         <item name="android:layout_height">10dp</item>
         <item name="android:layout_gravity">center</item>
+    </style>
+    
+    <style name="style_button_dialog">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/dialog_button_common_selector</item>
     </style>
 
 </resources>

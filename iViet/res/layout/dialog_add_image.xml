@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <Button
+        android:id="@+id/dialog_add_picture"
+        style="@style/style_button_dialog"
+        android:text="Chèn Hình" />
+
+    <Button
+        android:id="@+id/dialog_cancel_add_image"
+        style="@style/style_button_dialog"
+        android:layout_marginTop="15dp"
+        android:text="Bỏ qua"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <Button
+        android:id="@+id/dialog_report_bad_content"
+        style="@style/style_button_dialog"
+        android:text="Nội dung đồi trụy" />
+    <Button
+        android:id="@+id/dialog_report_bad_word"
+        style="@style/style_button_dialog"
+        android:layout_marginTop="5dp"
+        android:text="Văng tục" />
+    <Button
+        android:id="@+id/dialog_report_ads"
+        style="@style/style_button_dialog"
+        android:layout_marginTop="5dp"
+        android:text="Quảng cáo" />
+    <Button
+        android:id="@+id/dialog_report_another"
+        style="@style/style_button_dialog"
+        android:layout_marginTop="5dp"
+        android:text="Lý do khác" />
+
+    <Button
+        android:id="@+id/dialog_report_cancel"
+        style="@style/style_button_dialog"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:text="Hủy" />
+
+</LinearLayout>
