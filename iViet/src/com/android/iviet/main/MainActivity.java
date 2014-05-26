@@ -10,10 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.transition.Transition;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
@@ -35,7 +32,6 @@ import com.android.iviet.base.OnBackPressListener;
 import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
-import com.android.iviet.main.drawer.FragmentProfileDrawerItem;
 import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.FriendFragment;
 import com.android.iviet.main.fragment.MainFragment;
@@ -76,12 +72,15 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.user_info, 0) {
 			public void onDrawerOpened(View drawerView) {
 			}
+			
 			@Override
 			public boolean onOptionsItemSelected(MenuItem item) {
-				// TODO Auto-generated method stub
-				return onDrawerSelected(item.getItemId());
+				// close right drawer
+				if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+					mDrawerLayout.closeDrawer(Gravity.RIGHT);
+				}
+				return super.onOptionsItemSelected(item);
 			}
-
 		};
 
 		// Set the drawer toggle as the DrawerListener
@@ -129,6 +128,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			@Override
 			public void onClick(View v) {
 				onDrawerSelected(v.getId());
+//				onop
 			}
 		});
 
@@ -203,6 +203,18 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 				}
 			}
 			break;
+			
+		case R.id.img_chat:
+			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+				mDrawerLayout.closeDrawer(Gravity.RIGHT);
+				break;
+			}
+			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+				mDrawerLayout.closeDrawer(Gravity.LEFT);
+			}
+			mDrawerLayout.openDrawer(Gravity.RIGHT);
+			openFriendList();
+			break;
 
 		default:
 			break;
@@ -263,16 +275,16 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	private boolean onDrawerSelected(int id) {
 		switch (id) {
-		case android.R.id.home:
-			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
-				mDrawerLayout.closeDrawer(Gravity.LEFT);
-				break;
-			}
-			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
-				mDrawerLayout.closeDrawer(Gravity.RIGHT);
-			}
-			mDrawerLayout.openDrawer(Gravity.LEFT);
-			break;
+//		case android.R.id.home:
+//			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+//				mDrawerLayout.closeDrawer(Gravity.LEFT);
+//				break;
+//			}
+//			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+//				mDrawerLayout.closeDrawer(Gravity.RIGHT);
+//			}
+//			mDrawerLayout.openDrawer(Gravity.LEFT);
+//			break;
 		case R.id.img_chat:
 			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
 				mDrawerLayout.closeDrawer(Gravity.RIGHT);
@@ -291,9 +303,9 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	}
 
 	private void openFriendList() {
-		// TODO Auto-generated method stub
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.replace(R.id.right_drawer, new FriendFragment());
 		ft.commit();
+		
 	}
 }

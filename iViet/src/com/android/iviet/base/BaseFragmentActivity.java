@@ -134,7 +134,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	 * @param f
 	 * @param isTransit
 	 */
-	public void showFragment2(Fragment f, boolean isTransit) {
+	/*public void showFragment2(Fragment f, boolean isTransit) {
 		String tag = String.format("%s:%d", getClass().getName(),
 				mFragmentTagStack.size());
 		final FragmentManager fm = getSupportFragmentManager();
@@ -163,7 +163,7 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 		}
 		ft.commit();
 		mFragmentTagStack.add(tag);
-	}
+	}*/
 
 	protected void restoreFragmentsState() {
 		final FragmentManager fm = getSupportFragmentManager();
