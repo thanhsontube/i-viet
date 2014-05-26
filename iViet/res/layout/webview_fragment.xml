@@ -17,7 +17,7 @@
 
     <ImageView
         android:id="@+id/webview_img_go_top"
-        style="@style/main_img_style"
+        style="@style/style_img_menu_webview"
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="@dimen/lv1"
         android:layout_marginRight="@dimen/lv1"
@@ -25,11 +25,10 @@
 
     <ImageView
         android:id="@+id/webview_img_add_picture"
-        style="@style/main_img_style"
+        style="@style/style_img_menu_webview"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="@dimen/lv3"
+        android:layout_marginBottom="@dimen/lv6"
         android:layout_marginRight="@dimen/lv1"
-        android:src="@drawable/btopt"
-         />
+        android:src="@drawable/btopt" />
 
 </FrameLayout>

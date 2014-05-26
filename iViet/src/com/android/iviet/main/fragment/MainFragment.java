@@ -139,7 +139,6 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 	@Override
 	public void onPageSelected(int position) {
 		for (int i = 0; i < mMainPagerAdapter.getCount(); i++) {
-//			final Fragment f = null;
 			final Fragment f = mMainPagerAdapter.getFragment(mViewPager, i);
 			if (f != null && f instanceof IMainFragmentListener) {
 				final IMainFragmentListener listener = (IMainFragmentListener) f;

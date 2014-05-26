@@ -3,6 +3,7 @@ package com.android.iviet;
 public class MsConst {
 	public static final String EXTRA_MAIN_VALUE = "EXTRA_MAIN_VALUE";
 	public static final String EXTRA_CONTENT = "EXTRA_CONTENT";
+	public static final String EXTRA_URL = "EXTRA_URL";
 	
 	public static final int NOTI_INCOME_MESSAGE = 1;
 	

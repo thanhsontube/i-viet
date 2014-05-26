@@ -58,7 +58,8 @@
         style="@style/main_img_style"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/lv1"
+        android:layout_marginRight="@dimen/lv4"
+        android:paddingRight="@dimen/lv4"
         android:src="@drawable/chat_select" />
 
 </RelativeLayout>

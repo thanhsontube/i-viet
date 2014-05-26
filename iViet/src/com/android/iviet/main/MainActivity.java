@@ -26,10 +26,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.iviet.IVietApplication;
+import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.base.OnBackPressListener;
-import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.dto.MainDto;
@@ -38,6 +38,8 @@ import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.utils.FilterLog;
+import com.android.iviet.webview.DetailQuestionFragment;
+import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener {
 
@@ -101,9 +103,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		imgProfile.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-				log.d("log>>>" + "holder.imgProfile.setOnClickListener");
-			}
+			public void onClick(View v) {}
 		});
 
 		imgNew.setOnClickListener(new OnClickListener() {
@@ -111,6 +111,21 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			@Override
 			public void onClick(View v) {
 				log.d("log>>>" + "holder.imgNew.setOnClickListener");
+
+				WriteQuestionFragment f = new WriteQuestionFragment();
+				Bundle bundle = new Bundle();
+				bundle.putString(MsConst.EXTRA_URL, "http://www.iviet.com/m/questions/post?userToken=u10");
+				f.setArguments(bundle);
+				showFragment(f, true);
+				
+				mHandler.postDelayed(new Runnable() {
+					
+					@Override
+					public void run() {
+						mDrawerLayout.closeDrawer(mDrawerList);
+					}
+				}, DELAY_ON_DRAWER_CLICK);
+			
 			}
 		});
 		name.setText("Taylor Swift");
@@ -192,7 +207,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			log.d("log>>>" + "onOptionsItemSelected home:" + mFragmentTagStack.size());
 			if (mFragmentTagStack.size() > 0) {
 				Fragment f = getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
-				if (f instanceof WebViewFragment) {
+				if (f instanceof DetailQuestionFragment || f instanceof WriteQuestionFragment) {
 					if (!((OnBackPressListener) f).onBackPress()) {
 						log.d("log>>>" + "webview BACK");
 						getSupportFragmentManager().popBackStackImmediate();
@@ -241,7 +256,12 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
 		String url = "file:///android_asset/q234.htm";
 		// String url = "file:///android_asset/hello.html";
-		WebViewFragment f1 = WebViewFragment.newInstance(url);
+//		WebViewFragment f1 = WebViewFragment.newInstance(url);
+		
+		DetailQuestionFragment f1 = new DetailQuestionFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(MsConst.EXTRA_URL, url);
+		f1.setArguments(bundle);
 		showFragment(f1, false);
 
 	}

@@ -1,0 +1,124 @@
+package com.android.iviet.webview;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.widget.Toast;
+
+import com.android.iviet.base.BaseWebViewFragment;
+import com.android.iviet.dialog.ReportDialog;
+import com.android.iviet.utils.ActionBarUtils;
+import com.android.iviet.utils.FilterLog;
+
+public class DetailQuestionFragment extends BaseWebViewFragment {
+	static final String TAG = "DetailQuestionFragment";
+	FilterLog log = new FilterLog(TAG);
+//	boolean isEnableSendMenu;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = super.onCreateView(inflater, container, savedInstanceState);
+
+		ActionBarUtils.setTitle(actionBar, "Chi tiết câu hỏi");
+		ActionBarUtils.hideChat(actionBar, true);
+		ActionBarUtils.hideDot(actionBar, true);
+		
+		webview.getSettings().setJavaScriptEnabled(true);
+		webview.addJavascriptInterface(new AndroidBridge(), "Android");
+		return view;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		
+//		 mTop.setVisibility(View.VISIBLE);
+//		 mAddImage.setVisibility(View.GONE);
+	}
+	
+//	@Override
+//	public void onPrepareOptionsMenu(Menu menu) {
+//	    super.onPrepareOptionsMenu(menu);
+//	    menuSend.setVisible(isEnableSendMenu);
+//	}
+	
+	public class AndroidBridge {
+		public AndroidBridge() {
+
+		}
+
+		@JavascriptInterface
+		public void onDetail() {
+			// menuSend.setVisible(true);
+		}
+
+		@JavascriptInterface
+		public void onAnswer() {
+			log.d("log>>>" + "onAnswer123");
+//			getActivity().invalidateOptionsMenu();
+//			mAddImage.setVisibility(View.VISIBLE);
+//			mTop.setVisibility(View.INVISIBLE);
+			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
+			isShowSendMenu = true;
+			getActivity().invalidateOptionsMenu();
+//			getActivity().runOnUiThread(new Runnable() {
+//				
+//				@Override
+//				public void run() {
+//					// TODO Auto-generated method stub
+//					isEnableSendMenu = true;
+//					mAddImage.setVisibility(View.VISIBLE);
+//					mTop.setVisibility(View.INVISIBLE);
+//				}
+//			});
+//			Handler mHandler = new Handler();
+//			mHandler.postDelayed(new Runnable() {
+//				
+//				@Override
+//				public void run() {
+//					isEnableSendMenu = true;
+//					mAddImage.setVisibility(View.VISIBLE);
+//					mTop.setVisibility(View.INVISIBLE);
+//					getActivity().invalidateOptionsMenu();
+//					
+//				}
+//			}, 200);
+			
+			
+		}
+
+		@JavascriptInterface
+		public void onComment() {
+			Toast.makeText(getActivity(), "onComment", Toast.LENGTH_SHORT).show();
+			menuSend.setVisible(true);
+			setHasOptionsMenu(true);
+			webview.loadUrl("http://www.iviet.com/m/comments/q234?userToken=u10");
+
+		}
+
+		@JavascriptInterface
+		public void onFollow() {
+			Toast.makeText(getActivity(), "onFollow", Toast.LENGTH_SHORT).show();
+		}
+
+		@JavascriptInterface
+		public void onError(String str) {
+			DialogFragment f = new ReportDialog();
+			getActivity().getSupportFragmentManager().beginTransaction().add(f, f.getClass().getName())
+					.commitAllowingStateLoss();
+		}
+
+		@JavascriptInterface
+		public void onShare(String str) {
+			Toast.makeText(getActivity(), "onShare", Toast.LENGTH_SHORT).show();
+
+		}
+	}
+	
+	
+}
