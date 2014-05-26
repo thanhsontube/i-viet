@@ -20,6 +20,7 @@ public class WriteQuestionFragment extends BaseWebViewFragment {
 		ActionBarUtils.setTitle(actionBar, "Đăng câu hỏi");
 		ActionBarUtils.hideChat(actionBar, true);
 		ActionBarUtils.hideDot(actionBar, true);
+		isShowSendMenu = true;
 		return view;
 	}
 

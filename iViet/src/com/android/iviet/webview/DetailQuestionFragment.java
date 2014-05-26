@@ -30,23 +30,10 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.addJavascriptInterface(new AndroidBridge(), "Android");
+		isShowSendMenu = false;
 		return view;
 	}
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		
-//		 mTop.setVisibility(View.VISIBLE);
-//		 mAddImage.setVisibility(View.GONE);
-	}
-	
-//	@Override
-//	public void onPrepareOptionsMenu(Menu menu) {
-//	    super.onPrepareOptionsMenu(menu);
-//	    menuSend.setVisible(isEnableSendMenu);
-//	}
-	
 	public class AndroidBridge {
 		public AndroidBridge() {
 
@@ -61,10 +48,11 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		public void onAnswer() {
 			log.d("log>>>" + "onAnswer123");
 //			getActivity().invalidateOptionsMenu();
-//			mAddImage.setVisibility(View.VISIBLE);
-//			mTop.setVisibility(View.INVISIBLE);
+			mAddImage.setVisibility(View.VISIBLE);
+			mTop.setVisibility(View.GONE);
 			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
 			isShowSendMenu = true;
+			menuSend.setVisible(isShowSendMenu);
 			getActivity().invalidateOptionsMenu();
 //			getActivity().runOnUiThread(new Runnable() {
 //				

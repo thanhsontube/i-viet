@@ -34,6 +34,7 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 	protected ImageView mAddImage;
 	URI mUri = null;
 	protected MenuItem menuSend;
+	protected MenuItem menuTest;
 	protected ActionBar actionBar;
 	protected boolean isShowSendMenu;
 	
@@ -129,6 +130,9 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 		menuSend = menu.add(Menu.NONE, 1, Menu.NONE, "Send");
 		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menuSend.setIcon(R.drawable.answer);
+		
+		menuTest = menu.add(Menu.NONE, 2, Menu.NONE, "test");
+		menuTest.setIcon(R.drawable.ic_appicon);
 	}
 
 	@Override
@@ -147,7 +151,8 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 			;
 			break;
 		case 2:
-			
+			Toast.makeText(getActivity(), "test menu", Toast.LENGTH_SHORT).show();
+			break;
 		case android.R.id.home:
 			mController.dispatchBackPress();
 			break;
