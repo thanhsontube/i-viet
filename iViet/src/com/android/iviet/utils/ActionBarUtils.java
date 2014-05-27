@@ -40,6 +40,8 @@ public class ActionBarUtils {
 			final TextView text = (TextView) v.findViewById(R.id.actionbar_title);
 			if (text != null) {
 				text.setText(title);
+				hideChat(actionBar, true);
+				hideDot(actionBar, true);
 				return;
 			}
 		}

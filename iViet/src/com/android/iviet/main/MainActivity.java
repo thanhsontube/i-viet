@@ -37,6 +37,7 @@ import com.android.iviet.main.fragment.FriendFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
+import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
@@ -100,12 +101,22 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		ImageView imgNew = (ImageView) convertView.findViewWithTag("img_button_new");
 		ImageView imgAvatar = (ImageView) convertView.findViewWithTag("img_hexagon");
 		TextView name = (TextView) convertView.findViewWithTag("drawer_profile_name");
+		//TODO profile
 		imgProfile.setOnClickListener(new OnClickListener() {
-
 			@Override
-			public void onClick(View v) {}
+			public void onClick(View v) {
+				UserProfileFragment f = new UserProfileFragment();
+				showFragment(f, true);
+				mHandler.postDelayed(new Runnable(	) {
+					
+					@Override
+					public void run() {
+						mDrawerLayout.closeDrawer(mDrawerList);
+					}
+				}, DELAY_ON_DRAWER_CLICK);
+			}
 		});
-
+		//TODO write question
 		imgNew.setOnClickListener(new OnClickListener() {
 
 			@Override
