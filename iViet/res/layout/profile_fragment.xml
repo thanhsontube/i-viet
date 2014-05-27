@@ -1,8 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <!-- TOP -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/profile" />
+            <!-- 4 buttom -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_bar_cell"
+                android:orientation="horizontal" >
+
+                <!-- 1  chinh sua -->
+
+                <LinearLayout
+                    style="@style/style_img_profile"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <!--
+                    <TextView
+                        style="@style/style_txt_profile"
+                        android:text="0" />
+
+                    <TextView
+                        style="@style/style_txt_profile"
+                        android:text="picture" />
+                    -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/lv1" >
+
+                    <!-- 2 ban theo -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="0" />
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="Bạn theo" />
+                    </LinearLayout>
+
+                    <!-- 3 cau hoi -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="0" />
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="Câu hỏi" />
+                    </LinearLayout>
+
+                    <!-- 4 tra loi -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="0" />
+
+                        <TextView
+                            style="@style/style_txt_profile"
+                            android:text="Trả lời" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- profile picture -->
+
+        <LinearLayout
+            style="@style/style_img_profile"
+            android:layout_gravity="bottom|left"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/personal_profile_background"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_appicon" />
+
+            <Button
+                android:textColor="@color/white"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/dialog_button_common_selector"
+                android:gravity="center"
+                android:text="Chỉnh sửa"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </FrameLayout>
+    <!-- Bottom -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </LinearLayout>
 
 </LinearLayout>
