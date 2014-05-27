@@ -45,7 +45,7 @@
 
                     <TextView
                         style="@style/style_txt_profile"
-                        android:text="picture" />
+                        android:text="picture" />
                     -->
                 </LinearLayout>
 
@@ -129,7 +129,6 @@
                 android:src="@drawable/ic_appicon" />
 
             <Button
-                android:textColor="@color/white"
                 android:layout_width="90dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
@@ -137,6 +136,7 @@
                 android:background="@drawable/dialog_button_common_selector"
                 android:gravity="center"
                 android:text="Chỉnh sửa"
+                android:textColor="@color/white"
                 android:textSize="10sp" />
         </LinearLayout>
     </FrameLayout>
@@ -146,6 +146,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
+
+        <GridView
+            android:id="@+id/profile_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3" >
+        </GridView>
     </LinearLayout>
 
 </LinearLayout>
