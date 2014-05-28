@@ -250,7 +250,6 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		private boolean isMenuChat = true;
 		@Override
 		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		    // TODO Auto-generated method stub
 		    super.onCreateOptionsMenu(menu, inflater);
 		    menuChat = menu.add(Menu.NONE, 1, Menu.NONE, "Chat");
 			menuChat.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
