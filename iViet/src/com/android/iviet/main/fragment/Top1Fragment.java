@@ -157,5 +157,11 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 	    // TODO Auto-generated method stub
 	    
     }
+
+	@Override
+    public void onMainFragmentMenuChatSelected(MainFragment main) {
+	    // TODO Auto-generated method stub
+	    
+    }
 	
 }

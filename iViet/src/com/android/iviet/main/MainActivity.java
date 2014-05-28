@@ -2,6 +2,7 @@ package com.android.iviet.main;
 
 import java.util.List;
 
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,7 +43,7 @@ import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
-public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener {
+public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener {
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -53,6 +54,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	private final Handler mHandler = new Handler();
 	private static final long DELAY_ON_DRAWER_CLICK = 250L;
 	private FrameLayout mRightDrawer;
+	
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
@@ -140,6 +142,9 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			}
 		});
 		name.setText("Taylor Swift");
+//		getActionBar().setDisplayUseLogoEnabled(false);
+//		View icon = getActionBar().getCustomView().findViewById(android.R.id.home);
+//		icon.setVisibility(View.INVISIBLE);
 
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
@@ -147,18 +152,18 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayShowTitleEnabled(false);
+//		getActionBar().setIcon(android.R.color.transparent);
+		getActionBar().setIcon(R.drawable.shape_icon);
 		LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View customViewActionBar = inflator.inflate(R.layout.actionbar_custom, null);
+		getActionBar().setCustomView(customViewActionBar);
 		ImageView imgChat = (ImageView) customViewActionBar.findViewById(R.id.img_chat);
 		imgChat.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				onDrawerSelected(v.getId());
-//				onop
 			}
 		});
-
-		getActionBar().setCustomView(customViewActionBar);
 
 		// Right Drawer
 		mRightDrawer = (FrameLayout) findViewById(R.id.right_drawer);
@@ -206,7 +211,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 		}
 	};
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
@@ -339,4 +344,37 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		ft.commit();
 		
 	}
+	
+	//main Fragment listener
+	@Override
+    public void onIMainFragmentStart(MainFragment f, int i) {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void onMainFragmentMenuChatSelected(MainFragment main) {
+		if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+			mDrawerLayout.closeDrawer(Gravity.RIGHT);
+			return;
+		}
+		if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+			mDrawerLayout.closeDrawer(Gravity.LEFT);
+		}
+		mDrawerLayout.openDrawer(Gravity.RIGHT);
+		openFriendList();
+	    
+    }
 }

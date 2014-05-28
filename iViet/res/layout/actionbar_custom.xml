@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ff00ff" 
+    android:layout_marginRight="8dp">
+
+    <!-- left -->
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/lv1" >
+
+        <!-- left drawer -->
+
+        <ImageView
+            android:id="@+id/actionbar_left_drawer"
+            style="@style/main_img_style"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/setting_select" />
+
+        <!-- Back -->
+
+        <ImageView
+            android:id="@+id/actionbar_back"
+            style="@style/main_img_style"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/back_button"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <!-- mid layout -->
 
@@ -30,7 +59,7 @@
             android:id="@+id/actionbar_dot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -53,12 +82,24 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_chat"
-        style="@style/main_img_style"
+    <!-- right -->
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/lv4"
-        android:src="@drawable/chat_select" />
+        android:layout_marginLeft="@dimen/lv1" >
+
+        <!-- chat -->
+
+        <ImageView
+            android:id="@+id/img_chat"
+            style="@style/main_img_style"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/lv1"
+            android:src="@drawable/chat_select"
+            android:visibility="visible" />
+    </FrameLayout>
 
 </RelativeLayout>

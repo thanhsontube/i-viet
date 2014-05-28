@@ -9,8 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
@@ -35,6 +39,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		void onIMainFragmentStart(MainFragment f, int i);
 		void onMainFragmentPageSelected(MainFragment main, Fragment selected);
 		void onMainFragmentPageDeSelected(MainFragment main, Fragment selected);
+		void onMainFragmentMenuChatSelected(MainFragment main);
 		// public void onIMainFragmentSwipe(MainFragment f, int i, CharSequence title);
 	}
 
@@ -240,6 +245,40 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 					update();
 				}
 			}
+		}
+		private MenuItem menuChat;
+		private boolean isMenuChat = true;
+		@Override
+		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		    // TODO Auto-generated method stub
+		    super.onCreateOptionsMenu(menu, inflater);
+		    menuChat = menu.add(Menu.NONE, 1, Menu.NONE, "Chat");
+			menuChat.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+			menuChat.setIcon(R.drawable.chat_select);
+		}
+		
+		@Override
+		public void onPrepareOptionsMenu(Menu menu) {
+		    // TODO Auto-generated method stub
+		    super.onPrepareOptionsMenu(menu);
+		    menuChat.setVisible(isMenuChat);
+		}
+		
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+		    // TODO Auto-generated method stub
+			switch (item.getItemId()) {
+			case 1:
+				Toast.makeText(getActivity(), "menu Chat >>>", Toast.LENGTH_SHORT).show();
+				if (listener != null) {
+					listener.onMainFragmentMenuChatSelected(this);
+				}
+				break;
+
+			default:
+				break;
+			}
+		    return super.onOptionsItemSelected(item);
 		}
 
 }

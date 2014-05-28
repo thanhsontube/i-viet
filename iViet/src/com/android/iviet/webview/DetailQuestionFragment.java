@@ -52,32 +52,7 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 			mTop.setVisibility(View.GONE);
 			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
 			isShowSendMenu = true;
-			menuSend.setVisible(isShowSendMenu);
 			getActivity().invalidateOptionsMenu();
-//			getActivity().runOnUiThread(new Runnable() {
-//				
-//				@Override
-//				public void run() {
-//					// TODO Auto-generated method stub
-//					isEnableSendMenu = true;
-//					mAddImage.setVisibility(View.VISIBLE);
-//					mTop.setVisibility(View.INVISIBLE);
-//				}
-//			});
-//			Handler mHandler = new Handler();
-//			mHandler.postDelayed(new Runnable() {
-//				
-//				@Override
-//				public void run() {
-//					isEnableSendMenu = true;
-//					mAddImage.setVisibility(View.VISIBLE);
-//					mTop.setVisibility(View.INVISIBLE);
-//					getActivity().invalidateOptionsMenu();
-//					
-//				}
-//			}, 200);
-			
-			
 		}
 
 		@JavascriptInterface
