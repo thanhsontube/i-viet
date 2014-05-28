@@ -2,7 +2,6 @@ package com.android.iviet.main;
 
 import java.util.List;
 
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
