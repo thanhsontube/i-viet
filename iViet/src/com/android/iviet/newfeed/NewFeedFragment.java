@@ -1,6 +1,7 @@
 package com.android.iviet.newfeed;
 
 import com.android.iviet.R;
+import com.android.iviet.about.BaseFragment;
 import com.android.iviet.base.OnBackPressListener;
 
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NewFeedFragment extends Fragment implements OnBackPressListener{
+public class NewFeedFragment extends BaseFragment implements OnBackPressListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.new_feed_fragmnt, container, false);
@@ -17,7 +18,13 @@ public class NewFeedFragment extends Fragment implements OnBackPressListener{
 	}
 
 	@Override
-    public boolean onBackPress() {
-	    return false;
-    }
+	public boolean onBackPress() {
+		return false;
+	}
+
+	@Override
+	protected String generateTitle() {
+		// TODO Auto-generated method stub
+		return "Thông báo";
+	}
 }

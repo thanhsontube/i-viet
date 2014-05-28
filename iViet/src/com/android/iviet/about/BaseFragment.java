@@ -29,4 +29,10 @@ abstract public class BaseFragment extends Fragment {
 		menuTransparent.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menuTransparent.setIcon(R.drawable.shape_icon);
 	}
+	
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+	    super.onHiddenChanged(hidden);
+	    ActionBarUtils.setTitle(getActivity().getActionBar(), generateTitle());
+	}
 }
