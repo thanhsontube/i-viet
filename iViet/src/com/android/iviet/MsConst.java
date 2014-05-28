@@ -15,4 +15,7 @@ public class MsConst {
 	
 	//bundle
 	public static String BUNDLE_TRANSITION = "BUNDLE_TRANSITION";
+	
+	public static String URL_TERM = "file:///android_asset/q234.htm";
+	public static String URL_RULE_OF_ASK = "file:///android_asset/q234.htm";
 }

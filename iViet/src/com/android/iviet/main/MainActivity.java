@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.android.iviet.IVietApplication;
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
+import com.android.iviet.about.AboutFragment.IAboutFragment;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.base.OnBackPressListener;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
@@ -40,9 +41,12 @@ import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
+import com.android.iviet.webview.RuleOfAskFragment;
+import com.android.iviet.webview.TermFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
-public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener {
+public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener ,
+IAboutFragment{
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -376,4 +380,28 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		openFriendList();
 	    
     }
+	
+	//TODO about fragment
+	@Override
+    public void onAboutFragmentTerm() {
+		log.d("log>>>" + "onAboutFragmentTerm");
+		Fragment f = new TermFragment();
+		f.setArguments(getWebBundel(MsConst.URL_TERM));
+		showFragment(f, true);
+	    
+    }
+
+	@Override
+    public void onAboutFragmentRuleOfAsk() {
+		log.d("log>>>" + "onAboutFragmentRuleOfAsk");
+		Fragment f = new RuleOfAskFragment();
+		f.setArguments(getWebBundel(MsConst.URL_RULE_OF_ASK));
+		showFragment(f, true);
+    }
+	
+	private Bundle getWebBundel(String url) {
+		Bundle bundle = new Bundle();
+		bundle.putString(MsConst.EXTRA_URL, url);
+		return bundle;
+	}
 }

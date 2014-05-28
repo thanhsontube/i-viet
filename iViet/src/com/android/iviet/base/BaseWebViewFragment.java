@@ -22,9 +22,10 @@ import android.widget.Toast;
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.dialog.AddPictureDialog;
+import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
-public class BaseWebViewFragment extends Fragment implements OnBackPressListener, OnClickListener{
+abstract public class BaseWebViewFragment extends Fragment implements OnBackPressListener, OnClickListener{
 
 	static final String TAG = "BaseWebViewFragment";
 	FilterLog log = new FilterLog(TAG);
@@ -34,7 +35,7 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 	protected ImageView mAddImage;
 	URI mUri = null;
 	protected MenuItem menuSend;
-	protected MenuItem menuTest;
+	protected MenuItem menuTemp;
 	protected ActionBar actionBar;
 	protected boolean isShowSendMenu;
 	
@@ -44,6 +45,11 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 		boolean dispatchBackPress();
 	}
 	
+	abstract protected String generateTitle();
+	abstract protected boolean isShowSendMenuItem();
+	abstract protected int isShowFastTop();
+	abstract protected int isShowAddImage();
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 		actionBar = getActivity().getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
+		ActionBarUtils.setTitle(actionBar, generateTitle());
 		setHasOptionsMenu(true);
 	}
 
@@ -63,6 +70,9 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 		
 		mAddImage = (ImageView) view.findViewById(R.id.webview_img_add_picture);
 		mAddImage.setOnClickListener(this);
+		
+		mTop.setVisibility(isShowFastTop());
+		mAddImage.setVisibility(isShowAddImage());
 		empty = (ViewGroup) view.findViewById(android.R.id.empty);
 		inflater.inflate(R.layout.waiting, empty, true);
 		empty.findViewById(R.id.waiting_txt).setVisibility(View.GONE);
@@ -131,15 +141,17 @@ public class BaseWebViewFragment extends Fragment implements OnBackPressListener
 		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menuSend.setIcon(R.drawable.answer);
 		
-		menuTest = menu.add(Menu.NONE, 2, Menu.NONE, "test");
-		menuTest.setIcon(R.drawable.ic_appicon);
+		menuTemp = menu.add(Menu.NONE, 2, Menu.NONE, "");
+		menuTemp.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menuTemp.setIcon(R.drawable.shape_icon);
 	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
 		log.d("log>>>" + "onPrepareOptionsMenu");
-		menuSend.setVisible(isShowSendMenu);
+		menuSend.setVisible(isShowSendMenuItem());
+		menuTemp.setVisible(!isShowSendMenuItem());
 	}
 
 	@Override

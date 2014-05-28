@@ -1,11 +1,8 @@
 package com.android.iviet.webview;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -23,10 +20,10 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = super.onCreateView(inflater, container, savedInstanceState);
-
-		ActionBarUtils.setTitle(actionBar, "Chi tiết câu hỏi");
-		ActionBarUtils.hideChat(actionBar, true);
-		ActionBarUtils.hideDot(actionBar, true);
+//
+//		ActionBarUtils.setTitle(actionBar, "Chi tiết câu hỏi");
+//		ActionBarUtils.hideChat(actionBar, true);
+//		ActionBarUtils.hideDot(actionBar, true);
 		
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.addJavascriptInterface(new AndroidBridge(), "Android");
@@ -82,6 +79,26 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 
 		}
 	}
+
+	@Override
+    protected String generateTitle() {
+	    return "Chi tiết câu hỏi";
+    }
+
+	@Override
+    protected boolean isShowSendMenuItem() {
+	    return false;
+    }
+
+	@Override
+    protected int isShowFastTop() {
+	    return View.VISIBLE;
+    }
+
+	@Override
+    protected int isShowAddImage() {
+	    return View.GONE;
+    }
 	
 	
 }
