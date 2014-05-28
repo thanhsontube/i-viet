@@ -40,14 +40,15 @@ public class AboutParent implements AboutIParent {
 		View header = inflater.inflate(R.layout.about_row, null);
 		View img = header.findViewWithTag("icon");
 		img.setVisibility(View.GONE);
+		TextView title = (TextView) header.findViewWithTag("title");
+		title.setText("Phiên bản");
 		TextView txt = (TextView) header.findViewWithTag("about_version");
-
+		txt.setVisibility(View.VISIBLE);
 		try {
 			String versionName = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName;
 			log.d("log>>>" + "versionName:" + versionName);
 			txt.setText(versionName);
 		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return header;

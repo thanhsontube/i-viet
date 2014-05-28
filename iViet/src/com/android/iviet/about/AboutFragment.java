@@ -31,8 +31,7 @@ public class AboutFragment extends Fragment {
 		View v = inflater.inflate(R.layout.about_fragment, container, false);
 		mListView = (ListView) v.findViewById(R.id.about_listview);
 		mAboutAdapter = new AboutAdapter(list);
-//		View header = inflater.inflate(R.layout.about_row, null);
-		mListView.addHeaderView(app.getAboutParent().getHeader());
+		mListView.addHeaderView(app.getAboutParent().getHeader(), null, false);
 		mListView.setAdapter(mAboutAdapter);
 		return v;
 	}
