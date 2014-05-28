@@ -3,16 +3,13 @@ package com.android.iviet.main.drawer;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
+
 import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment;
-import com.android.iviet.base.WebViewFragment;
 import com.android.iviet.help.HelpFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.newfeed.NewFeedFragment;
-import com.android.iviet.test.Test1Fragment;
-import com.android.iviet.test.Test2Fragment;
-
-import android.content.Context;
 
 public class MainDrawerItemGenerator implements
 		DrawerItemGenerator<com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem<?>> {
@@ -33,7 +30,7 @@ public class MainDrawerItemGenerator implements
 		list.add(new FragmentChangeDrawerItem(R.drawable.notification, context.getText(R.string.notification),
 				"notification", "notification", new NewFeedFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.help, context.getText(R.string.help), "help", "help",
-				WebViewFragment.newInstance("http://vnexpress.net")));
+				new HelpFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.about_us, context.getText(R.string.about), "about", "about",
 				new AboutFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.search, context.getText(R.string.search), "search", "search",
