@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
-import com.android.iviet.about.BaseFragment;
+import com.android.iviet.base.BaseFragment;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.MainLoader;
 import com.android.iviet.connection.PathAccess;

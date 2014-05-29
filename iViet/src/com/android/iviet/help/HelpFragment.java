@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.iviet.R;
-import com.android.iviet.about.BaseFragment;
+import com.android.iviet.base.BaseFragment;
 
 public class HelpFragment extends BaseFragment{
 	@Override

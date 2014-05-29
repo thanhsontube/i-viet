@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.UserManager;
 
+import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment;
 import com.android.iviet.main.fragment.MainFragment;
@@ -30,8 +33,12 @@ public class MainDrawerItemGenerator implements
 				new MainFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.notification, context.getText(R.string.notification),
 				"notification", "notification", new NewFeedFragment()));
+		UserGuideFragment userGuideFragment = new UserGuideFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_USER_GUIDE);
+		userGuideFragment.setArguments(bundle);
 		list.add(new FragmentChangeDrawerItem(R.drawable.help, context.getText(R.string.help), "help", "help",
-				new UserGuideFragment()));
+				userGuideFragment));
 		list.add(new FragmentChangeDrawerItem(R.drawable.about_us, context.getText(R.string.about), "about", "about",
 				new AboutFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.search, context.getText(R.string.search), "search", "search",

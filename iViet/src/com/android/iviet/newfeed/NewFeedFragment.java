@@ -1,7 +1,7 @@
 package com.android.iviet.newfeed;
 
 import com.android.iviet.R;
-import com.android.iviet.about.BaseFragment;
+import com.android.iviet.base.BaseFragment;
 import com.android.iviet.base.OnBackPressListener;
 
 import android.os.Bundle;

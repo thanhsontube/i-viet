@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
+import com.android.iviet.base.BaseFragment;
 import com.android.iviet.utils.FilterLog;
 
 public class AboutFragment extends BaseFragment implements OnItemClickListener {

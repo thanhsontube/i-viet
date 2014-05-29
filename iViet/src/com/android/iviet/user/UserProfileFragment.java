@@ -12,7 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.android.iviet.R;
-import com.android.iviet.about.BaseFragment;
+import com.android.iviet.base.BaseFragment;
 import com.android.iviet.utils.FilterLog;
 
 public class UserProfileFragment extends BaseFragment {
