@@ -10,6 +10,7 @@ import com.android.iviet.about.AboutFragment;
 import com.android.iviet.help.HelpFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.newfeed.NewFeedFragment;
+import com.android.iviet.search.SearchFragment;
 
 public class MainDrawerItemGenerator implements
 		DrawerItemGenerator<com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem<?>> {
@@ -34,7 +35,7 @@ public class MainDrawerItemGenerator implements
 		list.add(new FragmentChangeDrawerItem(R.drawable.about_us, context.getText(R.string.about), "about", "about",
 				new AboutFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.search, context.getText(R.string.search), "search", "search",
-				new MainFragment()));
+				new SearchFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.log_out, context.getText(R.string.logout), "logout", "logout",
 				new MainFragment()));
 		// list.add(new FragmentChangeDrawerItem(0,
