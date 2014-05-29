@@ -3,20 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/lv1" >
+    android:padding="@dimen/lv2" >
 
     <TextView
-        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:scrollHorizontally="true"
         android:tag="title"
         android:text="@string/test1"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:scrollHorizontally="true"
         android:tag="detail"
-        android:text="@string/test2" />
+        android:text="@string/test2"
+        android:textSize="16sp" />
 
 </LinearLayout>

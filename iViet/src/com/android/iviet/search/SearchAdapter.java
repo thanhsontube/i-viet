@@ -3,6 +3,7 @@ package com.android.iviet.search;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,11 @@ public class SearchAdapter extends ArrayAdapter<SearchDto> {
 		final SearchDto dto = mList.get(position);
 		holder.txtTitle.setText(dto.getTitle());
 		holder.txtDetail.setText(dto.getSnapshot_content());
+		if((position & 1) == 0){
+			v.setBackgroundResource(R.drawable.btn_common_selector1);
+		}else{
+			v.setBackgroundResource(R.drawable.btn_common_selector2);
+		}
 		return v;
 	}
 
