@@ -11,7 +11,6 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.dto.FeaturedDto;
 import com.android.iviet.main.dto.NewestDto;
 import com.android.iviet.main.dto.RootDto;

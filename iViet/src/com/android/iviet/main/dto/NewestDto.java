@@ -2,7 +2,7 @@ package com.android.iviet.main.dto;
 
 import java.util.List;
 
-import com.android.iviet.json.BaseObject;
+import com.android.iviet.connection.BaseObject;
 
 public class NewestDto {
 	private String cursor;

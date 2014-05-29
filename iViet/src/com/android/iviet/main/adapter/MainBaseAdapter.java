@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.iviet.R;
-import com.android.iviet.json.BaseObject;
+import com.android.iviet.connection.BaseObject;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.DatetimeUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;

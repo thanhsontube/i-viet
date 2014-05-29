@@ -1,4 +1,4 @@
-package com.android.iviet.json;
+package com.android.iviet.connection;
 
 public class BaseObject {
 	public String  user_avatar;

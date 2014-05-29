@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
+import com.android.iviet.connection.BaseObject;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.PathAccess;
 import com.android.iviet.connection.RootLoader;
-import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.adapter.MainBaseAdapter;
 import com.android.iviet.main.dto.RootDto;
 import com.android.iviet.main.fragment.MainFragment.IMainFragmentListener;

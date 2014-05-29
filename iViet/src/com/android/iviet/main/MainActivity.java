@@ -31,7 +31,7 @@ import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment.IAboutFragment;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.base.OnBackPressListener;
-import com.android.iviet.json.BaseObject;
+import com.android.iviet.connection.BaseObject;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.fragment.FriendFragment;
