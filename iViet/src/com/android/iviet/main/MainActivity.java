@@ -38,15 +38,18 @@ import com.android.iviet.main.fragment.FriendFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
+import com.android.iviet.search.SearchDto;
+import com.android.iviet.search.SearchFragment;
+import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
-import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.PolicyFragment;
+import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener ,
-IAboutFragment{
+IAboutFragment, ISearchFragmentListener{
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -273,13 +276,11 @@ IAboutFragment{
 		log.d("log>>>" + "onTop1ContentClicked");
 		// WebViewFragment f1 =
 		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
-		String url = "file:///android_asset/q234.htm";
 		// String url = "file:///android_asset/hello.html";
 //		WebViewFragment f1 = WebViewFragment.newInstance(url);
-		
 		DetailQuestionFragment f1 = new DetailQuestionFragment();
 		Bundle bundle = new Bundle();
-		bundle.putString(MsConst.EXTRA_URL, url);
+		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_DETAIL_QUESTIONS);
 		f1.setArguments(bundle);
 		showFragment(f1, false);
 
@@ -404,4 +405,11 @@ IAboutFragment{
 		bundle.putString(MsConst.EXTRA_URL, url);
 		return bundle;
 	}
+
+	@Override
+    public void onISearchFragmentListenerItemClicked(SearchFragment fragment, SearchDto entity) {
+		Fragment f = new DetailQuestionFragment();
+		f.setArguments(getWebBundel(MsConst.URL_DETAIL_QUESTIONS));
+		showFragment(f, true);
+    }
 }

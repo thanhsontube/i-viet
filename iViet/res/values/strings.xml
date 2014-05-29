@@ -93,5 +93,7 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="chua_nhap_du_thong_tin">Bạn chưa nhập đủ thông tin</string>
     <string name="chua_dong_y">Bạn chưa đồng ý với điều khoản của iViệt</string>
     <string name="mat_khau_khong_khop">Mật khẩu không trùng khớp</string>
+    <string name="search_input_search">Nhập nội dung tìm</string>
+    <string name="title_search">Tìm kiếm</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.android.iviet.search;
 
-public class SearchDto {
+import com.android.iviet.json.BaseObject;
 
+public class SearchDto extends BaseObject {
+	
 }

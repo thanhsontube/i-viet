@@ -54,7 +54,7 @@ public class PathAccess implements PathIAccess {
 	}
 
 	@Override
-    public URI seach() {
+    public URI search() {
 		log.d("log>>>" + "seach");
 		String path = "m/questions/all?cursor=&userToken=u50";
 		try {

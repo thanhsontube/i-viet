@@ -9,6 +9,6 @@ public interface PathIAccess {
 
 	URI feature();
 	
-	URI seach();
+	URI search();
 	
 }

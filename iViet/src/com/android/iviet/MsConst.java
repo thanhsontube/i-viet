@@ -17,6 +17,7 @@ public class MsConst {
 	public static String BUNDLE_TRANSITION = "BUNDLE_TRANSITION";
 	
 	//webview local
+	public static String URL_DETAIL_QUESTIONS = "file:///android_asset/q234.htm";
 	public static String URL_POLICY = "file:///android_asset/Iviet_Policy.html";
 	public static String URL_RULE = "file:///android_asset/Iviet_Rule.html";
 	public static String URL_USER_GUIDE = "file:///android_asset/user_Guide.html";

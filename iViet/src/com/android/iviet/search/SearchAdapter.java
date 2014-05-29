@@ -14,12 +14,13 @@ import com.android.iviet.R;
 public class SearchAdapter extends ArrayAdapter<SearchDto> {
 	private List<SearchDto> mList;
 	private Context mContext;
+
 	public SearchAdapter(Context context, List<SearchDto> list) {
-		super (context, 0, list);
+		super(context, 0, list);
 		mContext = context;
 		mList = list;
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
@@ -29,17 +30,24 @@ public class SearchAdapter extends ArrayAdapter<SearchDto> {
 			v = inflater.inflate(R.layout.search_row, parent, false);
 			holder = new Holder();
 			holder.txtTitle = (TextView) v.findViewWithTag("title");
-			holder.txtTitle = (TextView) v.findViewWithTag("detail");
-			
+			holder.txtDetail = (TextView) v.findViewWithTag("detail");
 			v.setTag(holder);
 		} else {
 			holder = (Holder) v.getTag();
 		}
-		
-//		final SearchDto dto = mList.get(0);
+
+		final SearchDto dto = mList.get(position);
+		holder.txtTitle.setText(dto.getTitle());
+		holder.txtDetail.setText(dto.getSnapshot_content());
 		return v;
 	}
-	
+
+	public void setData(List<SearchDto> objects) {
+		mList.clear();
+		mList.addAll(objects);
+		notifyDataSetChanged();
+	}
+
 	static class Holder {
 		TextView txtTitle;
 		TextView txtDetail;

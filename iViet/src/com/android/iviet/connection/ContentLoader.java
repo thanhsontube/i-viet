@@ -45,7 +45,6 @@ public abstract class ContentLoader<T> {
 	}
 
 	protected Executor getExecutor() {
-		// return AsyncTask.SERIAL_EXECUTOR;
 		return AsyncTask.THREAD_POOL_EXECUTOR;
 	}
 
@@ -94,8 +93,6 @@ public abstract class ContentLoader<T> {
 					client.getCredentialsProvider()
 					        .setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(auth));
 				}
-				log.d("log>>>ContentLoader request: " + request);
-
 				return client.execute(request, new ResponseHandler<T>() {
 
 					@Override

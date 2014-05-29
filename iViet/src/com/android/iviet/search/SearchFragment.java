@@ -25,15 +25,13 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragment;
 import com.android.iviet.connection.ContentManager;
-import com.android.iviet.connection.MainLoader;
 import com.android.iviet.connection.PathAccess;
-import com.android.iviet.main.dto.DataRootDto;
+import com.android.iviet.connection.SearchLoader;
 import com.android.iviet.utils.FilterLog;
 
 public class SearchFragment extends BaseFragment {
@@ -50,7 +48,7 @@ public class SearchFragment extends BaseFragment {
 
 	@Override
     protected String generateTitle() {
-	    return "Tìm kiếm";
+	    return getString(R.string.title_search);
     }
 	
 	private ISearchFragmentListener mListener;
@@ -84,17 +82,18 @@ public class SearchFragment extends BaseFragment {
 		
 		View viewRoot = inflater.inflate(R.layout.search_fragment, container, false);
 		mEmpty = (ViewGroup) viewRoot.findViewById(android.R.id.empty);
+		mEmpty.setVisibility(View.GONE);
 		inflater.inflate(R.layout.waiting, mEmpty, true);
 		
 		mListView = (ListView) viewRoot.findViewById(R.id.search_listview);
 		mList = new ArrayList<SearchDto>();
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
-		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
+//		mList.add(new SearchDto());
 		adapter = new SearchAdapter(getActivity(), mList);
 		mListView.setAdapter(adapter);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -109,7 +108,7 @@ public class SearchFragment extends BaseFragment {
 		});
 	    return viewRoot;
 	}
-	
+	ImageView closeIcon;
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 	    super.onCreateOptionsMenu(menu, inflater);
@@ -123,12 +122,12 @@ public class SearchFragment extends BaseFragment {
 	    mSearchView = (SearchView) mMenuItem.getActionView();
 		mSearchView.setSearchableInfo(mSearchableInfo);
 		mSearchView.setIconifiedByDefault(true);
-		mSearchView.setQueryHint("Tìm kiếm");
+		mSearchView.setQueryHint(getActivity().getString(R.string.search_input_search));
 		
 		ImageView searchIcon = (ImageView) mSearchView.findViewById(getResources().getIdentifier("android:id/search_button", null, null));
 		searchIcon.setImageResource(R.drawable.ic_action_action_search); 
 		
-		ImageView closeIcon = (ImageView) mSearchView.findViewById(getResources().getIdentifier("android:id/search_close_btn",null,null));
+		closeIcon = (ImageView) mSearchView.findViewById(getResources().getIdentifier("android:id/search_close_btn",null,null));
 		closeIcon.setImageResource(R.drawable.ic_action_content_remove); 
 
 		TextView text = (TextView) mSearchView.findViewById(getResources().getIdentifier("android:id/search_src_text", null, null));
@@ -143,7 +142,7 @@ public class SearchFragment extends BaseFragment {
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				mSearchView.clearFocus();
-				Toast.makeText(getActivity(), "submit search", Toast.LENGTH_SHORT).show();
+				mController.load();
 				return true;
 			}
 		});
@@ -157,7 +156,7 @@ public class SearchFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 	    super.onResume();
-	    mController.load();
+//	    mController.load();
 	}
 	
 	public interface Controller {
@@ -168,37 +167,42 @@ public class SearchFragment extends BaseFragment {
 		
 		@Override
 		public void load() {
-			log.d("log>>>" + "LOAD:" + mPathAccess.seach());
-			HttpGet httpGet = new HttpGet(mPathAccess.seach());
-			mContentManager.load(new MainLoader(httpGet, false) {
+			log.d("log>>>" + "LOAD:" + mPathAccess.search());
+			HttpGet httpGet = new HttpGet(mPathAccess.search());
+			mContentManager.load(new SearchLoader(httpGet, false) {
 				
 				@Override
-				public void onContentLoaderSucceed(DataRootDto entity) {
+				public void onContentLoaderSucceed(List<SearchDto> entity) {
 					log.d("log>>>" + "onContentLoaderSucceed");
 					mEmpty.setVisibility(View.GONE);
-					log.d("log>>>" + "size:" + entity.getList().size());
-//					adapter.setData(entity.getList());
+					log.d("log>>>" + "size:" + entity.size());
+					adapter.setData(entity);
 					
 					
 				}
 				
 				@Override
 				public void onContentLoaderStart() {
-					// TODO Auto-generated method stub
-					log.d("log>>>" + "onContentLoaderStart");
-					
+					mEmpty.setVisibility(View.VISIBLE);
 				}
 				
 				@Override
 				public void onContentLoaderFailed(Throwable e) {
-					// TODO Auto-generated method stub
-					log.d("log>>>" + "onContentLoaderFailed");
-					
+					mEmpty.setVisibility(View.GONE);
+					log.e("log>>>" + "onContentLoaderFailed:" + e.toString());
 				}
-				
 			});
+			
 		}
 	};
+
+	@Override
+    public void onHiddenChanged(boolean hidden) {
+	    super.onHiddenChanged(hidden);
+	    mSearchView.clearFocus();
+    }
+	
+	
 	
 	
 }
