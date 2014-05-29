@@ -7,8 +7,9 @@ import android.app.Application;
 import com.android.iviet.about.AboutIParent;
 import com.android.iviet.about.AboutParent;
 import com.android.iviet.base.Factory;
-import com.android.iviet.connection.BasicAccessPathGenerator;
 import com.android.iviet.connection.ContentManager;
+import com.android.iviet.connection.PathAccess;
+import com.android.iviet.connection.PathIAccess;
 import com.android.iviet.main.drawer.MainDrawerItemGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -16,7 +17,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 public class IVietApplication extends Application implements Factory{
 	
 	private ContentManager mContentManager;
-	private BasicAccessPathGenerator mBasicAccessPathGenerator;
+	private PathIAccess mPathIAccess;
 	private MainDrawerItemGenerator mMainDrawerItemGenerator;
 	private AboutIParent mAboutIParent;
 	@Override
@@ -24,7 +25,7 @@ public class IVietApplication extends Application implements Factory{
 		super.onCreate();
 		try {
 			mContentManager = new ContentManager(this, 10);
-			mBasicAccessPathGenerator = new BasicAccessPathGenerator(getApplicationContext());
+			mPathIAccess = new PathAccess(getApplicationContext());
 			mMainDrawerItemGenerator = new MainDrawerItemGenerator(getApplicationContext());
 			mAboutIParent = new AboutParent(getApplicationContext());
 			ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
@@ -39,8 +40,8 @@ public class IVietApplication extends Application implements Factory{
 		return mContentManager;
 	}
 	@Override
-	public BasicAccessPathGenerator getBasicAccessPathGenerator() {
-		return mBasicAccessPathGenerator;
+	public PathIAccess getPathAccess() {
+		return mPathIAccess;
 	}
 	@Override
 	public MainDrawerItemGenerator getDrawerItemGenerator() {

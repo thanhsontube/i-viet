@@ -4,14 +4,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import com.android.iviet.R;
+import com.android.iviet.utils.FilterLog;
 
 import android.content.Context;
 
-public class BasicAccessPathGenerator implements AccessPathGenerator {
+public class PathAccess implements PathIAccess {
+	private static final String TAG = "PathAccess";
+	FilterLog log = new FilterLog(TAG);
 	String mBaseUrl;
 	Context context;
 
-	public BasicAccessPathGenerator(Context context) {
+	public PathAccess(Context context) {
 		this.context = context.getApplicationContext();
 		mBaseUrl = context.getString(R.string.base_url);
 
@@ -19,6 +22,7 @@ public class BasicAccessPathGenerator implements AccessPathGenerator {
 
 	@Override
 	public URI everything() {
+		log.d("log>>>" + "everything");
 		String path = "m/questions/all?cursor=&userToken=u50";
 		try {
 			return new URI(mBaseUrl + path);
@@ -29,6 +33,7 @@ public class BasicAccessPathGenerator implements AccessPathGenerator {
 
 	@Override
 	public URI newest() {
+		log.d("log>>>" + "newest");
 		String path = "m/questions/all?cursor=&userToken=u50";
 		try {
 			return new URI(mBaseUrl + path);
@@ -39,6 +44,7 @@ public class BasicAccessPathGenerator implements AccessPathGenerator {
 
 	@Override
 	public URI feature() {
+		log.d("log>>>" + "feature");
 		String path = "m/questions/all?cursor=&userToken=u50";
 		try {
 			return new URI(mBaseUrl + path);
@@ -46,5 +52,16 @@ public class BasicAccessPathGenerator implements AccessPathGenerator {
 			throw new IllegalStateException(e);
 		}
 	}
+
+	@Override
+    public URI seach() {
+		log.d("log>>>" + "seach");
+		String path = "m/questions/all?cursor=&userToken=u50";
+		try {
+			return new URI(mBaseUrl + path);
+		} catch (URISyntaxException e) {
+			throw new IllegalStateException(e);
+		}
+    }
 
 }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
-import com.android.iviet.connection.BasicAccessPathGenerator;
+import com.android.iviet.connection.PathAccess;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.MainLoader;
 import com.android.iviet.main.adapter.MainBaseAdapter;

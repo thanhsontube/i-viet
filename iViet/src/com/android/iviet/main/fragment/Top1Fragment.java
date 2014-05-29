@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
-import com.android.iviet.connection.BasicAccessPathGenerator;
+import com.android.iviet.connection.PathAccess;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.MainLoader;
 import com.android.iviet.main.adapter.MainBaseAdapter;
@@ -33,9 +33,9 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 	private MainBaseAdapter adapter;
 	private List<MainDto> list = new ArrayList<MainDto>();
 	private ContentManager mContentManager;
-	private BasicAccessPathGenerator mBasicAccessPathGenerator;
+	private PathAccess mPathAccess;
 	FilterLog log = new FilterLog(TAG);
-	private View empty;
+	private View mEmpty;
 	
 	public static interface ITop1FragmentListener {
 		void onTop1AvatarClicked(Top1Fragment f, MainDto dto);
@@ -69,8 +69,8 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 			}
 		});
 		
-		empty = v.findViewById(android.R.id.empty);
-		inflater.inflate(R.layout.waiting, (ViewGroup) empty, true);
+		mEmpty = v.findViewById(android.R.id.empty);
+		inflater.inflate(R.layout.waiting, (ViewGroup) mEmpty, true);
 		return v;
 
 	}
@@ -93,7 +93,7 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 		super.onCreate(savedInstanceState);
 		IVietApplication app = (IVietApplication) getActivity().getApplication();
 		mContentManager = app.getContentManager();
-		mBasicAccessPathGenerator = app.getBasicAccessPathGenerator();
+		mPathAccess = (PathAccess) app.getPathAccess();
 	}
 	
 	@Override
@@ -105,14 +105,14 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 		
 		@Override
 		public void load() {
-			log.d("log>>>" + "LOAD:" + mBasicAccessPathGenerator.newest());
-			HttpGet httpGet = new HttpGet(mBasicAccessPathGenerator.newest());
+			log.d("log>>>" + "LOAD:" + mPathAccess.newest());
+			HttpGet httpGet = new HttpGet(mPathAccess.newest());
 			mContentManager.load(new MainLoader(httpGet, false) {
 				
 				@Override
 				public void onContentLoaderSucceed(DataRootDto entity) {
 					log.d("log>>>" + "onContentLoaderSucceed");
-					empty.setVisibility(View.GONE);
+					mEmpty.setVisibility(View.GONE);
 					// TODO Auto-generated method stub
 					log.d("log>>>" + "size:" + entity.getList().size());
 					adapter.setData(entity.getList());

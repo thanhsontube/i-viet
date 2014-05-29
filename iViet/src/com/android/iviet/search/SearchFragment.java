@@ -1,5 +1,11 @@
 package com.android.iviet.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.client.methods.HttpGet;
+
+import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ComponentName;
@@ -12,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -19,19 +27,57 @@ import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.about.BaseFragment;
+import com.android.iviet.connection.ContentManager;
+import com.android.iviet.connection.MainLoader;
+import com.android.iviet.connection.PathAccess;
+import com.android.iviet.main.dto.DataRootDto;
+import com.android.iviet.utils.FilterLog;
 
 public class SearchFragment extends BaseFragment {
 	
+	private static final String TAG = "SearchFragment";
 	private SearchView mSearchView;
 	private ViewGroup mEmpty;
 	private ListView mListView;
+	FilterLog log = new FilterLog(TAG);
+	private ContentManager mContentManager;
+	private PathAccess mPathAccess;
+	private SearchAdapter adapter;
+	private List<SearchDto> mList;
 
 	@Override
     protected String generateTitle() {
 	    return "Tìm kiếm";
     }
+	
+	private ISearchFragmentListener mListener;
+
+	public static interface ISearchFragmentListener {
+		void onISearchFragmentListenerItemClicked(SearchFragment fragment, SearchDto entity);
+	}
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		if (activity instanceof ISearchFragmentListener) {
+			mListener = (ISearchFragmentListener) activity;
+		}
+	}
+	
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    IVietApplication app = (IVietApplication) getActivity().getApplication();
+		mContentManager = app.getContentManager();
+		mPathAccess = (PathAccess) app.getPathAccess();
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
@@ -41,6 +87,26 @@ public class SearchFragment extends BaseFragment {
 		inflater.inflate(R.layout.waiting, mEmpty, true);
 		
 		mListView = (ListView) viewRoot.findViewById(R.id.search_listview);
+		mList = new ArrayList<SearchDto>();
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		mList.add(new SearchDto());
+		adapter = new SearchAdapter(getActivity(), mList);
+		mListView.setAdapter(adapter);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	            if (mListener != null) {
+	            	mListener.onISearchFragmentListenerItemClicked(SearchFragment.this, mList.get(position));
+	            }
+	            
+            }
+		});
 	    return viewRoot;
 	}
 	
@@ -87,5 +153,52 @@ public class SearchFragment extends BaseFragment {
 	    super.onPrepareOptionsMenu(menu);
 	    menuTransparent.setVisible(false);
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    mController.load();
+	}
+	
+	public interface Controller {
+		void load();
+	}
+	
+	private final Controller mController = new Controller() {
+		
+		@Override
+		public void load() {
+			log.d("log>>>" + "LOAD:" + mPathAccess.seach());
+			HttpGet httpGet = new HttpGet(mPathAccess.seach());
+			mContentManager.load(new MainLoader(httpGet, false) {
+				
+				@Override
+				public void onContentLoaderSucceed(DataRootDto entity) {
+					log.d("log>>>" + "onContentLoaderSucceed");
+					mEmpty.setVisibility(View.GONE);
+					log.d("log>>>" + "size:" + entity.getList().size());
+//					adapter.setData(entity.getList());
+					
+					
+				}
+				
+				@Override
+				public void onContentLoaderStart() {
+					// TODO Auto-generated method stub
+					log.d("log>>>" + "onContentLoaderStart");
+					
+				}
+				
+				@Override
+				public void onContentLoaderFailed(Throwable e) {
+					// TODO Auto-generated method stub
+					log.d("log>>>" + "onContentLoaderFailed");
+					
+				}
+				
+			});
+		}
+	};
+	
 	
 }
