@@ -23,7 +23,7 @@
 
         <ImageView
             style="@style/main_img_style"
-            android:src="@drawable/arrow_for_button"
+            android:src="@drawable/arrow"
             android:tag="icon" />
 
         <TextView

@@ -31,9 +31,9 @@ import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment.IAboutFragment;
 import com.android.iviet.base.BaseFragmentActivity;
 import com.android.iviet.base.OnBackPressListener;
+import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
-import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.FriendFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
@@ -266,13 +266,13 @@ IAboutFragment, ISearchFragmentListener{
 	}
 
 	@Override
-	public void onTop1AvatarClicked(Top1Fragment f, MainDto dto) {
+	public void onTop1AvatarClicked(Top1Fragment f, BaseObject dto) {
 		log.d("log>>>" + "onTop1AvatarClicked");
 
 	}
 
 	@Override
-	public void onTop1ContentClicked(Top1Fragment f, MainDto dto) {
+	public void onTop1ContentClicked(Top1Fragment f, BaseObject dto) {
 		log.d("log>>>" + "onTop1ContentClicked");
 		// WebViewFragment f1 =
 		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");

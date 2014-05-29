@@ -73,6 +73,11 @@ public class AboutFragment extends BaseFragment implements OnItemClickListener {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = getItem(position).getView(getLayoutInflater(getArguments()), convertView, parent);
+			if((position & 1) == 0){
+				v.setBackgroundResource(R.drawable.btn_common_selector1);
+			}else{
+				v.setBackgroundResource(R.drawable.btn_common_selector2);
+			}
 			return v;
 		}
 	}

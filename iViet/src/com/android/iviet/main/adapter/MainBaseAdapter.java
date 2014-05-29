@@ -16,18 +16,17 @@ import android.widget.Toast;
 
 import com.android.iviet.R;
 import com.android.iviet.json.BaseObject;
-import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.DatetimeUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class MainBaseAdapter extends ArrayAdapter<MainDto>{
-	List<MainDto> list;
+public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
+	List<BaseObject> list;
 	Context context;
 	LayoutInflater inflater;
 	ImageLoader imageLoader;
 	Top1Fragment f;
-	public MainBaseAdapter (Context context, List<MainDto> list, Top1Fragment f) {
+	public MainBaseAdapter (Context context, List<BaseObject> list, Top1Fragment f) {
 		super(context, 0, list);
 		this.context = context;
 		this.list = list; 
@@ -36,7 +35,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 		this.f = f;
 	}
 	
-	public void setData(List<MainDto> objects) {
+	public void setData(List<BaseObject> objects) {
 		list.clear();
 		list.addAll(objects);
 		notifyDataSetChanged();
@@ -68,8 +67,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			holder = (Holder) v.getTag();
 		}
 		
-		final MainDto dto = list.get(0);
-		final BaseObject base = dto.getListdata().get(position);
+		final BaseObject base = list.get(position);
 		
 		
 		holder.userName.setText(base.user_name);
@@ -98,7 +96,7 @@ public class MainBaseAdapter extends ArrayAdapter<MainDto>{
 			public void onClick(View v) {
 				Toast.makeText(context, "Avatar click", Toast.LENGTH_SHORT).show();
 				if(f.mListener != null) {
-					f.mListener.onTop1AvatarClicked(f, dto);
+					f.mListener.onTop1AvatarClicked(f, base);
 				}
 				
 			}

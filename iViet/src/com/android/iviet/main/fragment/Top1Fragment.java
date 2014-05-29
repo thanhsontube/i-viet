@@ -17,12 +17,12 @@ import android.widget.Toast;
 
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
-import com.android.iviet.connection.PathAccess;
 import com.android.iviet.connection.ContentManager;
-import com.android.iviet.connection.MainLoader;
+import com.android.iviet.connection.PathAccess;
+import com.android.iviet.connection.RootLoader;
+import com.android.iviet.json.BaseObject;
 import com.android.iviet.main.adapter.MainBaseAdapter;
-import com.android.iviet.main.dto.DataRootDto;
-import com.android.iviet.main.dto.MainDto;
+import com.android.iviet.main.dto.RootDto;
 import com.android.iviet.main.fragment.MainFragment.IMainFragmentListener;
 import com.android.iviet.utils.FilterLog;
 
@@ -31,15 +31,15 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 	private ListView listview;
 	public ITop1FragmentListener mListener;
 	private MainBaseAdapter adapter;
-	private List<MainDto> list = new ArrayList<MainDto>();
+	private List<BaseObject> list = new ArrayList<BaseObject>();
 	private ContentManager mContentManager;
 	private PathAccess mPathAccess;
 	FilterLog log = new FilterLog(TAG);
 	private View mEmpty;
 	
 	public static interface ITop1FragmentListener {
-		void onTop1AvatarClicked(Top1Fragment f, MainDto dto);
-		void onTop1ContentClicked(Top1Fragment f, MainDto dto);
+		void onTop1AvatarClicked(Top1Fragment f, BaseObject dto);
+		void onTop1ContentClicked(Top1Fragment f, BaseObject dto);
 	}
 	/**
 	 * get data from server
@@ -64,7 +64,7 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 				if (mListener == null) {
 					return;
 				}
-				MainDto item = (MainDto)adapter.getItemAtPosition(position);
+				BaseObject item = (BaseObject)adapter.getItemAtPosition(position);
 				mListener.onTop1ContentClicked(Top1Fragment.this, item);
 			}
 		});
@@ -107,34 +107,57 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 		public void load() {
 			log.d("log>>>" + "LOAD:" + mPathAccess.newest());
 			HttpGet httpGet = new HttpGet(mPathAccess.newest());
-			mContentManager.load(new MainLoader(httpGet, false) {
+			mContentManager.load(new RootLoader(httpGet, false) {
 				
 				@Override
-				public void onContentLoaderSucceed(DataRootDto entity) {
-					log.d("log>>>" + "onContentLoaderSucceed");
+				public void onContentLoaderSucceed(RootDto entity) {
+					List<BaseObject> listBase = entity.getNewestDto().getList();
+					log.d("log>>>" + "onContentLoaderSucceed listBase new:" + listBase);
 					mEmpty.setVisibility(View.GONE);
-					// TODO Auto-generated method stub
-					log.d("log>>>" + "size:" + entity.getList().size());
-					adapter.setData(entity.getList());
-					
-					
+					adapter.setData(entity.getNewestDto().getList());
 				}
 				
 				@Override
 				public void onContentLoaderStart() {
-					// TODO Auto-generated method stub
 					log.d("log>>>" + "onContentLoaderStart");
 					
 				}
 				
 				@Override
 				public void onContentLoaderFailed(Throwable e) {
-					// TODO Auto-generated method stub
-					log.d("log>>>" + "onContentLoaderFailed");
+					log.e("log>>>" + "onContentLoaderFailed");
 					
 				}
-				
 			});
+			
+//			mContentManager.load(new MainLoader(httpGet, false) {
+//				
+//				@Override
+//				public void onContentLoaderSucceed(DataRootDto entity) {
+//					log.d("log>>>" + "onContentLoaderSucceed");
+//					mEmpty.setVisibility(View.GONE);
+//					// TODO Auto-generated method stub
+//					log.d("log>>>" + "size:" + entity.getList().size());
+//					adapter.setData(entity.getList());
+//					
+//					
+//				}
+//				
+//				@Override
+//				public void onContentLoaderStart() {
+//					// TODO Auto-generated method stub
+//					log.d("log>>>" + "onContentLoaderStart");
+//					
+//				}
+//				
+//				@Override
+//				public void onContentLoaderFailed(Throwable e) {
+//					// TODO Auto-generated method stub
+//					log.d("log>>>" + "onContentLoaderFailed");
+//					
+//				}
+//				
+//			});
 		}
 	};
 	
