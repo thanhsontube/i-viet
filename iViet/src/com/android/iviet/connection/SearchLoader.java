@@ -11,9 +11,6 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.android.iviet.json.BaseObject;
-import com.android.iviet.main.dto.DataRootDto;
-import com.android.iviet.main.dto.MainDto;
 import com.android.iviet.search.SearchDto;
 import com.android.iviet.utils.FilterLog;
 

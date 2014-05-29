@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 abstract public class JsonLoader<T> extends ContentLoader<T> {
 
