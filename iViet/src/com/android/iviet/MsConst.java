@@ -16,6 +16,8 @@ public class MsConst {
 	//bundle
 	public static String BUNDLE_TRANSITION = "BUNDLE_TRANSITION";
 	
-	public static String URL_TERM = "file:///android_asset/q234.htm";
-	public static String URL_RULE_OF_ASK = "file:///android_asset/q234.htm";
+	//webview local
+	public static String URL_POLICY = "file:///android_asset/Iviet_Policy.html";
+	public static String URL_RULE = "file:///android_asset/Iviet_Rule.html";
+	public static String URL_USER_GUIDE = "file:///android_asset/user_Guide.html";
 }

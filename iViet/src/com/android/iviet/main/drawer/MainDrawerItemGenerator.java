@@ -7,10 +7,10 @@ import android.content.Context;
 
 import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment;
-import com.android.iviet.help.HelpFragment;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.newfeed.NewFeedFragment;
 import com.android.iviet.search.SearchFragment;
+import com.android.iviet.webview.UserGuideFragment;
 
 public class MainDrawerItemGenerator implements
 		DrawerItemGenerator<com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem<?>> {
@@ -31,7 +31,7 @@ public class MainDrawerItemGenerator implements
 		list.add(new FragmentChangeDrawerItem(R.drawable.notification, context.getText(R.string.notification),
 				"notification", "notification", new NewFeedFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.help, context.getText(R.string.help), "help", "help",
-				new HelpFragment()));
+				new UserGuideFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.about_us, context.getText(R.string.about), "about", "about",
 				new AboutFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.search, context.getText(R.string.search), "search", "search",

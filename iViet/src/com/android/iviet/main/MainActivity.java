@@ -41,8 +41,8 @@ import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
-import com.android.iviet.webview.RuleOfAskFragment;
-import com.android.iviet.webview.TermFragment;
+import com.android.iviet.webview.RuleFragment;
+import com.android.iviet.webview.PolicyFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener ,
@@ -385,8 +385,8 @@ IAboutFragment{
 	@Override
     public void onAboutFragmentTerm() {
 		log.d("log>>>" + "onAboutFragmentTerm");
-		Fragment f = new TermFragment();
-		f.setArguments(getWebBundel(MsConst.URL_TERM));
+		Fragment f = new PolicyFragment();
+		f.setArguments(getWebBundel(MsConst.URL_POLICY));
 		showFragment(f, true);
 	    
     }
@@ -394,8 +394,8 @@ IAboutFragment{
 	@Override
     public void onAboutFragmentRuleOfAsk() {
 		log.d("log>>>" + "onAboutFragmentRuleOfAsk");
-		Fragment f = new RuleOfAskFragment();
-		f.setArguments(getWebBundel(MsConst.URL_RULE_OF_ASK));
+		Fragment f = new RuleFragment();
+		f.setArguments(getWebBundel(MsConst.URL_RULE));
 		showFragment(f, true);
     }
 	
