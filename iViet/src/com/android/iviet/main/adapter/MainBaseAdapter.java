@@ -18,21 +18,44 @@ import com.android.iviet.R;
 import com.android.iviet.connection.BaseObject;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.DatetimeUtils;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 	List<BaseObject> list;
 	Context context;
 	LayoutInflater inflater;
-	ImageLoader imageLoader;
 	Top1Fragment f;
+	ImageLoader imageLoader;
+	private DisplayImageOptions optionsAvatar;
+	private DisplayImageOptions optionsContent;
 	public MainBaseAdapter (Context context, List<BaseObject> list, Top1Fragment f) {
 		super(context, 0, list);
 		this.context = context;
 		this.list = list; 
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		imageLoader = ImageLoader.getInstance();
 		this.f = f;
+		
+		imageLoader = ImageLoader.getInstance();
+		optionsAvatar = new DisplayImageOptions.Builder()
+		.cacheInMemory(true)
+		.cacheOnDisk(true)
+		.considerExifParams(true)
+		.displayer(new RoundedBitmapDisplayer(100))
+		.build();
+		
+		optionsContent = new DisplayImageOptions.Builder()
+		.showImageOnLoading(R.drawable.iviet_temp)
+		.showImageForEmptyUri(R.drawable.iviet_temp)
+		.showImageOnFail(R.drawable.iviet_temp)
+		.imageScaleType(ImageScaleType.EXACTLY)
+		.cacheInMemory(true)
+		.cacheOnDisk(true)
+		.considerExifParams(true)
+		.displayer(new RoundedBitmapDisplayer(0))
+		.build();
 	}
 	
 	public void setData(List<BaseObject> objects) {
@@ -87,8 +110,9 @@ public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 		holder.themColor.setBackgroundColor(Color.parseColor("#"+base.theme_color));
 		
 		//avatar
-		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg);
-		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar);
+		
+		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg, optionsContent, null);
+		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar, optionsAvatar, null);
 		
 		holder.userAvatar.setOnClickListener(new OnClickListener() {
 			
