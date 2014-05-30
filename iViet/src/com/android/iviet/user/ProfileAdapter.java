@@ -35,6 +35,8 @@ public class ProfileAdapter extends ArrayAdapter<ProfileDto> {
 	   }
 	   
 	   ProfileDto dto = list.get(position);
+//	   holder.img.setImageDrawable(getContext().getResources().getDrawable(R.drawable.timeline_button_selector));
+	   holder.img.setImageDrawable(getContext().getResources().getDrawable(dto.getDrawerId()));
 	   return v;
 	}
 	

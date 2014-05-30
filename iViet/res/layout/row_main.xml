@@ -14,12 +14,16 @@
 
         <!-- avatar -->
 
-        <ImageView
-            android:id="@+id/user_avatar"
+        <FrameLayout
             android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/chat_emotion_icon" />
+            android:layout_height="match_parent" >
+            <ImageView
+                android:id="@+id/user_avatar"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chat_emotion_icon" />
+        </FrameLayout>
 
         <!-- Question title -->
 

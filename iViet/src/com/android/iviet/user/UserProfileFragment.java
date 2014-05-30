@@ -3,6 +3,7 @@ package com.android.iviet.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +29,12 @@ public class UserProfileFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = (ViewGroup) inflater.inflate(R.layout.profile_fragment, container, false);
 		mGridView = (GridView) rootView.findViewById(R.id.profile_gridview);
-		list.add(new ProfileDto());
-		list.add(new ProfileDto());
-		list.add(new ProfileDto());
-		list.add(new ProfileDto());
-		list.add(new ProfileDto());
-		list.add(new ProfileDto());
+		list.add(new ProfileDto(R.drawable.favorite_button_selector));
+		list.add(new ProfileDto(R.drawable.question_button_selector));
+		list.add(new ProfileDto(R.drawable.answer_button_selector));
+		list.add(new ProfileDto(R.drawable.shape_icon));
+		list.add(new ProfileDto(R.drawable.timeline_button_selector));
+		list.add(new ProfileDto(R.drawable.shape_icon));
 		
 		adapter = new ProfileAdapter(getActivity(), list);
 		mGridView.setAdapter(adapter);
