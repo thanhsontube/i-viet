@@ -154,12 +154,12 @@ IAboutFragment, ISearchFragmentListener{
 
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(false);
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayShowTitleEnabled(false);
 //		getActionBar().setIcon(android.R.color.transparent);
-		getActionBar().setIcon(R.drawable.shape_icon);
+		getActionBar().setIcon(R.drawable.setting_select);
 		LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View customViewActionBar = inflator.inflate(R.layout.actionbar_custom, null);
 		getActionBar().setCustomView(customViewActionBar);
@@ -262,7 +262,7 @@ IAboutFragment, ISearchFragmentListener{
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		mDrawerToggle.syncState();
+//		mDrawerToggle.syncState();
 	}
 
 	@Override
@@ -307,8 +307,13 @@ IAboutFragment, ISearchFragmentListener{
 		super.onBackStackChanged();
 		if (mFragmentTagStack.size() > 0) {
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+			getActionBar().setIcon(R.drawable.shape_icon);
+			
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
+			getActionBar().setDisplayHomeAsUpEnabled(false);
+			getActionBar().setIcon(R.drawable.setting_select);
 		}
 
 	}
