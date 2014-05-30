@@ -42,14 +42,15 @@ import com.android.iviet.search.SearchDto;
 import com.android.iviet.search.SearchFragment;
 import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.UserProfileFragment;
+import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
 import com.android.iviet.webview.PolicyFragment;
 import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
-public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener, MainFragment.IMainFragmentListener ,
-IAboutFragment, ISearchFragmentListener{
+public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener,
+		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener {
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -60,7 +61,6 @@ IAboutFragment, ISearchFragmentListener{
 	private final Handler mHandler = new Handler();
 	private static final long DELAY_ON_DRAWER_CLICK = 250L;
 	private FrameLayout mRightDrawer;
-	
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ IAboutFragment, ISearchFragmentListener{
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.user_info, 0) {
 			public void onDrawerOpened(View drawerView) {
 			}
-			
+
 			@Override
 			public boolean onOptionsItemSelected(MenuItem item) {
 				// close right drawer
@@ -104,19 +104,19 @@ IAboutFragment, ISearchFragmentListener{
 		View convertView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
 				R.layout.fragment_profile_drawer_item, null);
 		mDrawerList.addHeaderView(convertView);
-
 		ImageView imgProfile = (ImageView) convertView.findViewWithTag("img_button_profile");
 		ImageView imgNew = (ImageView) convertView.findViewWithTag("img_button_new");
 		ImageView imgAvatar = (ImageView) convertView.findViewWithTag("img_hexagon");
+		imgAvatar.setImageBitmap(BitmapUtils.maskBitmap(this, R.drawable.taylor_swift, R.drawable.hexagon_view2));
 		TextView name = (TextView) convertView.findViewWithTag("drawer_profile_name");
-		//TODO profile
+		// TODO profile
 		imgProfile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				UserProfileFragment f = new UserProfileFragment();
 				showFragment(f, true);
-				mHandler.postDelayed(new Runnable(	) {
-					
+				mHandler.postDelayed(new Runnable() {
+
 					@Override
 					public void run() {
 						mDrawerLayout.closeDrawer(mDrawerList);
@@ -124,7 +124,7 @@ IAboutFragment, ISearchFragmentListener{
 				}, DELAY_ON_DRAWER_CLICK);
 			}
 		});
-		//TODO write question
+		// TODO write question
 		imgNew.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -136,21 +136,22 @@ IAboutFragment, ISearchFragmentListener{
 				bundle.putString(MsConst.EXTRA_URL, "http://www.iviet.com/m/questions/post?userToken=u10");
 				f.setArguments(bundle);
 				showFragment(f, true);
-				
+
 				mHandler.postDelayed(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						mDrawerLayout.closeDrawer(mDrawerList);
 					}
 				}, DELAY_ON_DRAWER_CLICK);
-			
+
 			}
 		});
 		name.setText("Taylor Swift");
-//		getActionBar().setDisplayUseLogoEnabled(false);
-//		View icon = getActionBar().getCustomView().findViewById(android.R.id.home);
-//		icon.setVisibility(View.INVISIBLE);
+		// getActionBar().setDisplayUseLogoEnabled(false);
+		// View icon =
+		// getActionBar().getCustomView().findViewById(android.R.id.home);
+		// icon.setVisibility(View.INVISIBLE);
 
 		mDrawerList.setAdapter(getDrawerAdapter());
 		mDrawerList.setOnItemClickListener(itemClickListener);
@@ -158,7 +159,7 @@ IAboutFragment, ISearchFragmentListener{
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayShowTitleEnabled(false);
-//		getActionBar().setIcon(android.R.color.transparent);
+		// getActionBar().setIcon(android.R.color.transparent);
 		getActionBar().setIcon(R.drawable.setting_select);
 		LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View customViewActionBar = inflator.inflate(R.layout.actionbar_custom, null);
@@ -217,7 +218,7 @@ IAboutFragment, ISearchFragmentListener{
 
 		}
 	};
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
@@ -240,7 +241,7 @@ IAboutFragment, ISearchFragmentListener{
 				}
 			}
 			break;
-			
+
 		case R.id.img_chat:
 			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
 				mDrawerLayout.closeDrawer(Gravity.RIGHT);
@@ -262,7 +263,7 @@ IAboutFragment, ISearchFragmentListener{
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-//		mDrawerToggle.syncState();
+		// mDrawerToggle.syncState();
 	}
 
 	@Override
@@ -277,7 +278,7 @@ IAboutFragment, ISearchFragmentListener{
 		// WebViewFragment f1 =
 		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
 		// String url = "file:///android_asset/hello.html";
-//		WebViewFragment f1 = WebViewFragment.newInstance(url);
+		// WebViewFragment f1 = WebViewFragment.newInstance(url);
 		DetailQuestionFragment f1 = new DetailQuestionFragment();
 		Bundle bundle = new Bundle();
 		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_DETAIL_QUESTIONS);
@@ -309,7 +310,7 @@ IAboutFragment, ISearchFragmentListener{
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setIcon(R.drawable.shape_icon);
-			
+
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 			getActionBar().setDisplayHomeAsUpEnabled(false);
@@ -320,16 +321,16 @@ IAboutFragment, ISearchFragmentListener{
 
 	private boolean onDrawerSelected(int id) {
 		switch (id) {
-//		case android.R.id.home:
-//			if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
-//				mDrawerLayout.closeDrawer(Gravity.LEFT);
-//				break;
-//			}
-//			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
-//				mDrawerLayout.closeDrawer(Gravity.RIGHT);
-//			}
-//			mDrawerLayout.openDrawer(Gravity.LEFT);
-//			break;
+		// case android.R.id.home:
+		// if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
+		// mDrawerLayout.closeDrawer(Gravity.LEFT);
+		// break;
+		// }
+		// if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+		// mDrawerLayout.closeDrawer(Gravity.RIGHT);
+		// }
+		// mDrawerLayout.openDrawer(Gravity.LEFT);
+		// break;
 		case R.id.img_chat:
 			if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
 				mDrawerLayout.closeDrawer(Gravity.RIGHT);
@@ -351,30 +352,30 @@ IAboutFragment, ISearchFragmentListener{
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.replace(R.id.right_drawer, new FriendFragment());
 		ft.commit();
-		
+
 	}
-	
-	//main Fragment listener
+
+	// main Fragment listener
 	@Override
-    public void onIMainFragmentStart(MainFragment f, int i) {
-	    // TODO Auto-generated method stub
-	    
-    }
+	public void onIMainFragmentStart(MainFragment f, int i) {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Override
-    public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
-	    // TODO Auto-generated method stub
-	    
-    }
+	public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Override
-    public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
-	    // TODO Auto-generated method stub
-	    
-    }
+	public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Override
-    public void onMainFragmentMenuChatSelected(MainFragment main) {
+	public void onMainFragmentMenuChatSelected(MainFragment main) {
 		if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
 			mDrawerLayout.closeDrawer(Gravity.RIGHT);
 			return;
@@ -384,27 +385,27 @@ IAboutFragment, ISearchFragmentListener{
 		}
 		mDrawerLayout.openDrawer(Gravity.RIGHT);
 		openFriendList();
-	    
-    }
-	
-	//TODO about fragment
+
+	}
+
+	// TODO about fragment
 	@Override
-    public void onAboutFragmentTerm() {
+	public void onAboutFragmentTerm() {
 		log.d("log>>>" + "onAboutFragmentTerm");
 		Fragment f = new PolicyFragment();
 		f.setArguments(getWebBundel(MsConst.URL_POLICY));
 		showFragment(f, true);
-	    
-    }
+
+	}
 
 	@Override
-    public void onAboutFragmentRuleOfAsk() {
+	public void onAboutFragmentRuleOfAsk() {
 		log.d("log>>>" + "onAboutFragmentRuleOfAsk");
 		Fragment f = new RuleFragment();
 		f.setArguments(getWebBundel(MsConst.URL_RULE));
 		showFragment(f, true);
-    }
-	
+	}
+
 	private Bundle getWebBundel(String url) {
 		Bundle bundle = new Bundle();
 		bundle.putString(MsConst.EXTRA_URL, url);
@@ -412,9 +413,9 @@ IAboutFragment, ISearchFragmentListener{
 	}
 
 	@Override
-    public void onISearchFragmentListenerItemClicked(SearchFragment fragment, SearchDto entity) {
+	public void onISearchFragmentListenerItemClicked(SearchFragment fragment, SearchDto entity) {
 		Fragment f = new DetailQuestionFragment();
 		f.setArguments(getWebBundel(MsConst.URL_DETAIL_QUESTIONS));
 		showFragment(f, true);
-    }
+	}
 }
