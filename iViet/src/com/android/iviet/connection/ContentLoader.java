@@ -65,7 +65,6 @@ public abstract class ContentLoader<T> {
 
 		@Override
 		protected void onPreExecute() {
-			log.d("log>>>" + "AsyncTask >>>>>>task onPreExecute");
 			if (isCancelled()) {
 				return;
 			}
@@ -75,6 +74,7 @@ public abstract class ContentLoader<T> {
 
 		@Override
 		protected T doInBackground(ContentManager... params) {
+			log.d("log>>>" + "AsyncTask >>>>>>doInBackground");
 			if (isCancelled()) {
 				return null;
 			}

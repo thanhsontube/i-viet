@@ -27,7 +27,6 @@ abstract public class JsonLoader<T> extends ContentLoader<T> {
 			while ((buf = br.read()) >= 0) {
 				sb.append((char) buf);
 			}
-			log.d(sb.toString());
 			return handleJson(new JSONArray(sb.toString()));
 		} catch (JSONException e) {
 			log.e(e.getMessage(), e);

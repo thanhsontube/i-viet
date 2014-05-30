@@ -23,76 +23,75 @@ abstract public class SearchLoader extends JsonLoader<List<SearchDto>> {
     }
 	
 	@Override
-	protected List<SearchDto> handleJson(JSONArray json) throws IOException, JSONException {
+	protected List<SearchDto> handleJson(JSONArray jsonRoot) throws IOException, JSONException {
 		log.d("log>>>" + "handleJson");
-
+		List<SearchDto> mList = new ArrayList<>();
 		try {
-			//link json:
-			//http://www.iviet.com/m/questions/all?cursor=&userToken=u50
-//			log.d("log>>>" + "handleJson");
-//	        Gson gson = new Gson();
-//	        return gson.fromJson(json, MainDto.class);
-			JSONArray ja = json;
-			log.d("log>>>" + "ja:" + ja.length());
-			
-			List<SearchDto> list = new ArrayList<SearchDto>();
-			for (int i = 0; i < ja.length(); i ++) {
-				JSONObject jo2 = ja.getJSONObject(i);
-				if (!jo2.isNull("cursor")) {
-					String cursor = jo2.getString("cursor");
-					log.d("log>>>" + "cursor:" + cursor) ;
+			for (int i = 0; i < jsonRoot.length(); i ++) {
+				JSONObject jsonItem = jsonRoot.getJSONObject(i);
+				//NEWEST
+				if (!jsonItem.isNull("newest")) {
 					
-				} else {
-					log.d("log>>>" + "NULL cursor:"+ i);
+					JSONArray jsonArray = jsonItem.getJSONArray("newest");
+					log.d("log>>>" + "jsonArray newest:" + jsonArray.length());
+					mList = parseJsonArray(jsonArray);
+					break;
 				}
 				
-				if(!jo2.isNull("newest")) {
-					JSONArray ja2 = jo2.getJSONArray("newest");
-					log.d("log>>>" + "ja2:" + ja2.length());
-					for (int j = 0; j < ja2.length(); j++) {
-						JSONObject jo3 = ja2.getJSONObject(j);
-						
-						String user_avatar = jo3.getString("user_avatar");
-						
-						String user_name = jo3.getString("user_name");
-						String created_on = jo3.getString("created_on");
-						
-						String answer_user_name = jo3.getString("answer_user_name");
-						String recent_answer_date = jo3.getString("recent_answer_date");
-						
-						String snapshot_img = jo3.getString("snapshot_img");
-						
-						String title = jo3.getString("title");
-						String snapshot_content = jo3.getString("snapshot_content");
-						
-						int vote_ups = jo3.getInt("vote_ups");
-						int number_answers = jo3.getInt("number_answers");
-						int number_views = jo3.getInt("number_views");
-						
-						
-						
-						String user_id = jo3.getString("user_id");
-						String topic_icon = jo3.getString("topic_icon");
-						String topic_name = jo3.getString("topic_name");
-						String theme_color = jo3.getString("theme_color");
-						String is_anonymous = jo3.getString("is_anonymous");
-						String question_id = jo3.getString("question_id");
-						
-						SearchDto searchDto = new SearchDto();
-						searchDto.setTitle(title); 
-						searchDto.setSnapshot_content(snapshot_content);
-						
-						list.add(searchDto);
-						
-                    }
-				}
+//				if (!jsonItem.isNull("featured")) {
+//					JSONArray jsonArray = jsonItem.getJSONArray("featured");
+//					log.d("log>>>" + "jsonArray featured:" + jsonArray.length());
+//				}
+//				
+//				if (!jsonItem.isNull("yours")) {
+//					JSONArray jsonArray = jsonItem.getJSONArray("yours");
+//					log.d("log>>>" + "jsonArray yours:" + jsonArray.length());
+//				}
 			}
-			return list;
+			return mList;
         } catch (Exception e) {
         	Log.e(TAG, "log>>>" + "handleJson:" + e.toString());
         	return null;
         }
 	
 	}
+	
+	private List<SearchDto> parseJsonArray(JSONArray jsonArray) throws JSONException {
+		List<SearchDto> listSearchDto = new ArrayList<>();
+		for (int j = 0; j < jsonArray.length(); j++) {
+	    	JSONObject jsonChild = jsonArray.getJSONObject(j);
+	    	
+	    	String user_avatar = jsonChild.getString("user_avatar");
+	    	
+	    	String user_name = jsonChild.getString("user_name");
+	    	String created_on = jsonChild.getString("created_on");
+	    	
+	    	String answer_user_name = jsonChild.getString("answer_user_name");
+	    	String recent_answer_date = jsonChild.getString("recent_answer_date");
+	    	
+	    	String snapshot_img = jsonChild.getString("snapshot_img");
+	    	
+	    	String title = jsonChild.getString("title");
+	    	String snapshot_content = jsonChild.getString("snapshot_content");
+	    	
+	    	int vote_ups = jsonChild.getInt("vote_ups");
+	    	int number_answers = jsonChild.getInt("number_answers");
+	    	int number_views = jsonChild.getInt("number_views");
+	    	
+	    	
+	    	
+	    	String user_id = jsonChild.getString("user_id");
+	    	String topic_icon = jsonChild.getString("topic_icon");
+	    	String topic_name = jsonChild.getString("topic_name");
+	    	String theme_color = jsonChild.getString("theme_color");
+	    	String is_anonymous = jsonChild.getString("is_anonymous");
+	    	String question_id = jsonChild.getString("question_id");
+	    	
+	    	
+	    	SearchDto SearchDto = new SearchDto(user_avatar, user_name, created_on, answer_user_name, recent_answer_date, snapshot_img, title, snapshot_content, vote_ups, number_answers, number_views, user_id, topic_icon, topic_name, theme_color, is_anonymous, question_id);
+	    	listSearchDto.add(SearchDto);
+	    }
+		return listSearchDto;
+    }
 	
 }
