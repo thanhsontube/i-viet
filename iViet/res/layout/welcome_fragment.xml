@@ -64,7 +64,7 @@
 
             <Button
                 android:id="@+id/welcome_btn_touch_to_open"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
                 android:background="@drawable/btn_welcome_touch_to_open"

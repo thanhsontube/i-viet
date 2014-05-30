@@ -1,153 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/forgot_pass"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/sign_in_register"
-        android:orientation="vertical"
-        android:padding="20dp" >
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sign_in_register"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/lv1"
+                android:paddingRight="@dimen/lv1" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user_name" />
+
+                <EditText
+                    android:id="@+id/register_edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ellipsize="middle"
+                    android:hint="@string/user_name"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/lv1"
+                android:paddingRight="@dimen/lv1" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mail" />
+
+                <EditText
+                    android:id="@+id/register_edt_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ellipsize="middle"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/lv1"
+                android:paddingRight="@dimen/lv1" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/lock" />
+
+                <EditText
+                    android:id="@+id/register_edt_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ellipsize="middle"
+                    android:hint="@string/pass"
+                    android:inputType="textPassword"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/lv1"
+                android:paddingRight="@dimen/lv1" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/lock" />
+
+                <EditText
+                    android:id="@+id/register_edt_confirm_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ellipsize="middle"
+                    android:hint="@string/confirm_pass"
+                    android:inputType="textPassword"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <ImageView
+            <CheckBox
+                android:id="@+id/register_cb_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/user_name" />
+                android:button="@drawable/btn_register_checkbox" />
 
-            <EditText
-                android:id="@+id/register_edt_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ellipsize="middle"
-                android:hint="@string/user_name"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="5dp" >
-
-            <ImageView
+            <TextView
+                android:id="@+id/register_tv_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mail" />
-
-            <EditText
-                android:id="@+id/register_edt_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ellipsize="middle"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
+                android:text="@string/i_agree"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="5dp" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/lock" />
-
-            <EditText
-                android:id="@+id/register_edt_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ellipsize="middle"
-                android:hint="@string/pass"
-                android:inputType="textPassword"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="5dp" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/lock" />
-
-            <EditText
-                android:id="@+id/register_edt_confirm_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ellipsize="middle"
-                android:hint="@string/confirm_pass"
-                android:inputType="textPassword"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <CheckBox
-            android:id="@+id/register_cb_agree"
+        <Button
+            android:id="@+id/register_btn_register"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/btn_register_checkbox" />
-
-        <TextView
-            android:id="@+id/register_tv_agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/i_agree"
-            android:textColor="@android:color/black" />
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/lv1"
+            android:background="@drawable/btn_login_email_register"
+            android:text="@string/dang_ky"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/register_btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/btn_login_email_register"
-        android:text="@string/dang_ky"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:gravity="bottom"
         android:paddingBottom="10dp"
         android:text="@string/quet_qua_phai_quay_ve"
         android:textColor="@android:color/darker_gray"
         android:textStyle="italic" />
 
-</LinearLayout>
+</RelativeLayout>
