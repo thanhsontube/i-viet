@@ -28,7 +28,7 @@ public class SearchAdapter extends ArrayAdapter<SearchDto> {
 		final Holder holder;
 		if (v == null) {
 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.search_row, parent, false);
+			v = inflater.inflate(R.layout.row_search, parent, false);
 			holder = new Holder();
 			holder.txtTitle = (TextView) v.findViewWithTag("title");
 			holder.txtDetail = (TextView) v.findViewWithTag("detail");

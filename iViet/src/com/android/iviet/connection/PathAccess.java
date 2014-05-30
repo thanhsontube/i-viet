@@ -64,4 +64,15 @@ public class PathAccess implements PathIAccess {
 		}
     }
 
+	@Override
+    public URI notificaiton() {
+		log.d("log>>>" + "notificaiton");
+		String path = "m/questions/all?cursor=&userToken=u50";
+		try {
+			return new URI(mBaseUrl + path);
+		} catch (URISyntaxException e) {
+			throw new IllegalStateException(e);
+		}
+    }
+
 }

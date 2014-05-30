@@ -11,7 +11,7 @@ import com.android.iviet.MsConst;
 import com.android.iviet.R;
 import com.android.iviet.about.AboutFragment;
 import com.android.iviet.main.fragment.MainFragment;
-import com.android.iviet.newfeed.NewFeedFragment;
+import com.android.iviet.newfeed.NotiFragment;
 import com.android.iviet.search.SearchFragment;
 import com.android.iviet.webview.UserGuideFragment;
 
@@ -32,7 +32,7 @@ public class MainDrawerItemGenerator implements
 		list.add(new FragmentChangeDrawerItem(R.drawable.home, context.getText(R.string.home), "home", "home",
 				new MainFragment()));
 		list.add(new FragmentChangeDrawerItem(R.drawable.notification, context.getText(R.string.notification),
-				"notification", "notification", new NewFeedFragment()));
+				"notification", "notification", new NotiFragment()));
 		UserGuideFragment userGuideFragment = new UserGuideFragment();
 		Bundle bundle = new Bundle();
 		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_USER_GUIDE);

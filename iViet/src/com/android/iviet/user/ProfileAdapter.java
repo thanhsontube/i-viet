@@ -26,7 +26,7 @@ public class ProfileAdapter extends ArrayAdapter<ProfileDto> {
 	   Holder holder;
 	   if (v == null) {
 		   LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		   v = inflater.inflate(R.layout.profile_row, parent, false);
+		   v = inflater.inflate(R.layout.row_profile, parent, false);
 		   holder = new Holder();
 		   holder.img = (ImageView) v.findViewWithTag("image");
 		   v.setTag(holder);

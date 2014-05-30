@@ -1,25 +1,23 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    
-    
-    
+
     <style name="main_img_profile">
         <item name="android:layout_width">28dp</item>
         <item name="android:layout_height">28dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
+
     <style name="main_img_style">
         <item name="android:layout_width">18dp</item>
         <item name="android:layout_height">18dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
+
     <style name="selected_img_style">
         <item name="android:layout_width">10dp</item>
         <item name="android:layout_height">10dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
+
     <style name="style_button_dialog">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">50dp</item>
@@ -27,13 +25,13 @@
         <item name="android:textSize">20sp</item>
         <item name="android:background">@drawable/dialog_button_common_selector</item>
     </style>
-    
+
     <style name="style_img_menu_webview">
         <item name="android:layout_width">28dp</item>
         <item name="android:layout_height">28dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
+
     <style name="style_txt_profile">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
@@ -41,10 +39,18 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
+
     <style name="style_img_profile">
         <item name="android:layout_width">120dp</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_textview_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

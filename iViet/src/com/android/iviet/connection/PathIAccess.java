@@ -11,4 +11,6 @@ public interface PathIAccess {
 	
 	URI search();
 	
+	URI notificaiton();
+	
 }

@@ -20,7 +20,7 @@ public class AboutItem extends DrawerItem<Integer> {
 		final ViewHolder holder;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.about_row, parent, false);
+			convertView = inflater.inflate(R.layout.row_about, parent, false);
 			convertView.setTag(holder);
 
 			holder.icon = (ImageView) convertView.findViewWithTag("icon");

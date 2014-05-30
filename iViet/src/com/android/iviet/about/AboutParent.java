@@ -37,7 +37,7 @@ public class AboutParent implements AboutIParent {
 	@Override
 	public View getHeader() {
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View header = inflater.inflate(R.layout.about_row, null);
+		View header = inflater.inflate(R.layout.row_about, null);
 		View img = header.findViewWithTag("icon");
 		img.setVisibility(View.GONE);
 		TextView title = (TextView) header.findViewWithTag("title");
