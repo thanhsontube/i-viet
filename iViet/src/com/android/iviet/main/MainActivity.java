@@ -41,6 +41,9 @@ import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
 import com.android.iviet.search.SearchDto;
 import com.android.iviet.search.SearchFragment;
 import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
+import com.android.iviet.user.EditProfileFragment;
+import com.android.iviet.user.ProfileFragment;
+import com.android.iviet.user.ProfileFragment.OnProfileFragmentInteractionListener;
 import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
@@ -50,7 +53,7 @@ import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener,
-		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener {
+		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, OnProfileFragmentInteractionListener {
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -113,7 +116,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		imgProfile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				UserProfileFragment f = new UserProfileFragment();
+				ProfileFragment f = new ProfileFragment();
 				showFragment(f, true);
 				mHandler.postDelayed(new Runnable() {
 
@@ -417,5 +420,19 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		Fragment f = new DetailQuestionFragment();
 		f.setArguments(getWebBundel(MsConst.URL_DETAIL_QUESTIONS));
 		showFragment(f, true);
+	}
+
+	@Override
+	public void onProfileFragmentInteraction(int id) {
+		// TODO Auto-generated method stub
+		switch (id) {
+		case R.id.profile_btn_edit:
+			Fragment f = new EditProfileFragment();
+			showFragment(f, true);
+			break;
+
+		default:
+			break;
+		}
 	}
 }

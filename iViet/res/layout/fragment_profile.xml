@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.iviet.user.OverScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personal_profile_background"
+    android:orientation="vertical"
+    android:overScrollMode="always" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include layout="@layout/profile_header" />
+
+        <include layout="@layout/profile_body" />
+
+        <include
+            android:id="@+id/profile_v_footer"
+            android:visibility="gone"
+            layout="@layout/profile_footer" />
+    </LinearLayout>
+
+</com.android.iviet.user.OverScrollView>

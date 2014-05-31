@@ -64,7 +64,7 @@ public class CommonUtils {
 	public static boolean isWifiOn(Context context) {
 		ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		return wifi.isConnected();
+		return true;
 	}
 	
 	public static boolean is3GOn(Context context) {

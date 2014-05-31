@@ -96,5 +96,27 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="search_input_search">Nhập nội dung tìm</string>
     <string name="title_search">Tìm kiếm</string>
     <string name="title_notificaiton">Thông báo</string>
+    <string name="nationality">Quốc gia</string>
+    <string name="no_input">Chưa nhập</string>
+    <string name="sex">Giới tính</string>
+    <string name="secret">Bí mật</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name">Tên đầy đủ</string>
+    <string name="birthday">Sinh nhật</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="function">Chức năng</string>
+    <string name="save">Lưu</string>
+    <string name="no_input_mood">Chưa cập nhật tâm trạng</string>
+    <string name="clear_all">Xóa trắng</string>
+    <string name="university_name">Tên trường</string>
+    <string name="start">Bắt đầu</string>
+    <string name="end">Kết thúc</string>
+    <string name="mafor">Chuyên ngành</string>
+    <string name="major">Chuyên ngành</string>
+    <string name="certi">Bằng cấp</string>
+    <string name="descripton">Mô tả...</string>
+    <string name="company_nam">Tên công ty</string>
+    <string name="position">Chức vụ</string>
 
 </resources>

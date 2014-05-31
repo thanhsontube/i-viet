@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/lv1" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/thong_tin_ca_nhan" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:orientation="vertical"
+            android:padding="@dimen/lv1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_name_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_name"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/full_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_sex_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/editprofile_cb_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:button="@drawable/btn_register_checkbox"
+                        android:paddingLeft="5dp"
+                        android:text="@string/male" />
+
+                    <RadioButton
+                        android:id="@+id/editprofile_cb_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:button="@drawable/btn_register_checkbox"
+                        android:paddingLeft="5dp"
+                        android:text="@string/female" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_nationality_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nationality"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/nationality"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_email_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:text="@string/secret"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/lv1"
+            android:background="@drawable/edit_cell_footer_background"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/editprofile_btn_personal_function"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/function" />
+
+            <Button
+                android:id="@+id/editprofile_btn_personal_save"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/save" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nhat_ky" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:gravity="top"
+            android:maxLength="200"
+            android:minHeight="150dp"
+            android:text="@string/no_input_mood" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/lv1"
+            android:background="@drawable/edit_cell_footer_background"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/editprofile_btn_diary_clear"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/clear_all" />
+
+            <Button
+                android:id="@+id/editprofile_btn_pdiary_save"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/save" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/trinh_do_hoc_van" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:orientation="vertical"
+            android:padding="@dimen/lv1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_university_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/university_name"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_university"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/university_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_universty_start_day_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_universty_start_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_universty_end_day_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/end"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_universty_end_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_major_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/major"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_universty_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/major"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_certi_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/certi"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_certi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/certi"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:gravity="top"
+            android:maxLength="200"
+            android:minHeight="150dp"
+            android:text="@string/descripton" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/lv1"
+            android:background="@drawable/edit_cell_footer_background"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/editprofile_btn_education_clear"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/clear_all" />
+
+            <Button
+                android:id="@+id/editprofile_btn_education_save"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/save" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/kinh_nghiem_ban_than" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:orientation="vertical"
+            android:padding="@dimen/lv1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_company_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company_nam"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/company_nam"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_experience_start_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_experience_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_experience_end_day_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/end"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_experience_end_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
+                    android:id="@+id/editprofile_tv_position_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/position"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <EditText
+                    android:id="@+id/editprofile_edt_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="@string/position"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox_background_normal"
+            android:gravity="top"
+            android:maxLength="200"
+            android:minHeight="150dp"
+            android:text="@string/descripton" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/lv1"
+            android:background="@drawable/edit_cell_footer_background"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/editprofile_btn_education_clear"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/clear_all" />
+
+            <Button
+                android:id="@+id/editprofile_btn_education_save"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:minHeight="40dp"
+                android:text="@string/save" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/editprofile_btn_back_to_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/cell_background_footer" />
+    </LinearLayout>
+
+</ScrollView>
