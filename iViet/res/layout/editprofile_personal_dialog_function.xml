@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cell_text_field_background_black"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:text="@string/select_function"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/black" />
+
+        <ImageButton
+            android:id="@+id/editprofile_btn_diary_dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="close"
+            android:layout_gravity="left"
+            android:src="@drawable/ic_close" />
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_text_profile"
+        android:id="@+id/editprofile_btn_personal_dialog_clear_name"
+        android:gravity="center"
+        android:text="@string/clear_nam"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_text_profile"
+        android:gravity="center"
+        android:text="@string/clear_birthday"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_text_profile"
+        android:gravity="center"
+        android:text="@string/clear_nationalty"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_text_profile"
+        android:gravity="center"
+        android:text="@string/recovery"
+        android:textColor="@color/black" />
+
+</LinearLayout>

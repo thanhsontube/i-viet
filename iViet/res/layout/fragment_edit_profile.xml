@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.iviet.user.OverScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/editprofile_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -97,19 +98,45 @@
                 android:padding="@dimen/lv2" >
 
                 <TextView
+                    android:id="@+id/editprofile_tv_birthday_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/birthday"
+                    android:textColor="@color/common_signin_btn_text_light" />
+
+                <TextView
+                    android:id="@+id/editprofile_edt_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:text="@string/birthday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_text_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/lv2" >
+
+                <TextView
                     android:id="@+id/editprofile_tv_nationality_lbl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nationality"
                     android:textColor="@color/common_signin_btn_text_light" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editprofile_edt_nationality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="right"
-                    android:hint="@string/nationality"
+                    android:text="@string/nationality"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_small" />
             </LinearLayout>
@@ -146,7 +173,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/lv1"
-            android:background="@drawable/edit_cell_footer_background"
             android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
@@ -154,8 +180,11 @@
                 android:id="@+id/editprofile_btn_personal_function"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
+                android:drawableRight="@drawable/arrow"
                 android:minHeight="40dp"
                 android:text="@string/function" />
 
@@ -163,8 +192,10 @@
                 android:id="@+id/editprofile_btn_personal_save"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
                 android:minHeight="40dp"
                 android:text="@string/save" />
         </LinearLayout>
@@ -188,7 +219,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/lv1"
-            android:background="@drawable/edit_cell_footer_background"
             android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
@@ -196,17 +226,22 @@
                 android:id="@+id/editprofile_btn_diary_clear"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
+                android:drawableRight="@drawable/arrow"
                 android:minHeight="40dp"
                 android:text="@string/clear_all" />
 
             <Button
-                android:id="@+id/editprofile_btn_pdiary_save"
+                android:id="@+id/editprofile_btn_diary_save"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
                 android:minHeight="40dp"
                 android:text="@string/save" />
         </LinearLayout>
@@ -239,7 +274,7 @@
                     android:textColor="@color/common_signin_btn_text_light" />
 
                 <EditText
-                    android:id="@+id/editprofile_university"
+                    android:id="@+id/editprofile_edt_university"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -296,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="right"
-                    android:hint="@string/start"
+                    android:hint="@string/end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_small" />
             </LinearLayout>
@@ -317,7 +352,7 @@
                     android:textColor="@color/common_signin_btn_text_light" />
 
                 <EditText
-                    android:id="@+id/editprofile_edt_universty_major"
+                    android:id="@+id/editprofile_edt_university_major"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -368,7 +403,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/lv1"
-            android:background="@drawable/edit_cell_footer_background"
             android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
@@ -376,8 +410,11 @@
                 android:id="@+id/editprofile_btn_education_clear"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
+                android:drawableRight="@drawable/arrow"
                 android:minHeight="40dp"
                 android:text="@string/clear_all" />
 
@@ -385,8 +422,10 @@
                 android:id="@+id/editprofile_btn_education_save"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
                 android:minHeight="40dp"
                 android:text="@string/save" />
         </LinearLayout>
@@ -476,7 +515,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="right"
-                    android:hint="@string/start"
+                    android:hint="@string/end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_small" />
             </LinearLayout>
@@ -522,25 +561,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/lv1"
-            android:background="@drawable/edit_cell_footer_background"
             android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/editprofile_btn_education_clear"
+                android:id="@+id/editprofile_btn_experience_clear"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
+                android:drawableRight="@drawable/arrow"
                 android:minHeight="40dp"
                 android:text="@string/clear_all" />
 
             <Button
-                android:id="@+id/editprofile_btn_education_save"
+                android:id="@+id/editprofile_btn_experience_save"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/lv1"
+                android:layout_marginRight="@dimen/lv1"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@drawable/dialog_button_common_selector"
                 android:minHeight="40dp"
                 android:text="@string/save" />
         </LinearLayout>
@@ -553,4 +596,4 @@
             android:background="@drawable/cell_background_footer" />
     </LinearLayout>
 
-</ScrollView>
+</com.android.iviet.user.OverScrollView>

@@ -9,17 +9,26 @@ public class OverScrollView extends ScrollView {
 	public OverScrollView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		// TODO Auto-generated constructor stub
+		init();
 
 	}
 
 	public OverScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	public OverScrollView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
+		init();
+	}
+
+	private void init() {
+		// TODO Auto-generated method stub
+		setOverScrollMode(ScrollView.OVER_SCROLL_ALWAYS);
+		setSmoothScrollingEnabled(true);
 	}
 
 	@Override

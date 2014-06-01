@@ -3,13 +3,19 @@
     <!--
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
+        res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Example</item>
     </style>
+
     <style name="ActionBar.Solid.Example" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@color/blue1</item>
+    </style>
+
+    <style name="IOSPopupWindowAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_ios_action_dialog_show</item>
+        <item name="android:windowExitAnimation">@anim/anim_ios_action_dialog_hide</item>
     </style>
 
 </resources>

@@ -115,8 +115,14 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="mafor">Chuyên ngành</string>
     <string name="major">Chuyên ngành</string>
     <string name="certi">Bằng cấp</string>
-    <string name="descripton">Mô tả...</string>
+    <string name="descripton">Mô tả</string>
     <string name="company_nam">Tên công ty</string>
     <string name="position">Chức vụ</string>
+    <string name="select_function">Chọn chức năng</string>
+    <string name="clear_nam">Xóa trắng tên hiển thị</string>
+    <string name="clear_birthday">Xóa trắng ngày tháng năm sinh</string>
+    <string name="clear_nationalty">Xóa trắng quốc gia</string>
+    <string name="recovery">Khôi phục dữ liệu ban đầu</string>
+    <string name="save_empty">Lưu rỗng tạm thời</string>
 
 </resources>
