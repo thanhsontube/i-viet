@@ -5,6 +5,7 @@ import com.android.iviet.utils.ActionBarUtils;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +19,11 @@ abstract public class BaseFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		ActionBarUtils.setTitle(getActivity().getActionBar(), generateTitle());
+		
+		if (!TextUtils.isEmpty(generateTitle())){
+			ActionBarUtils.setTitle(getActivity().getActionBar(), generateTitle());
+		}
+	
 		
 	}
 
