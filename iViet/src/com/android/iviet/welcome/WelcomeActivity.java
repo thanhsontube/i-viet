@@ -70,7 +70,7 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 				showFragment(LoginEmailForgetPassFragment.createLoginEmailForgetPassFragment(WelcomeActivity.this),
 						true);
 				break;
-			
+
 			default:
 				break;
 			}
@@ -137,17 +137,16 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 		}
 		if (!mGoogleApiClient.isConnecting()) {
 			mGoogleApiClient.connect();
-//			resolveSignInError();
 		}
 	}
 
 	/**
 	 * Method to resolve any signin errors
 	 * */
-	private void resolveSignInError() {
-		if (mConnectionResult.hasResolution()) {
+	private void resolveSignInError(ConnectionResult connectionResult) {
+		if (connectionResult.hasResolution()) {
 			try {
-				mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+				connectionResult.startResolutionForResult(this, RC_SIGN_IN);
 			} catch (SendIntentException e) {
 				mGoogleApiClient.connect();
 			}
@@ -156,10 +155,12 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
+		mConnectionResult = result;
 		if (!result.hasResolution()) {
 			GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this, 0).show();
 			return;
 		}
+		 resolveSignInError(result);
 	}
 
 	@Override
@@ -177,9 +178,16 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 	@Override
 	protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
 		if (requestCode == RC_SIGN_IN) {
+//			if (!mGoogleApiClient.isConnecting()) {
+//				mGoogleApiClient.connect();
+//			}
 			if (responseCode == RESULT_OK) {
 				Toast.makeText(WelcomeActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
+			} else {
+//				Toast.makeText(WelcomeActivity.this, ", Toast.LENGTH_LONG).show();
+				GooglePlayServicesUtil.getErrorDialog(mConnectionResult.getErrorCode(), this, 0).show();
 			}
+
 		}
 	}
 
