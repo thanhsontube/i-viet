@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#55000000"
+    android:orientation="vertical"
+    android:padding="@dimen/lv1" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/update_avatar"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/profile_avatar_btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/lv1"
+        android:background="@drawable/dialog_button_common_selector"
+        android:text="@string/cancel"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/profile_avatar_btn_camera"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/lv1"
+        android:background="@drawable/dialog_button_common_selector"
+        android:text="@string/get_from_camera"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/profile_avatar_btn_library"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/lv1"
+        android:background="@drawable/dialog_button_common_selector"
+        android:text="@string/get_from_library"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

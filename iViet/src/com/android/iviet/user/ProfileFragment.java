@@ -1,6 +1,10 @@
 package com.android.iviet.user;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,19 +13,22 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragment;
+import com.android.iviet.user.base.OverScrollView;
+import com.android.iviet.utils.AlertDialogUtils;
 import com.android.iviet.utils.AnimationUtils;
 import com.android.iviet.utils.AnimationUtils.OnAnimationCallBack;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
  * contain this fragment must implement the
- * {@link ProfileFragment.OnProfileFragmentInteractionListener} interface to handle
- * interaction events. Use the {@link ProfileFragment#newInstance} factory
- * method to create an instance of this fragment.
+ * {@link ProfileFragment.OnProfileFragmentInteractionListener} interface to
+ * handle interaction events. Use the {@link ProfileFragment#newInstance}
+ * factory method to create an instance of this fragment.
  * 
  */
 public class ProfileFragment extends BaseFragment implements OnClickListener {
@@ -32,6 +39,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		mViewRoot = (OverScrollView) inflater.inflate(R.layout.fragment_profile, container, false);
+		((ImageView) mViewRoot.findViewWithTag("avatar")).setOnClickListener(this);
 		((ImageButton) mViewRoot.findViewById(R.id.profile_btn_answer)).setOnClickListener(this);
 		((ImageButton) mViewRoot.findViewById(R.id.profile_btn_favorite)).setOnClickListener(this);
 		((ImageButton) mViewRoot.findViewById(R.id.profile_btn_question)).setOnClickListener(this);
@@ -65,7 +73,44 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 			if (mListener != null) {
 				mListener.onProfileFragmentInteraction(R.id.profile_btn_edit);
 			}
-			
+
+			break;
+		case R.id.profile_img_avatar:
+			View contentView = ((LayoutInflater) getActivity().getBaseContext().getSystemService(
+					Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.profile_change_avatar, null);
+			final AlertDialog dialog = AlertDialogUtils.getIOSDialog(getActivity(), contentView, null);
+			dialog.show();
+			Button cancel = (Button) contentView.findViewById(R.id.profile_avatar_btn_cancel);
+			cancel.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}
+			});
+			Button camera = (Button) contentView.findViewById(R.id.profile_avatar_btn_camera);
+			camera.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+					Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+					startActivity(intent);
+				}
+			});
+			Button lib = (Button) contentView.findViewById(R.id.profile_avatar_btn_library);
+			lib.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent i = new Intent(Intent.ACTION_PICK,
+							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					startActivity(i);
+				}
+			});
 			break;
 		default:
 			break;

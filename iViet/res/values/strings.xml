@@ -127,5 +127,12 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="de_cao">Đề cao</string>
     <string name="moinhat">Mới nhất</string>
     <string name="cauhoicuaban">Câu hỏi của bạn</string>
+    <string name="select_time">Chọn thời gian</string>
+    <string name="open_calendar">Mở lịch</string>
+    <string name="update_current">Cập nhật hiện tại</string>
+    <string name="cancel">Hủy</string>
+    <string name="get_from_camera">Chụp ảnh từ Camera</string>
+    <string name="get_from_library">Chọn ảnh từ thư viện</string>
+    <string name="update_avatar">Cập nhật ảnh đại diện</string>
 
 </resources>
