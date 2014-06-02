@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings.LayoutAlgorithm;
 
 import com.android.iviet.base.BaseWebViewFragment;
 
@@ -31,7 +32,9 @@ public class UserGuideFragment extends BaseWebViewFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View v =  super.onCreateView(inflater, container, savedInstanceState);
-	    webview.getSettings().setSupportZoom(true);
+		webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+	    webview.getSettings().setLoadWithOverviewMode(true);
+	    webview.getSettings().setUseWideViewPort(true);
 	    return v;
 	}
 	

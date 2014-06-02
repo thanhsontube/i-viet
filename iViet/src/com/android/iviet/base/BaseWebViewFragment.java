@@ -4,24 +4,29 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import android.app.ActionBar;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
+import com.android.iviet.base.ObservableWebView.OnScrollChangedCallback;
 import com.android.iviet.dialog.AddPictureDialog;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
@@ -31,7 +36,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	static final String TAG = "BaseWebViewFragment";
 	FilterLog log = new FilterLog(TAG);
 	ViewGroup empty;
-	protected WebView webview;
+	protected ObservableWebView webview;
 	public ImageView mTop;
 	public ImageView mAddImage;
 	URI mUri = null;
@@ -65,7 +70,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.webview_fragment, container, false);
+		View view = inflater.inflate(R.layout.base_webview_fragment, container, false);
 		log.d("log>>>" + "onCreateView");
 		mTop = (ImageView) view.findViewById(R.id.webview_img_go_top);
 		mTop.setOnClickListener(this);
@@ -78,10 +83,41 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		empty = (ViewGroup) view.findViewById(android.R.id.empty);
 		inflater.inflate(R.layout.waiting, empty, true);
 		empty.findViewById(R.id.waiting_txt).setVisibility(View.GONE);
-		webview = (WebView) view.findViewById(R.id.webview);
+		webview = (ObservableWebView) view.findViewById(R.id.webview);
+		webview.setOnScrollChangedCallback(new OnScrollChangedCallback() {
+			
+			@Override
+			public void onScroll(int l, int t) {
+				Display display = getActivity().getWindowManager().getDefaultDisplay();
+				Point size = new Point();
+				display.getSize(size);
+				int height = size.y;
+				
+				if (t - height > 0) {
+					log.d("log>>>" + "t - height:" + (t - height));
+					
+					if (isShowAddImage() != View.VISIBLE) {
+						mTop.setVisibility(View.VISIBLE);
+					}
+				} else {
+					if (isShowAddImage() != View.VISIBLE) {
+						mTop.setVisibility(View.GONE);
+					}
+				}
+				
+			}
+		});
 
 		webview.getSettings().setSupportZoom(false);
 		webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
+		webview.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
 		webview.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
@@ -152,7 +188,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onPrepareOptionsMenu");
 		menuSend.setVisible(isShowSendMenuItem());
 		menuTemp.setVisible(!isShowSendMenuItem());
-		mTop.setVisibility(isShowFastTop());
+//		mTop.setVisibility(isShowFastTop());
+		mTop.setVisibility(View.GONE);
 		mAddImage.setVisibility(isShowAddImage());
 	}
 
