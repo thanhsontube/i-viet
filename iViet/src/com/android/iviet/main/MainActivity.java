@@ -310,8 +310,17 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		super.onBackStackChanged();
 		if (mFragmentTagStack.size() > 0) {
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-			getActionBar().setIcon(R.drawable.shape_icon);
+			
+			Fragment f = getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+			if (f instanceof WriteQuestionFragment) {
+				getActionBar().setDisplayHomeAsUpEnabled(false);
+				getActionBar().setIcon(R.drawable.cancel);
+
+			} else {
+				
+				getActionBar().setDisplayHomeAsUpEnabled(true);
+				getActionBar().setIcon(R.drawable.shape_icon);
+			}
 
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);

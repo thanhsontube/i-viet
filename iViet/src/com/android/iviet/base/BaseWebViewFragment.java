@@ -38,7 +38,6 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	protected MenuItem menuSend;
 	protected MenuItem menuTemp;
 	protected ActionBar actionBar;
-	protected boolean isShowSendMenu;
 
 	public interface Controller {
 		void load(URI uri);
@@ -58,7 +57,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		actionBar = getActivity().getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+//		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		ActionBarUtils.setTitle(actionBar, generateTitle());
 		setHasOptionsMenu(true);
