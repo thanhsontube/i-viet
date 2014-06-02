@@ -124,5 +124,8 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="clear_nationalty">Xóa trắng quốc gia</string>
     <string name="recovery">Khôi phục dữ liệu ban đầu</string>
     <string name="save_empty">Lưu rỗng tạm thời</string>
+    <string name="de_cao">Đề cao</string>
+    <string name="moinhat">Mới nhất</string>
+    <string name="cauhoicuaban">Câu hỏi của bạn</string>
 
 </resources>

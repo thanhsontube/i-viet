@@ -44,7 +44,6 @@ import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.EditProfileFragment;
 import com.android.iviet.user.ProfileFragment;
 import com.android.iviet.user.ProfileFragment.OnProfileFragmentInteractionListener;
-import com.android.iviet.user.UserProfileFragment;
 import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
@@ -63,7 +62,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	private final Handler mHandler = new Handler();
 	private static final long DELAY_ON_DRAWER_CLICK = 250L;
-	private FrameLayout mRightDrawer;
+	private FrameLayout mRightDrawer ;
 
 	@Override
 	protected Fragment createFragmentMain(Bundle savedInstanceState) {
@@ -102,16 +101,16 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		View footer = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
 				R.layout.menu_list_drawer_footer, null);
-		mDrawerList.addFooterView(footer);
+		mDrawerList.addFooterView(footer, null, false);
 
-		View convertView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
+		View headerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
 				R.layout.fragment_profile_drawer_item, null);
-		mDrawerList.addHeaderView(convertView);
-		ImageView imgProfile = (ImageView) convertView.findViewWithTag("img_button_profile");
-		ImageView imgNew = (ImageView) convertView.findViewWithTag("img_button_new");
-		ImageView imgAvatar = (ImageView) convertView.findViewWithTag("img_hexagon");
+		mDrawerList.addHeaderView(headerView, null, false);
+		ImageView imgProfile = (ImageView) headerView.findViewWithTag("img_button_profile");
+		ImageView imgNew = (ImageView) headerView.findViewWithTag("img_button_new");
+		ImageView imgAvatar = (ImageView) headerView.findViewWithTag("img_hexagon");
 		imgAvatar.setImageBitmap(BitmapUtils.maskBitmap(this, R.drawable.taylor_swift, R.drawable.hexagon_view2));
-		TextView name = (TextView) convertView.findViewWithTag("drawer_profile_name");
+		TextView name = (TextView) headerView.findViewWithTag("drawer_profile_name");
 		// TODO profile
 		imgProfile.setOnClickListener(new OnClickListener() {
 			@Override

@@ -14,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.iviet.MsConst;
 import com.android.iviet.R;
@@ -31,7 +30,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 	private ActionBar mActionBar;
 	FilterLog log = new FilterLog(TAG);
 
-	private String[] pageTitle = {"Đề cao", "Mới nhất", "Câu hỏi của bạn"}; 
+	private String[] pageTitle ;
 
 	private IMainFragmentListener listener;
 
@@ -40,12 +39,10 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		void onMainFragmentPageSelected(MainFragment main, Fragment selected);
 		void onMainFragmentPageDeSelected(MainFragment main, Fragment selected);
 		void onMainFragmentMenuChatSelected(MainFragment main);
-		// public void onIMainFragmentSwipe(MainFragment f, int i, CharSequence title);
 	}
 
 	@Override
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
 		if (activity instanceof IMainFragmentListener) {
 			listener = (IMainFragmentListener) activity;
@@ -57,6 +54,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		super.onDetach();
 		listener = null;
 	}
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -116,6 +114,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		pageTitle = new String[]{getActivity().getString(R.string.de_cao), getActivity().getString(R.string.moinhat), getActivity().getString(R.string.cauhoicuaban)}; 
 	}
 
 	@Override
@@ -265,10 +264,9 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
-		    // TODO Auto-generated method stub
 			switch (item.getItemId()) {
 			case 1:
-				Toast.makeText(getActivity(), "menu Chat >>>", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getActivity(), "menu Chat >>>", Toast.LENGTH_SHORT).show();
 				if (listener != null) {
 					listener.onMainFragmentMenuChatSelected(this);
 				}
