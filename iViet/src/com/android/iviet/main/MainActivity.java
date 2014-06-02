@@ -44,15 +44,18 @@ import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.EditProfileFragment;
 import com.android.iviet.user.ProfileFragment;
 import com.android.iviet.user.ProfileFragment.OnProfileFragmentInteractionListener;
+import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
+import com.android.iviet.webview.DetailQuestionFragment.IDetailQuestionFragmentListener;
 import com.android.iviet.webview.PolicyFragment;
 import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener,
-		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, OnProfileFragmentInteractionListener {
+		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, OnProfileFragmentInteractionListener, 
+		IDetailQuestionFragmentListener{
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -443,4 +446,24 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			break;
 		}
 	}
+
+	@Override
+    public void onDetailQuestionFragmentAnswer() {
+	    
+		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+		f.setShowSendMenu(true);
+		f.iAddImage = View.VISIBLE;
+		f.iShowTop = View.GONE;
+		f.getActivity().invalidateOptionsMenu();
+    }
+
+	@Override
+    public void onDetailQuestionFragmentBack() {
+		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+		f.setShowSendMenu(false);
+		f.iAddImage = View.GONE;
+		f.iShowTop = View.VISIBLE;
+		f.getActivity().invalidateOptionsMenu();
+	    
+    }
 }

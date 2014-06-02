@@ -60,7 +60,6 @@ public class Top1Fragment extends Fragment implements IMainFragmentListener{
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 				log.v("log>>> " + "onItemClick mListener:" + mListener);
-				Toast.makeText(getActivity(), "Row CLick", Toast.LENGTH_SHORT).show();
 				if (mListener == null) {
 					return;
 				}

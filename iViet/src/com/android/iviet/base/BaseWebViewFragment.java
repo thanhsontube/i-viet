@@ -32,8 +32,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	FilterLog log = new FilterLog(TAG);
 	ViewGroup empty;
 	protected WebView webview;
-	protected ImageView mTop;
-	protected ImageView mAddImage;
+	public ImageView mTop;
+	public ImageView mAddImage;
 	URI mUri = null;
 	protected MenuItem menuSend;
 	protected MenuItem menuTemp;
@@ -152,6 +152,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onPrepareOptionsMenu");
 		menuSend.setVisible(isShowSendMenuItem());
 		menuTemp.setVisible(!isShowSendMenuItem());
+		mTop.setVisibility(isShowFastTop());
+		mAddImage.setVisibility(isShowAddImage());
 	}
 
 	@Override
