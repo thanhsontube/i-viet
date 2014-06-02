@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import com.android.iviet.dialog.AddPictureDialog;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.FilterLog;
 
-abstract public class BaseWebViewFragment extends Fragment implements OnBackPressListener, OnClickListener{
+abstract public class BaseWebViewFragment extends Fragment implements OnBackPressListener, OnClickListener {
 
 	static final String TAG = "BaseWebViewFragment";
 	FilterLog log = new FilterLog(TAG);
@@ -38,18 +39,20 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	protected MenuItem menuTemp;
 	protected ActionBar actionBar;
 	protected boolean isShowSendMenu;
-	
+
 	public interface Controller {
 		void load(URI uri);
 
 		boolean dispatchBackPress();
 	}
-	
+
 	abstract protected String generateTitle();
+
 	abstract protected boolean isShowSendMenuItem();
+
 	abstract protected int isShowFastTop();
+
 	abstract protected int isShowAddImage();
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,10 +70,10 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onCreateView");
 		mTop = (ImageView) view.findViewById(R.id.webview_img_go_top);
 		mTop.setOnClickListener(this);
-		
+
 		mAddImage = (ImageView) view.findViewById(R.id.webview_img_add_picture);
 		mAddImage.setOnClickListener(this);
-		
+
 		mTop.setVisibility(isShowFastTop());
 		mAddImage.setVisibility(isShowAddImage());
 		empty = (ViewGroup) view.findViewById(android.R.id.empty);
@@ -79,8 +82,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		webview = (WebView) view.findViewById(R.id.webview);
 
 		webview.getSettings().setSupportZoom(false);
-		webview.setVerticalScrollbarOverlay(true);
-		webview.setHorizontalScrollBarEnabled(false);
+		webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 		webview.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
@@ -88,15 +90,15 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 				empty.setVisibility(View.GONE);
 			}
 		});
-		
+
 		if (getArguments() != null) {
 			String url = getArguments().getString(MsConst.EXTRA_URL);
 			log.d("log>>>" + "url:" + url);
 			try {
-	            mUri = new URI(url);
-            } catch (URISyntaxException e) {
-	            e.printStackTrace();
-            }
+				mUri = new URI(url);
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 		}
 		if (mUri != null) {
 			mController.load(mUri);
@@ -127,7 +129,6 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 			return false;
 		}
 	};
-	
 
 	public boolean onBackPress() {
 		return mController.dispatchBackPress();
@@ -140,7 +141,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		menuSend = menu.add(Menu.NONE, 1, Menu.NONE, "Send");
 		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menuSend.setIcon(R.drawable.answer);
-		
+
 		menuTemp = menu.add(Menu.NONE, 2, Menu.NONE, "");
 		menuTemp.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menuTemp.setIcon(R.drawable.shape_icon);
@@ -172,9 +173,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		default:
 		}
 		getActivity().invalidateOptionsMenu();
-		 return true;
+		return true;
 	}
-
 
 	@Override
 	public void onClick(View v) {
@@ -187,7 +187,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 
 			DialogFragment f = new AddPictureDialog();
 			getActivity().getSupportFragmentManager().beginTransaction().add(f, f.getClass().getName())
-					.commitAllowingStateLoss();
+			        .commitAllowingStateLoss();
 
 			break;
 
