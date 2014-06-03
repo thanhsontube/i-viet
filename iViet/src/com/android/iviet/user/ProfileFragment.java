@@ -35,6 +35,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 	private View mViewFooter;
 	private OverScrollView mViewRoot;
 	private OnProfileFragmentInteractionListener mListener;
+	private ImageView imgCover;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 		((ImageButton) mViewRoot.findViewById(R.id.profile_btn_timeline)).setOnClickListener(this);
 		((Button) mViewRoot.findViewById(R.id.profile_btn_back_to_close)).setOnClickListener(this);
 		((Button) mViewRoot.findViewById(R.id.profile_btn_edit)).setOnClickListener(this);
+		imgCover = (ImageView) mViewRoot.findViewById(R.id.profile_img_cover);
+		imgCover.setOnClickListener(this);
 		mViewFooter = mViewRoot.findViewById(R.id.profile_v_footer);
 		mViewRoot.setSmoothScrollingEnabled(true);
 		return mViewRoot;
@@ -75,6 +78,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 			}
 
 			break;
+		case R.id.profile_img_cover:
 		case R.id.profile_img_avatar:
 			View contentView = ((LayoutInflater) getActivity().getBaseContext().getSystemService(
 					Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.profile_change_avatar, null);
@@ -112,6 +116,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 				}
 			});
 			break;
+		
 		default:
 			break;
 		}

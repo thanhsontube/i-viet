@@ -274,6 +274,8 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	@Override
 	public void onTop1AvatarClicked(Top1Fragment f, BaseObject dto) {
 		log.d("log>>>" + "onTop1AvatarClicked");
+		ProfileFragment f1 = new ProfileFragment();
+		showFragment(f1, true);
 
 	}
 
