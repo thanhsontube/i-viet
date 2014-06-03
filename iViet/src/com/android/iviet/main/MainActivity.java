@@ -316,6 +316,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		if (mFragmentTagStack.size() > 0) {
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
 			
+			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 			Fragment f = getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
 			if (f instanceof WriteQuestionFragment) {
 				getActionBar().setDisplayHomeAsUpEnabled(false);
@@ -329,6 +330,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 		} else {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
+			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 			getActionBar().setDisplayHomeAsUpEnabled(false);
 			getActionBar().setIcon(R.drawable.setting_select);
 		}
