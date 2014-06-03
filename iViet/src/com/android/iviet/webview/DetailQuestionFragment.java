@@ -138,12 +138,12 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 	    super.onPrepareOptionsMenu(menu);
 	    if (isShowAddImage() == View.VISIBLE) {
 			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
-			actionBar.setIcon(R.drawable.cancel);
-			actionBar.setDisplayHomeAsUpEnabled(false);
+//			actionBar.setIcon(R.drawable.cancel);
+//			actionBar.setDisplayHomeAsUpEnabled(false);
 		} else {
 			ActionBarUtils.setTitle(actionBar, "Chi tiết câu hỏi");
-			actionBar.setIcon(R.drawable.shape_icon);
-			actionBar.setDisplayHomeAsUpEnabled(true);
+//			actionBar.setIcon(R.drawable.shape_icon);
+//			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 	}
 	

@@ -323,8 +323,8 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 			} else {
 				
-				getActionBar().setDisplayHomeAsUpEnabled(true);
-				getActionBar().setIcon(R.drawable.shape_icon);
+				getActionBar().setDisplayHomeAsUpEnabled(false);
+				getActionBar().setIcon(R.drawable.back_button);
 			}
 
 		} else {

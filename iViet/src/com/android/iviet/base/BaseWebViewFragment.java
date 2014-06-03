@@ -63,7 +63,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		super.onCreate(savedInstanceState);
 		actionBar = getActivity().getActionBar();
 //		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
+//		actionBar.setHomeButtonEnabled(true);
 		ActionBarUtils.setTitle(actionBar, generateTitle());
 		setHasOptionsMenu(true);
 	}
