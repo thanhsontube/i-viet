@@ -127,6 +127,107 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trinh_do_hoc_van" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editbox_background_normal"
+        android:orientation="vertical"
+        android:padding="@dimen/lv1" >
+
+        <TextView
+            android:id="@+id/profile_tv_uiniversity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="HO CHI MINH CITY - UNIVERSITY OF TECHNOLOGY"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_tv_uiniversity_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="Bachelor | Software Engineering"
+            android:textColor="@android:color/black" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/profile_tv_uiniversity_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="2007 - 2012"
+            android:textColor="@android:color/secondary_text_light" />
+
+        <TextView
+            android:id="@+id/profile_tv_uiniversity_descripton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="Android Developer"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kinh_nghiem_ban_than" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editbox_background_normal"
+        android:orientation="vertical"
+        android:padding="@dimen/lv1" >
+
+        <TextView
+            android:id="@+id/profile_tv_job_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/lv1"
+            android:text="Android Developer"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="Freedom Company"
+            android:textColor="@android:color/black" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/profile_tv_job_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="2012 - nay (2 năm)"
+            android:textColor="@android:color/secondary_text_light" />
+
+        <TextView
+            android:id="@+id/profile_tv_job_descripton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/lv1"
+            android:text="Two year expreiences/nAndroid Developer/nHard working"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/profile_btn_back_to_close"
         android:layout_width="wrap_content"
