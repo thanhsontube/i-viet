@@ -3,6 +3,7 @@ package com.android.iviet.main.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +22,10 @@ import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.DatetimeUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 	List<BaseObject> list;
@@ -108,10 +112,34 @@ public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 		holder.numberAnswers.setText(String.valueOf(base.number_answers));
 		holder.numberViews.setText(String.valueOf(base.number_views));
 		holder.themColor.setBackgroundColor(Color.parseColor("#"+base.theme_color));
-		
 		//avatar
 		
-		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg, optionsContent, null);
+		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg, optionsContent, new ImageLoadingListener() {
+			
+			@Override
+			public void onLoadingStarted(String imageUri, View view) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+				holder.snapshotImg.setScaleType(ScaleType.CENTER_CROP);
+				
+			}
+			
+			@Override
+			public void onLoadingCancelled(String imageUri, View view) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar, optionsAvatar, null);
 		
 		holder.userAvatar.setOnClickListener(new OnClickListener() {
