@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +23,32 @@ import com.android.iviet.utils.AnimationUtils;
 import com.android.iviet.utils.AnimationUtils.OnAnimationCallBack;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
- * contain this fragment must implement the
- * {@link ProfileFragment.OnProfileFragmentInteractionListener} interface to
- * handle interaction events. Use the {@link ProfileFragment#newInstance}
+ * A simple {@link android.support.v4.app.Fragment} subclass. Activities that contain this fragment must implement the
+ * {@link ProfileFragment.IProfileFragmentListener} interface to handle interaction events. Use the {@link ProfileFragment#newInstance}
  * factory method to create an instance of this fragment.
  * 
  */
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 	private View mViewFooter;
 	private OverScrollView mViewRoot;
-	private OnProfileFragmentInteractionListener mListener;
+	private IProfileFragmentListener mListener;
 	private ImageView imgCover;
+
+	/**
+	 * This interface must be implemented by activities that contain this fragment to allow an interaction in this fragment to be
+	 * communicated to the activity and potentially other fragments contained in that activity.
+	 * <p>
+	 * See the Android Training lesson <a href= "http://developer.android.com/training/basics/fragments/communicating.html" >Communicating
+	 * with Other Fragments</a> for more information.
+	 */
+	public interface IProfileFragmentListener {
+		// TODO: Update argument type and name
+		public void onProfileFragmentInteraction(int id);
+
+		void onProfileFragmentQuestClick(ProfileFragment f);
+
+		void onProfileFragmentAnswerClick(ProfileFragment f);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,7 +94,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 		case R.id.profile_img_cover:
 		case R.id.profile_img_avatar:
 			View contentView = ((LayoutInflater) getActivity().getBaseContext().getSystemService(
-					Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.profile_change_avatar, null);
+			        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.profile_change_avatar, null);
 			final AlertDialog dialog = AlertDialogUtils.getIOSDialog(getActivity(), contentView, null);
 			dialog.show();
 			Button cancel = (Button) contentView.findViewById(R.id.profile_avatar_btn_cancel);
@@ -111,12 +124,23 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Intent i = new Intent(Intent.ACTION_PICK,
-							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 					startActivity(i);
 				}
 			});
 			break;
-		
+
+		case R.id.profile_btn_answer:
+			if (mListener != null) {
+				mListener.onProfileFragmentAnswerClick(this);
+			}
+			break;
+		case R.id.profile_btn_question:
+			if (mListener != null) {
+				mListener.onProfileFragmentQuestClick(this);
+			}
+			break;
+
 		default:
 			break;
 		}
@@ -125,26 +149,26 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
 	private void visibleFooter() {
 		AnimationUtils.visibleTranslateAnimation(mViewFooter, 0, 0, mViewFooter.getHeight(), 0,
-				new OnAnimationCallBack() {
+		        new OnAnimationCallBack() {
 
-					@Override
-					public void onAnimationStart(Animation animation) {
-						// TODO Auto-generated method stub
+			        @Override
+			        public void onAnimationStart(Animation animation) {
+				        // TODO Auto-generated method stub
 
-					}
+			        }
 
-					@Override
-					public void onAnimationRepeat(Animation animation) {
-						// TODO Auto-generated method stub
+			        @Override
+			        public void onAnimationRepeat(Animation animation) {
+				        // TODO Auto-generated method stub
 
-					}
+			        }
 
-					@Override
-					public void onAnimationEnd(Animation animation) {
-						// TODO Auto-generated method stub
-						mViewRoot.fullScroll(ScrollView.FOCUS_DOWN);
-					}
-				});
+			        @Override
+			        public void onAnimationEnd(Animation animation) {
+				        // TODO Auto-generated method stub
+				        mViewRoot.fullScroll(ScrollView.FOCUS_DOWN);
+			        }
+		        });
 	}
 
 	private void goneFooter() {
@@ -181,7 +205,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
-			mListener = (OnProfileFragmentInteractionListener) activity;
+			mListener = (IProfileFragmentListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
 		}
@@ -191,20 +215,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
-	}
-
-	/**
-	 * This interface must be implemented by activities that contain this
-	 * fragment to allow an interaction in this fragment to be communicated to
-	 * the activity and potentially other fragments contained in that activity.
-	 * <p>
-	 * See the Android Training lesson <a href=
-	 * "http://developer.android.com/training/basics/fragments/communicating.html"
-	 * >Communicating with Other Fragments</a> for more information.
-	 */
-	public interface OnProfileFragmentInteractionListener {
-		// TODO: Update argument type and name
-		public void onProfileFragmentInteraction(int id);
 	}
 
 }

@@ -38,12 +38,15 @@ import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
 import com.android.iviet.main.fragment.MainFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
+import com.android.iviet.newfeed.AnswerFragment;
+import com.android.iviet.newfeed.AskFragment;
+import com.android.iviet.newfeed.NotiFragment;
 import com.android.iviet.search.SearchDto;
 import com.android.iviet.search.SearchFragment;
 import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.EditProfileFragment;
 import com.android.iviet.user.ProfileFragment;
-import com.android.iviet.user.ProfileFragment.OnProfileFragmentInteractionListener;
+import com.android.iviet.user.ProfileFragment.IProfileFragmentListener;
 import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
@@ -54,7 +57,7 @@ import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
 public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener,
-		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, OnProfileFragmentInteractionListener, 
+		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, IProfileFragmentListener, 
 		IDetailQuestionFragmentListener{
 
 	private static final String TAG = "MainActivity";
@@ -376,19 +379,16 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 	// main Fragment listener
 	@Override
 	public void onIMainFragmentStart(MainFragment f, int i) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onMainFragmentPageSelected(MainFragment main, Fragment selected) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onMainFragmentPageDeSelected(MainFragment main, Fragment selected) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -437,20 +437,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		showFragment(f, true);
 	}
 
-	@Override
-	public void onProfileFragmentInteraction(int id) {
-		// TODO Auto-generated method stub
-		switch (id) {
-		case R.id.profile_btn_edit:
-			Fragment f = new EditProfileFragment();
-			showFragment(f, true);
-			break;
-
-		default:
-			break;
-		}
-	}
-
+	
 	@Override
     public void onDetailQuestionFragmentAnswer() {
 	    
@@ -470,4 +457,32 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		f.getActivity().invalidateOptionsMenu();
 	    
     }
+	// TODO profile listener
+	@Override
+	public void onProfileFragmentInteraction(int id) {
+		switch (id) {
+		case R.id.profile_btn_edit:
+			Fragment f = new EditProfileFragment();
+			showFragment(f, true);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+    public void onProfileFragmentQuestClick(ProfileFragment f) {
+	    AskFragment fragment = new AskFragment();
+	    showFragment(fragment, true);
+	    
+    }
+
+	@Override
+    public void onProfileFragmentAnswerClick(ProfileFragment f) {
+		AnswerFragment fragment = new AnswerFragment();
+	    showFragment(fragment, true);
+	    
+    }
+
 }

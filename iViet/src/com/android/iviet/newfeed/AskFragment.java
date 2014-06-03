@@ -25,7 +25,7 @@ import com.android.iviet.connection.NotificaitonLoader;
 import com.android.iviet.connection.PathAccess;
 import com.android.iviet.utils.FilterLog;
 
-public class NotiFragment extends BaseFragment {
+public class AskFragment extends BaseFragment {
 	
 	private static final String TAG = "NewFeedFragment";
 	private ViewGroup mEmpty;
@@ -39,13 +39,13 @@ public class NotiFragment extends BaseFragment {
 
 	@Override
 	protected String generateTitle() {
-		return getString(R.string.title_notificaiton);
+		return getString(R.string.title_ask);
 	}
 	
 	private INotiFragmentListener mListener;
 
 	public static interface INotiFragmentListener {
-		void onISearchFragmentListenerItemClicked(NotiFragment fragment, NotiDto entity);
+		void onISearchFragmentListenerItemClicked(AskFragment fragment, NotiDto entity);
 	}
 	@Override
 	public void onAttach(Activity activity) {
@@ -85,7 +85,7 @@ public class NotiFragment extends BaseFragment {
 			@Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	            if (mListener != null) {
-	            	mListener.onISearchFragmentListenerItemClicked(NotiFragment.this, mList.get(position));
+	            	mListener.onISearchFragmentListenerItemClicked(AskFragment.this, mList.get(position));
 	            }
 	            
             }
