@@ -58,7 +58,6 @@ public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 		.cacheInMemory(true)
 		.cacheOnDisk(true)
 		.considerExifParams(true)
-		.displayer(new RoundedBitmapDisplayer(0))
 		.build();
 	}
 	
