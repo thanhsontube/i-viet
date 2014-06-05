@@ -252,7 +252,7 @@ public class MainFragment extends Fragment implements OnPageChangeListener, OnBa
 		    super.onCreateOptionsMenu(menu, inflater);
 		    menuChat = menu.add(Menu.NONE, 1, Menu.NONE, "Chat");
 			menuChat.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-			menuChat.setIcon(R.drawable.chat_select);
+			menuChat.setIcon(R.drawable.chat_select_48);
 		}
 		
 		@Override

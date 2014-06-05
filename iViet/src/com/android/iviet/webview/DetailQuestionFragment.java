@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
-import com.android.iviet.R;
 import com.android.iviet.base.BaseWebViewFragment;
 import com.android.iviet.dialog.ReportDialog;
 import com.android.iviet.utils.ActionBarUtils;
@@ -19,25 +18,26 @@ import com.android.iviet.utils.FilterLog;
 public class DetailQuestionFragment extends BaseWebViewFragment {
 	static final String TAG = "DetailQuestionFragment";
 	FilterLog log = new FilterLog(TAG);
-	private boolean isShowSendMenu;
+	private boolean isSend;
 	private IDetailQuestionFragmentListener listener;
-	
-	public int iShowTop = View.VISIBLE;
+
+	public int iShowTop = View.GONE;
 	public int iAddImage = View.GONE;
-	
+
 	public boolean isShowSendMenu() {
-		return isShowSendMenu;
+		return isSend;
 	}
 
-	public void setShowSendMenu(boolean isShowSendMenu) {
-		this.isShowSendMenu = isShowSendMenu;
+	public void setShowSendMenu(boolean isSend) {
+		this.isSend = isSend;
 	}
 
 	public interface IDetailQuestionFragmentListener {
-		public void onDetailQuestionFragmentAnswer();
-		public void onDetailQuestionFragmentBack();
+		public void onDetailQuestionFragmentAnswer(DetailQuestionFragment f);
+
+		public void onDetailQuestionFragmentBack(DetailQuestionFragment f);
 	}
-	
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -51,12 +51,13 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		super.onDetach();
 		listener = null;
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = super.onCreateView(inflater, container, savedInstanceState);
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.addJavascriptInterface(new AndroidBridge(), "Android");
-		isShowSendMenu = false;
+		isSend = false;
 		return view;
 	}
 
@@ -74,16 +75,16 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		public void onAnswer() {
 			log.d("log>>>" + "onAnswer123");
 			if (listener != null) {
-				listener.onDetailQuestionFragmentAnswer();
+				listener.onDetailQuestionFragmentAnswer(DetailQuestionFragment.this);
 			}
-//			mAddImage.setVisibility(View.VISIBLE);
-//			mTop.setVisibility(View.GONE);
-//			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
-//			isShowSendMenu = true;
-//			
-//			getActivity().invalidateOptionsMenu();
-//			
-//			getActivity().supportInvalidateOptionsMenu();
+			// mAddImage.setVisibility(View.VISIBLE);
+			// mTop.setVisibility(View.GONE);
+			// ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
+			// isShowSendMenu = true;
+			//
+			// getActivity().invalidateOptionsMenu();
+			//
+			// getActivity().supportInvalidateOptionsMenu();
 		}
 
 		@JavascriptInterface
@@ -102,7 +103,7 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		public void onError(String str) {
 			DialogFragment f = new ReportDialog();
 			getActivity().getSupportFragmentManager().beginTransaction().add(f, f.getClass().getName())
-					.commitAllowingStateLoss();
+			        .commitAllowingStateLoss();
 		}
 
 		@JavascriptInterface
@@ -113,45 +114,45 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 	}
 
 	@Override
-    protected String generateTitle() {
-	    return "Chi tiết câu hỏi";
-    }
+	protected String generateTitle() {
+		return "Chi tiết câu hỏi";
+	}
 
 	@Override
-    protected boolean isShowSendMenuItem() {
-	    return isShowSendMenu;
-    }
+	protected boolean isShowSendMenuItem() {
+		return isSend;
+	}
 
 	@Override
-    protected int isShowFastTop() {
-	    return iShowTop;
-    }
+	protected int isShowFastTop() {
+		return iShowTop;
+	}
 
 	@Override
-    protected int isShowAddImage() {
-	    return iAddImage;
-    }
-	
+	protected int isShowAddImage() {
+		return iAddImage;
+	}
+
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
-	    // TODO Auto-generated method stub
-	    super.onPrepareOptionsMenu(menu);
-	    if (isShowAddImage() == View.VISIBLE) {
+		// TODO Auto-generated method stub
+		super.onPrepareOptionsMenu(menu);
+		if (isShowAddImage() == View.VISIBLE) {
 			ActionBarUtils.setTitle(actionBar, "Trả lời câu hỏi");
-//			actionBar.setIcon(R.drawable.cancel);
-//			actionBar.setDisplayHomeAsUpEnabled(false);
+
+			// actionBar.setIcon(R.drawable.cancel);
+			// actionBar.setDisplayHomeAsUpEnabled(false);
 		} else {
 			ActionBarUtils.setTitle(actionBar, "Chi tiết câu hỏi");
-//			actionBar.setIcon(R.drawable.shape_icon);
-//			actionBar.setDisplayHomeAsUpEnabled(true);
+			// actionBar.setIcon(R.drawable.shape_icon);
+			// actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 	}
-	
+
 	@Override
 	public boolean onBackPress() {
-		listener.onDetailQuestionFragmentBack();
-	    return super.onBackPress();
+		listener.onDetailQuestionFragmentBack(DetailQuestionFragment.this);
+		return super.onBackPress();
 	}
-	
-	
+
 }

@@ -14,6 +14,5 @@ public class Top2Fragment extends Fragment{
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.top2_fragment, container, false);
 		return v;
-		
 	}
 }

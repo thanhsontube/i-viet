@@ -35,19 +35,17 @@ import com.android.iviet.connection.BaseObject;
 import com.android.iviet.friend.FriendFragment;
 import com.android.iviet.main.drawer.DrawerItemGenerator.DrawerItem;
 import com.android.iviet.main.drawer.FragmentChangeDrawerItem;
+import com.android.iviet.main.fragment.Answer2Fragment;
+import com.android.iviet.main.fragment.BaseTopFragment;
+import com.android.iviet.main.fragment.BaseTopFragment.IBaseTopFragmentListener;
 import com.android.iviet.main.fragment.MainFragment;
-import com.android.iviet.main.fragment.Top1Fragment;
-import com.android.iviet.main.fragment.Top1Fragment.ITop1FragmentListener;
-import com.android.iviet.newfeed.AnswerFragment;
-import com.android.iviet.newfeed.AskFragment;
-import com.android.iviet.newfeed.NotiFragment;
+import com.android.iviet.main.fragment.Question2Fragment;
 import com.android.iviet.search.SearchDto;
 import com.android.iviet.search.SearchFragment;
 import com.android.iviet.search.SearchFragment.ISearchFragmentListener;
 import com.android.iviet.user.EditProfileFragment;
 import com.android.iviet.user.ProfileFragment;
 import com.android.iviet.user.ProfileFragment.IProfileFragmentListener;
-import com.android.iviet.utils.ActionBarUtils;
 import com.android.iviet.utils.BitmapUtils;
 import com.android.iviet.utils.FilterLog;
 import com.android.iviet.webview.DetailQuestionFragment;
@@ -56,9 +54,9 @@ import com.android.iviet.webview.PolicyFragment;
 import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
 
-public class MainActivity extends BaseFragmentActivity implements ITop1FragmentListener,
+public class MainActivity extends BaseFragmentActivity implements 
 		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, IProfileFragmentListener, 
-		IDetailQuestionFragmentListener{
+		IDetailQuestionFragmentListener, IBaseTopFragmentListener{
 
 	private static final String TAG = "MainActivity";
 	protected DrawerLayout mDrawerLayout;
@@ -274,29 +272,6 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 		// mDrawerToggle.syncState();
 	}
 
-	@Override
-	public void onTop1AvatarClicked(Top1Fragment f, BaseObject dto) {
-		log.d("log>>>" + "onTop1AvatarClicked");
-		ProfileFragment f1 = new ProfileFragment();
-		showFragment(f1, true);
-
-	}
-
-	@Override
-	public void onTop1ContentClicked(Top1Fragment f, BaseObject dto) {
-		log.d("log>>>" + "onTop1ContentClicked");
-		// WebViewFragment f1 =
-		// WebViewFragment.newInstance("http://www.iviet.com/m/questions/q234?userToken=u10");
-		// String url = "file:///android_asset/hello.html";
-		// WebViewFragment f1 = WebViewFragment.newInstance(url);
-		DetailQuestionFragment f1 = new DetailQuestionFragment();
-		Bundle bundle = new Bundle();
-		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_DETAIL_QUESTIONS);
-		f1.setArguments(bundle);
-		showFragment(f1, false);
-
-	}
-
 	protected ListAdapter getDrawerAdapter() {
 		final IVietApplication app = (IVietApplication) getApplication();
 		return new DrawerAdapter(app.getDrawerItemGenerator().generateMain());
@@ -315,6 +290,7 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	@Override
 	public void onBackStackChanged() {
+		log.d("log>>>" + "onBackStackChanged:" + mFragmentTagStack.size());
 		super.onBackStackChanged();
 		if (mFragmentTagStack.size() > 0) {
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
@@ -324,11 +300,9 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 			if (f instanceof WriteQuestionFragment) {
 				getActionBar().setDisplayHomeAsUpEnabled(false);
 				getActionBar().setIcon(R.drawable.cancel);
-
 			} else {
-				
 				getActionBar().setDisplayHomeAsUpEnabled(false);
-				getActionBar().setIcon(R.drawable.back_button);
+				getActionBar().setIcon(R.drawable.back_button_android);
 			}
 
 		} else {
@@ -439,9 +413,9 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	
 	@Override
-    public void onDetailQuestionFragmentAnswer() {
-	    
-		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+    public void onDetailQuestionFragmentAnswer(DetailQuestionFragment f) {
+	    log.d("log>>>" + "onDetailQuestionFragmentAnswer");
+//		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
 		f.setShowSendMenu(true);
 		f.iAddImage = View.VISIBLE;
 		f.iShowTop = View.GONE;
@@ -449,8 +423,8 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
     }
 
 	@Override
-    public void onDetailQuestionFragmentBack() {
-		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
+    public void onDetailQuestionFragmentBack(DetailQuestionFragment f) {
+//		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
 		f.setShowSendMenu(false);
 		f.iAddImage = View.GONE;
 		f.iShowTop = View.VISIBLE;
@@ -473,16 +447,35 @@ public class MainActivity extends BaseFragmentActivity implements ITop1FragmentL
 
 	@Override
     public void onProfileFragmentQuestClick(ProfileFragment f) {
-	    AskFragment fragment = new AskFragment();
+		log.d("log>>>" + "onProfileFragmentQuestClick");
+	    Question2Fragment fragment = new Question2Fragment();
 	    showFragment(fragment, true);
 	    
     }
 
 	@Override
     public void onProfileFragmentAnswerClick(ProfileFragment f) {
-		AnswerFragment fragment = new AnswerFragment();
-	    showFragment(fragment, true);
+		log.d("log>>>" + "onProfileFragmentAnswerClick");
+		 Answer2Fragment fragment = new Answer2Fragment();
+		    showFragment(fragment, true);
 	    
     }
+	
+	//todo BASE TOP
+	@Override
+    public void onBaseTopAvatarClicked(BaseTopFragment f, BaseObject dto) {
+		log.d("log>>>" + "onBaseTopAvatarClicked");
+		ProfileFragment f1 = new ProfileFragment();
+		showFragment(f1, true);
+    }
 
+	@Override
+    public void onBaseTopContentClicked(BaseTopFragment f, BaseObject dto) {
+		log.d("log>>>" + "onBaseTopContentClicked");
+		DetailQuestionFragment f1 = new DetailQuestionFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(MsConst.EXTRA_URL, MsConst.URL_DETAIL_QUESTIONS);
+		f1.setArguments(bundle);
+		showFragment(f1, true);
+    }
 }

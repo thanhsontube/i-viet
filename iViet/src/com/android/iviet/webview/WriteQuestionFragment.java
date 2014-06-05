@@ -10,7 +10,7 @@ public class WriteQuestionFragment extends BaseWebViewFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		 mTop.setVisibility(View.GONE);
+//		 mTop.setVisibility(View.GONE);
 	}
 
 	@Override

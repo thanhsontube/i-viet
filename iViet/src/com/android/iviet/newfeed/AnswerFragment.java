@@ -20,9 +20,14 @@ import android.widget.ListView;
 import com.android.iviet.IVietApplication;
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragment;
+import com.android.iviet.connection.BaseObject;
 import com.android.iviet.connection.ContentManager;
 import com.android.iviet.connection.NotificaitonLoader;
 import com.android.iviet.connection.PathAccess;
+import com.android.iviet.connection.RootLoader;
+import com.android.iviet.main.adapter.MainBaseAdapter;
+import com.android.iviet.main.dto.RootDto;
+import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.FilterLog;
 
 public class AnswerFragment extends BaseFragment {
@@ -33,8 +38,8 @@ public class AnswerFragment extends BaseFragment {
 	FilterLog log = new FilterLog(TAG);
 	private ContentManager mContentManager;
 	private PathAccess mPathAccess;
-	private NotiAdapter adapter;
-	private List<NotiDto> mList;
+	private MainBaseAdapter adapter;
+	private List<BaseObject> mList;
 
 
 	@Override
@@ -77,15 +82,15 @@ public class AnswerFragment extends BaseFragment {
 		inflater.inflate(R.layout.waiting, mEmpty, true);
 		
 		mListView = (ListView) viewRoot.findViewById(R.id.noti_listview);
-		mList = new ArrayList<NotiDto>();
-		adapter = new NotiAdapter(getActivity(), mList);
+		mList = new ArrayList<BaseObject>();
+		adapter = new MainBaseAdapter(getActivity(), mList, this);
 		mListView.setAdapter(adapter);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	            if (mListener != null) {
-	            	mListener.onISearchFragmentListenerItemClicked(AnswerFragment.this, mList.get(position));
+//	            	mListener.onISearchFragmentListenerItemClicked(AnswerFragment.this, mList.get(position));
 	            }
 	            
             }
@@ -109,29 +114,55 @@ public class AnswerFragment extends BaseFragment {
 		public void load() {
 			log.d("log>>>" + "LOAD:" + mPathAccess.notificaiton());
 			HttpGet httpGet = new HttpGet(mPathAccess.notificaiton());
-			mContentManager.load(new NotificaitonLoader(httpGet, false) {
+			mContentManager.load(new RootLoader(httpGet, false) {
 				
 				@Override
-				public void onContentLoaderSucceed(List<NotiDto> entity) {
-					log.d("log>>>" + "onContentLoaderSucceed");
+				public void onContentLoaderSucceed(RootDto entity) {
+					List<BaseObject> listBase = entity.getNewestDto().getList();
+					log.d("log>>>" + "onContentLoaderSucceed listBase new:" + listBase);
 					mEmpty.setVisibility(View.GONE);
-					log.d("log>>>" + "size:" + entity.size());
-					adapter.setData(entity);
-					
-					
+					adapter.setData(entity.getNewestDto().getList());
 				}
 				
 				@Override
 				public void onContentLoaderStart() {
-					mEmpty.setVisibility(View.VISIBLE);
+					log.d("log>>>" + "onContentLoaderStart");
+					
 				}
 				
 				@Override
 				public void onContentLoaderFailed(Throwable e) {
-					mEmpty.setVisibility(View.GONE);
-					log.e("log>>>" + "onContentLoaderFailed:" + e.toString());
+					log.e("log>>>" + "onContentLoaderFailed");
+					
 				}
 			});
+			
+			
+			
+			
+//			mContentManager.load(new NotificaitonLoader(httpGet, false) {
+//				
+//				@Override
+//				public void onContentLoaderSucceed(List<NotiDto> entity) {
+//					log.d("log>>>" + "onContentLoaderSucceed");
+//					mEmpty.setVisibility(View.GONE);
+//					log.d("log>>>" + "size:" + entity.size());
+//					adapter.setData(entity);
+//					
+//					
+//				}
+//				
+//				@Override
+//				public void onContentLoaderStart() {
+//					mEmpty.setVisibility(View.VISIBLE);
+//				}
+//				
+//				@Override
+//				public void onContentLoaderFailed(Throwable e) {
+//					mEmpty.setVisibility(View.GONE);
+//					log.e("log>>>" + "onContentLoaderFailed:" + e.toString());
+//				}
+//			});
 			
 		}
 	};

@@ -21,4 +21,8 @@ public class MsConst {
 	public static String URL_POLICY = "file:///android_asset/Iviet_Policy.html";
 	public static String URL_RULE = "file:///android_asset/Iviet_Rule.html";
 	public static String URL_USER_GUIDE = "file:///android_asset/user_Guide.html";
+	
+	public static final int TYPE_NEWEST = 0;
+	public static final int TYPE_FEATURED = 1;
+	public static final int TYPE_EVERYTHING = 2;
 }

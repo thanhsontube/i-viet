@@ -142,7 +142,7 @@ public class NotiFragment extends BaseFragment {
 	    super.onCreateOptionsMenu(menu, inflater);
 	    MenuItem menuDelete = menu.add(Menu.NONE, 8, Menu.NONE, "menudelete");
 		menuDelete.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menuDelete.setIcon(R.drawable.delete);
+		menuDelete.setIcon(R.drawable.delete_android);
     }
 	
 	@Override

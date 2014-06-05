@@ -136,5 +136,8 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="get_from_camera">Chụp ảnh từ Camera</string>
     <string name="get_from_library">Chọn ảnh từ thư viện</string>
     <string name="update_avatar">Cập nhật ảnh đại diện</string>
+    <string name="terms">Điều khoản iViet</string>
+    <string name="rules">Qui định đặt câu hỏi</string>
+    <string name="guide">Hướng dẫn sử dụng</string>
 
 </resources>

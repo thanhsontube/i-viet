@@ -62,8 +62,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		actionBar = getActivity().getActionBar();
-//		actionBar.setDisplayHomeAsUpEnabled(true);
-//		actionBar.setHomeButtonEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setHomeButtonEnabled(true);
 		ActionBarUtils.setTitle(actionBar, generateTitle());
 		setHasOptionsMenu(true);
 	}
@@ -77,7 +77,6 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 
 		mAddImage = (ImageView) view.findViewById(R.id.webview_img_add_picture);
 		mAddImage.setOnClickListener(this);
-
 		mTop.setVisibility(isShowFastTop());
 		mAddImage.setVisibility(isShowAddImage());
 		empty = (ViewGroup) view.findViewById(android.R.id.empty);
@@ -85,33 +84,38 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		empty.findViewById(R.id.waiting_txt).setVisibility(View.GONE);
 		webview = (ObservableWebView) view.findViewById(R.id.webview);
 		webview.setOnScrollChangedCallback(new OnScrollChangedCallback() {
-			
+
 			@Override
 			public void onScroll(int l, int t) {
-				Display display = getActivity().getWindowManager().getDefaultDisplay();
-				Point size = new Point();
-				display.getSize(size);
-				int height = size.y;
-				
-				if (t - height > 0) {
-					log.d("log>>>" + "t - height:" + (t - height));
-					
-					if (isShowAddImage() != View.VISIBLE) {
-						mTop.setVisibility(View.VISIBLE);
+				try {
+
+					Display display = getActivity().getWindowManager().getDefaultDisplay();
+					Point size = new Point();
+					display.getSize(size);
+					int height = size.y;
+
+					if (t - height > 0) {
+						log.d("log>>>" + "t - height:" + (t - height));
+
+						if (isShowAddImage() != View.VISIBLE) {
+							mTop.setVisibility(View.VISIBLE);
+						}
+					} else {
+						if (isShowAddImage() != View.VISIBLE) {
+							mTop.setVisibility(View.GONE);
+						}
 					}
-				} else {
-					if (isShowAddImage() != View.VISIBLE) {
-						mTop.setVisibility(View.GONE);
-					}
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
-				
+
 			}
 		});
 
 		webview.getSettings().setSupportZoom(false);
 		webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 		webview.setOnTouchListener(new OnTouchListener() {
-			
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
@@ -175,7 +179,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onCreateOptionsMenu");
 		menuSend = menu.add(Menu.NONE, 1, Menu.NONE, "Send");
 		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menuSend.setIcon(R.drawable.answer);
+		menuSend.setIcon(R.drawable.answer_android);
 
 		menuTemp = menu.add(Menu.NONE, 2, Menu.NONE, "");
 		menuTemp.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -188,9 +192,15 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onPrepareOptionsMenu");
 		menuSend.setVisible(isShowSendMenuItem());
 		menuTemp.setVisible(!isShowSendMenuItem());
-//		mTop.setVisibility(isShowFastTop());
-		mTop.setVisibility(View.GONE);
-		mAddImage.setVisibility(isShowAddImage());
+
+		if (mTop != null ) {
+			mTop.setVisibility(isShowFastTop());
+			// mTop.setVisibility(View.GONE);
+		}
+		
+		if (mAddImage != null) {
+			mAddImage.setVisibility(isShowAddImage());
+		}
 	}
 
 	@Override

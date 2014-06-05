@@ -2,12 +2,13 @@ package com.android.iviet.webview;
 
 import android.view.View;
 
+import com.android.iviet.R;
 import com.android.iviet.base.BaseWebViewFragment;
 
 public class PolicyFragment extends BaseWebViewFragment {
 	@Override
     protected String generateTitle() {
-	    return "Điều khoản iViet";
+	    return getString(R.string.terms);
     }
 
 	@Override
@@ -17,7 +18,7 @@ public class PolicyFragment extends BaseWebViewFragment {
 
 	@Override
     protected int isShowFastTop() {
-	    return View.VISIBLE;
+	    return View.GONE;
     }
 
 	@Override

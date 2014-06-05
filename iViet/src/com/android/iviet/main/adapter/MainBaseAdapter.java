@@ -3,38 +3,63 @@ package com.android.iviet.main.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.iviet.R;
 import com.android.iviet.connection.BaseObject;
+import com.android.iviet.main.fragment.BaseTopFragment;
 import com.android.iviet.main.fragment.Top1Fragment;
 import com.android.iviet.utils.DatetimeUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 	List<BaseObject> list;
 	Context context;
 	LayoutInflater inflater;
 	Top1Fragment f;
+	private BaseTopFragment baseTopFragment;
 	ImageLoader imageLoader;
 	private DisplayImageOptions optionsAvatar;
 	private DisplayImageOptions optionsContent;
+	
+	public MainBaseAdapter (Context context, List<BaseObject> list, Fragment f) {
+		super(context, 0, list);
+		this.context = context;
+		this.list = list; 
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.baseTopFragment = (BaseTopFragment) f;
+		
+		imageLoader = ImageLoader.getInstance();
+		optionsAvatar = new DisplayImageOptions.Builder()
+		.cacheInMemory(true)
+		.cacheOnDisk(true)
+		.considerExifParams(true)
+		.displayer(new RoundedBitmapDisplayer(100))
+		.build();
+		
+		optionsContent = new DisplayImageOptions.Builder()
+		.showImageOnLoading(R.drawable.iviet_temp)
+		.showImageForEmptyUri(R.drawable.iviet_temp)
+		.showImageOnFail(R.drawable.iviet_temp)
+		.imageScaleType(ImageScaleType.EXACTLY)
+		.cacheInMemory(true)
+		.cacheOnDisk(true)
+		.considerExifParams(true)
+		.build();
+	}
+	
 	public MainBaseAdapter (Context context, List<BaseObject> list, Top1Fragment f) {
 		super(context, 0, list);
 		this.context = context;
@@ -113,43 +138,14 @@ public class MainBaseAdapter extends ArrayAdapter<BaseObject>{
 		holder.themColor.setBackgroundColor(Color.parseColor("#"+base.theme_color));
 		//avatar
 		
-		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg, optionsContent, new ImageLoadingListener() {
-			
-			@Override
-			public void onLoadingStarted(String imageUri, View view) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-				holder.snapshotImg.setScaleType(ScaleType.CENTER_CROP);
-				
-			}
-			
-			@Override
-			public void onLoadingCancelled(String imageUri, View view) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		imageLoader.displayImage(base.getSnapshot_img(), holder.snapshotImg, optionsContent, null);
 		imageLoader.displayImage(base.getUser_avatar(), holder.userAvatar, optionsAvatar, null);
 		
 		holder.userAvatar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "Avatar click", Toast.LENGTH_SHORT).show();
-				if(f.mListener != null) {
-					f.mListener.onTop1AvatarClicked(f, base);
-				}
-				
+				baseTopFragment.mListener.onBaseTopAvatarClicked(baseTopFragment, base);
 			}
 		});
 		

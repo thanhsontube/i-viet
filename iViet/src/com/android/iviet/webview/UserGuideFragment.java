@@ -6,12 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings.LayoutAlgorithm;
 
+import com.android.iviet.R;
 import com.android.iviet.base.BaseWebViewFragment;
 
 public class UserGuideFragment extends BaseWebViewFragment {
 	@Override
     protected String generateTitle() {
-	    return "Hướng dẫn sử dụng";
+	    return getString(R.string.guide);
     }
 
 	@Override
@@ -21,7 +22,7 @@ public class UserGuideFragment extends BaseWebViewFragment {
 
 	@Override
     protected int isShowFastTop() {
-	    return View.VISIBLE;
+	    return View.GONE;
     }
 
 	@Override
