@@ -2,22 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp" >
+    android:orientation="vertical" >
 
     <!-- TOP -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal" >
+        android:layout_height="78dp"
+        android:layout_margin="0dp"
+        android:orientation="horizontal"
+        android:padding="8dp" >
 
         <!-- avatar -->
 
         <FrameLayout
-            android:layout_width="60dp"
-            android:layout_height="match_parent" >
-            <ImageView
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:padding="2dp" >
+
+            <ImageView
                 android:id="@+id/user_avatar"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
@@ -37,7 +40,8 @@
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Nhu Thay Ay Nhi"
                 android:textColor="@color/blue2"
                 android:textStyle="bold" />
@@ -46,20 +50,23 @@
                 android:id="@+id/created_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:ellipsize="end"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="Hoi 4 gio truoc"
-                android:textColor="@color/body_text_2" />
+                android:textColor="@color/body_text_2"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/topic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="Danh ngon"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <!-- User answer -->
@@ -74,7 +81,8 @@
             <TextView
                 android:id="@+id/answer_user_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Dieu Linh"
                 android:textColor="@color/body_text_2"
                 android:textStyle="bold" />
@@ -83,11 +91,13 @@
                 android:id="@+id/recent_answer_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1.5dp"
                 android:ellipsize="end"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="Tra loi 2 gio truoc"
-                android:textColor="@color/body_text_2" />
+                android:textColor="@color/body_text_2"
+                android:textSize="12dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -96,8 +106,7 @@
     <ImageView
         android:id="@+id/snapshot_img"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="@dimen/lv1"
+        android:layout_height="155dp"
         android:scaleType="centerCrop"
         android:src="@drawable/iviet_temp" />
     <!-- BUTTOM 1 -->
@@ -106,7 +115,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp" >
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp" >
 
         <TextView
             android:id="@+id/title"
@@ -137,7 +149,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal" >
 
         <!-- left -->
@@ -210,6 +222,9 @@
 
                 <ImageView
                     style="@style/main_img_style"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="3dp"
                     android:src="@drawable/comment" />
             </LinearLayout>
 
@@ -234,6 +249,14 @@
                     android:src="@drawable/saw" />
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#f7f5f9"
+        android:orientation="vertical" >
+
     </LinearLayout>
 
 </LinearLayout>

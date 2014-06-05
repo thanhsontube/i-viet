@@ -9,7 +9,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
 
         <ImageView
             android:layout_width="50dp"
@@ -25,7 +27,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/lv1"
             android:orientation="vertical"
-            android:padding="4dp" >
+            android:paddingBottom="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp" >
 
             <TextView
                 style="@style/style_textview_row"
@@ -36,17 +40,19 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
+                android:layout_weight="1.0"
+                android:gravity="top"
                 android:orientation="horizontal" >
 
                 <TextView
                     style="@style/style_textview_row"
                     android:layout_width="0dp"
                     android:layout_marginTop="@dimen/lv1"
-                    android:layout_weight="1"
-                    android:maxLines="2"
+                    android:layout_weight="0.8"
+                    android:maxLines="1"
                     android:tag="chat_message"
-                    android:text="@string/test2"
+                    android:text="Không có gì quý hơn độc lập tự do"
                     android:textStyle="italic" />
 
                 <ImageView
@@ -56,6 +62,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/chat_online_status"
                     android:tag="chat_status" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
