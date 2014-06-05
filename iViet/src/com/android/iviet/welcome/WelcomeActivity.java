@@ -3,13 +3,17 @@ package com.android.iviet.welcome;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.iviet.R;
 import com.android.iviet.base.BaseFragmentActivity;
+import com.android.iviet.dialog.ReportDialog;
+import com.android.iviet.dialog.WaitingDialog;
 import com.android.iviet.main.MainActivity;
 import com.android.iviet.utils.CommonUtils;
 import com.android.iviet.welcome.callbacks.BaseInterface;
@@ -39,6 +43,9 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 		WelcomeFragment welcomeFragment = WelcomeFragment.createWelcomeFragment(this);
 		welcomeFragment.setRetainInstance(true);
 		return welcomeFragment;
+		
+//		MyFragment welcomeFragment = new MyFragment();
+//		return welcomeFragment;
 	}
 
 	@Override
@@ -94,6 +101,9 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 				break;
 			case R.id.login_btn_register:
 				showFragment(RegisterFragment.createRegisterFragment(WelcomeActivity.this), true);
+				break;
+				
+			case R.id.login_btn_facebook:
 				break;
 			default:
 				break;
@@ -174,22 +184,42 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 	public void onConnectionSuspended(int cause) {
 		mGoogleApiClient.connect();
 	}
-
+	
 	@Override
-	protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.v("MAIN", "log>>>" + "MAIN onActivityResult");
+	    super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == RC_SIGN_IN) {
-//			if (!mGoogleApiClient.isConnecting()) {
-//				mGoogleApiClient.connect();
-//			}
-			if (responseCode == RESULT_OK) {
+			Log.v("", "log>>>" + "RC_SIGN_IN");
+			// if (!mGoogleApiClient.isConnecting()) {
+			// mGoogleApiClient.connect();
+			// }
+			if (resultCode == RESULT_OK) {
 				Toast.makeText(WelcomeActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
 			} else {
-//				Toast.makeText(WelcomeActivity.this, ", Toast.LENGTH_LONG).show();
+				// Toast.makeText(WelcomeActivity.this, ", Toast.LENGTH_LONG).show();
 				GooglePlayServicesUtil.getErrorDialog(mConnectionResult.getErrorCode(), this, 0).show();
 			}
 
 		}
+	    
 	}
+//	@Override
+//	protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
+//		super.onActivityResult(requestCode, requestCode, intent);
+//		if (requestCode == RC_SIGN_IN) {
+////			if (!mGoogleApiClient.isConnecting()) {
+////				mGoogleApiClient.connect();
+////			}
+//			if (responseCode == RESULT_OK) {
+//				Toast.makeText(WelcomeActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
+//			} else {
+////				Toast.makeText(WelcomeActivity.this, ", Toast.LENGTH_LONG).show();
+//				GooglePlayServicesUtil.getErrorDialog(mConnectionResult.getErrorCode(), this, 0).show();
+//			}
+//
+//		}
+//	}
 
 	protected void onStop() {
 		super.onStop();
@@ -233,5 +263,34 @@ public class WelcomeActivity extends BaseFragmentActivity implements BaseInterfa
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+    public void onClickFacebook(Fragment f) {
+	    ((WelcomeFragment)f).onClickLogin();
+    }
+
+	@Override
+    public void onFbGetInfoSuccess(Fragment f) {
+		Log.v("", "log>>>" + "onFbGetInfoSuccess");
+//	    Toast.makeText(this, "Login by facebook is successful", Toast.LENGTH_SHORT).show();
+	    login();
+    }
+
+	@Override
+    public void onFbGetInfoFail(Fragment f) {
+	    Toast.makeText(this, "Can not log in by facebook", Toast.LENGTH_SHORT).show();
+    }
+
+	@Override
+    public void onFbPrepare(Fragment f) {
+		Log.v("", "log>>>" + "onFbPrepare");
+//		WaitingDialog fd = new WaitingDialog();
+		
+//		getSupportFragmentManager().beginTransaction().add(fd, fd.getClass().getName())
+//		        .commitAllowingStateLoss();
+		
+//		showFragment(fd, true);
+	    
+    }
 
 }

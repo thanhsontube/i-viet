@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	
     <string name="app_name">iViet</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -139,5 +139,6 @@ THÔNG BÁO CÁC TRƯỜNG HỢP VI PHẠM \n
     <string name="terms">Điều khoản iViet</string>
     <string name="rules">Qui định đặt câu hỏi</string>
     <string name="guide">Hướng dẫn sử dụng</string>
+    <string name="app_id">805210619498417</string>
 
 </resources>

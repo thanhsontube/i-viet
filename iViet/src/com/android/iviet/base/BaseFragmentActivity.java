@@ -134,36 +134,6 @@ abstract public class BaseFragmentActivity extends FragmentActivity implements
 	 * @param f
 	 * @param isTransit
 	 */
-	/*public void showFragment2(Fragment f, boolean isTransit) {
-		String tag = String.format("%s:%d", getClass().getName(),
-				mFragmentTagStack.size());
-		final FragmentManager fm = getSupportFragmentManager();
-		final FragmentTransaction ft = fm.beginTransaction();
-
-		// if (mFragmentTagStack.size() > 0) {
-		// final Fragment ff = fm.findFragmentByTag(tag);
-		// ft.hide(ff);
-		// } else {
-		// final Fragment ff = fm.findFragmentByTag(FRAGMENT_KEY);
-		// ft.hide(ff);
-		// }
-		ft.setCustomAnimations(mAnimationInResourceId,
-				mAnimationOutResourceId);
-		if (fm.findFragmentByTag(tag) == null) {
-			ft.add(getFragmentContentId(), f, tag);
-		} else {
-
-			ft.replace(getFragmentContentId(), f, tag);
-		}
-		if (isTransit) {
-			ft.addToBackStack(null).setTransition(
-					FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-		} else {
-			ft.addToBackStack(null);
-		}
-		ft.commit();
-		mFragmentTagStack.add(tag);
-	}*/
 
 	protected void restoreFragmentsState() {
 		final FragmentManager fm = getSupportFragmentManager();

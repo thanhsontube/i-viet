@@ -413,18 +413,23 @@ public class MainActivity extends BaseFragmentActivity implements
 
 	
 	@Override
-    public void onDetailQuestionFragmentAnswer(DetailQuestionFragment f) {
-	    log.d("log>>>" + "onDetailQuestionFragmentAnswer");
-//		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
-		f.setShowSendMenu(true);
-		f.iAddImage = View.VISIBLE;
-		f.iShowTop = View.GONE;
-		f.getActivity().invalidateOptionsMenu();
-    }
+	public void onDetailQuestionFragmentAnswer(final DetailQuestionFragment f) {
+		log.d("log>>>" + "onDetailQuestionFragmentAnswer");
+		f.getActivity().runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				f.setShowSendMenu(true);
+				f.iAddImage = View.VISIBLE;
+				f.iShowTop = View.GONE;
+				f.getActivity().invalidateOptionsMenu();
+			}
+		});
+		// f.getActivity().invalidateOptionsMenu();
+	}
 
 	@Override
     public void onDetailQuestionFragmentBack(DetailQuestionFragment f) {
-//		DetailQuestionFragment f = (DetailQuestionFragment) getSupportFragmentManager().findFragmentByTag(mFragmentTagStack.peek());
 		f.setShowSendMenu(false);
 		f.iAddImage = View.GONE;
 		f.iShowTop = View.VISIBLE;

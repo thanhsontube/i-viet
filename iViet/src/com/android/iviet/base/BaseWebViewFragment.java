@@ -194,8 +194,8 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		menuTemp.setVisible(!isShowSendMenuItem());
 
 		if (mTop != null ) {
-			mTop.setVisibility(isShowFastTop());
-			// mTop.setVisibility(View.GONE);
+//			mTop.setVisibility(isShowFastTop());
+			 mTop.setVisibility(View.GONE);
 		}
 		
 		if (mAddImage != null) {

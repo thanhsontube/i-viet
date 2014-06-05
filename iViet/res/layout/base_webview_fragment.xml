@@ -29,6 +29,6 @@
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="@dimen/lv1"
         android:layout_marginRight="@dimen/lv1"
-        android:src="@drawable/btopt_android" />
+        android:src="@drawable/btopt" />
 
 </FrameLayout>

@@ -1,5 +1,9 @@
 package com.android.iviet.welcome.fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,15 +24,37 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.iviet.R;
+import com.android.iviet.utils.FilterLog;
 import com.android.iviet.welcome.adapter.WelcomeFragmentAdapter;
 import com.android.iviet.welcome.callbacks.BaseInterface;
 import com.android.iviet.welcome.lib.CirclePageIndicator;
+import com.facebook.HttpMethod;
+import com.facebook.LoggingBehavior;
+import com.facebook.Request;
+import com.facebook.Request.Callback;
+import com.facebook.Request.GraphUserCallback;
+import com.facebook.RequestAsyncTask;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.Settings;
+import com.facebook.model.GraphUser;
 
 public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 		OnClickListener {
+	
+	FilterLog log = new FilterLog(TAG);
 	private static final int TIMEOUT_SWITCH_PAGE = 7000;
+
+
+	private static final String TAG = "WelcomeFragment";
+	
+	
+	private Session.StatusCallback statusCallback = new SessionStatusCallback();
+
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
 	 * to access previous and next wizard steps.
@@ -47,6 +74,7 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 	private ImageButton mBtnRegister;
 	private Button mBtnTouchToOpen;
 	private static BaseInterface mBaseInterface;
+	private List<String> listPermission = new ArrayList<>();
 
 	public static WelcomeFragment createWelcomeFragment(
 			BaseInterface baseInterface) {
@@ -96,6 +124,30 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 						return false;
 					}
 				});
+		
+		//facebook init
+		
+		Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+
+		Session session = Session.getActiveSession();
+		log.d("log>>>" + "session:" + session);
+		if (session == null) {
+			// if (savedInstanceState != null) {
+			// session = Session.restoreSession(getActivity(), null, statusCallback, savedInstanceState);
+			// }
+			if (session == null) {
+				session = new Session(getActivity());
+			}
+			Session.setActiveSession(session);
+			if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED)) {
+				listPermission.addAll(session.getPermissions());
+				listPermission.add("email");
+				session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback).setPermissions(listPermission));
+			}
+		}else {
+			session.closeAndClearTokenInformation();
+		}
+
 		return rootView;
 
 	}
@@ -165,7 +217,7 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 			hideLoginPanel();
 		}
 
-		// startActivity(new Intent(this, MainActivity.class));
+//		 startActivity(new Intent(getActivity(), MainActivity.class));
 	}
 
 	private void showLoginPanel() {
@@ -305,7 +357,11 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 			}
 			break;
 		case R.id.login_btn_facebook:
-			
+			if (mBaseInterface != null) {
+//				mBaseInterface.onClickInFragment(getClass().getName(),
+//						R.id.login_btn_facebook);
+				mBaseInterface.onClickFacebook(this);
+			}
 			break;
 		case R.id.login_btn_google:
 			if (mBaseInterface != null) {
@@ -324,4 +380,73 @@ public class WelcomeFragment extends Fragment implements OnPageChangeListener,
 		}
 
 	}
+	
+	private class SessionStatusCallback implements Session.StatusCallback {
+		@Override
+		public void call(Session session, SessionState state, Exception exception) {
+			Log.v(TAG, "log>>>" + "call:" + session);
+			if (state.isOpened()) {
+				mBaseInterface.onFbPrepare(WelcomeFragment.this);
+				Log.v(TAG, "log>>>" + "isOpened");
+				Request request = Request.newMeRequest(session, new GraphUserCallback() {
+					
+					@Override
+					public void onCompleted(GraphUser user, Response response) {
+						Toast.makeText(getActivity(), "email:" + user.asMap().get("email") + ";name:" + user.getName(), Toast.LENGTH_SHORT).show();
+						Log.v(TAG, "log>>>" + "Facebook OK : email:" + user.asMap().get("email") + ";name:" + user.getName());
+						if(mBaseInterface != null) {
+							mBaseInterface.onFbGetInfoSuccess(WelcomeFragment.this);
+						}
+						
+					}
+				});
+				Request.executeBatchAsync(request);
+				
+			} else if (state.isClosed()) {
+				Log.v(TAG, "log>>>" + "isClosed");
+			}
+			updateView();
+		}
+
+	}
+
+	private void updateView() {
+		Log.v(TAG, "log>>>" + "updateView");
+
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		Session.getActiveSession().addCallback(statusCallback);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		Session.getActiveSession().removeCallback(statusCallback);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.v(TAG, "log>>>" + "onActivityResult123");
+		super.onActivityResult(requestCode, resultCode, data);
+		Session.getActiveSession().onActivityResult(getActivity(), requestCode, resultCode, data);
+	}
+	public void onClickLogin() {
+		Session session = Session.getActiveSession();
+		if (!session.isOpened() && !session.isClosed()) {
+			session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
+		} else {
+			Session.openActiveSession(getActivity(), this, true, statusCallback);
+		}
+	}
+
+	public void onClickLogout() {
+		Session session = Session.getActiveSession();
+		if (!session.isClosed()) {
+			session.closeAndClearTokenInformation();
+		}
+	}
+	
 }
