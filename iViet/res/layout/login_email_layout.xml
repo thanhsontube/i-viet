@@ -73,10 +73,11 @@
 
         <Button
             android:id="@+id/login_email_btn_login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/lv1"
+            android:layout_weight="0.73"
             android:background="@drawable/btn_login_email_register"
             android:text="@string/dang_nhap"
             android:textColor="@android:color/white"

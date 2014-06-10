@@ -179,7 +179,7 @@ abstract public class BaseWebViewFragment extends Fragment implements OnBackPres
 		log.d("log>>>" + "onCreateOptionsMenu");
 		menuSend = menu.add(Menu.NONE, 1, Menu.NONE, "Send");
 		menuSend.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menuSend.setIcon(R.drawable.answer_android);
+		menuSend.setIcon(R.drawable.answer48);
 
 		menuTemp = menu.add(Menu.NONE, 2, Menu.NONE, "");
 		menuTemp.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
