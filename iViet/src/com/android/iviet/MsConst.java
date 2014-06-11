@@ -17,12 +17,15 @@ public class MsConst {
 	public static String BUNDLE_TRANSITION = "BUNDLE_TRANSITION";
 	
 	//webview local
-	public static String URL_DETAIL_QUESTIONS = "file:///android_asset/q234.htm";
+	public static String URL_DETAIL_QUESTIONS = "file:///android_asset/q70.htm";
 	public static String URL_POLICY = "file:///android_asset/Iviet_Policy.html";
 	public static String URL_RULE = "file:///android_asset/Iviet_Rule.html";
 	public static String URL_USER_GUIDE = "file:///android_asset/user_Guide.html";
+	public static String URL_IMAGE = "http://lh3.ggpht.com/ptDOZOwzRfMdTfNUbS7iRBsRd2Ccr2r31RVoxCLR2u3Nd7UMKmB1e3ejWn6cNh63ICb6ZQKFhU0EO9KYXspVu5mY9w=s1000";
 	
 	public static final int TYPE_NEWEST = 0;
 	public static final int TYPE_FEATURED = 1;
 	public static final int TYPE_EVERYTHING = 2;
+	
+	
 }

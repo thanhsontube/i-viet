@@ -111,6 +111,12 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 			Toast.makeText(getActivity(), "onShare", Toast.LENGTH_SHORT).show();
 
 		}
+		
+		@JavascriptInterface
+		public void onPictureClick() {
+			Toast.makeText(getActivity(), "onPictureClick", Toast.LENGTH_SHORT).show();
+
+		}
 	}
 
 	@Override
