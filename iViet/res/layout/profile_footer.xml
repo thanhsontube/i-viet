@@ -130,6 +130,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:src="@drawable/trinh_do_hoc_van" />
 
     <LinearLayout
@@ -179,7 +180,7 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:src="@drawable/kinh_nghiem_ban_than" />
 

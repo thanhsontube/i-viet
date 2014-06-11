@@ -124,14 +124,15 @@
                 android:background="@drawable/taylor_swift"
                 android:scaleType="centerCrop" />
         </FrameLayout>
-
+        
+<!-- android:background="@drawable/dialog_button_common_selector" -->
         <Button
             android:id="@+id/profile_btn_edit"
             android:layout_width="90dp"
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/dialog_button_common_selector"
+          	android:background="#FBAF3F"
             android:gravity="center"
             android:text="Chỉnh sửa"
             android:textColor="@color/white"

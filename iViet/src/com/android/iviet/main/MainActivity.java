@@ -240,7 +240,9 @@ public class MainActivity extends BaseFragmentActivity implements
 					if (!((OnBackPressListener) f).onBackPress()) {
 						log.d("log>>>" + "webview BACK");
 						getSupportFragmentManager().popBackStackImmediate();
-
+					} else {
+						getActionBar().setDisplayHomeAsUpEnabled(false);
+						getActionBar().setIcon(R.drawable.back_button_android);
 					}
 				} else {
 					getSupportFragmentManager().popBackStackImmediate();
@@ -422,6 +424,8 @@ public class MainActivity extends BaseFragmentActivity implements
 				f.setShowSendMenu(true);
 				f.iAddImage = View.VISIBLE;
 				f.iShowTop = View.GONE;
+				getActionBar().setDisplayHomeAsUpEnabled(false);
+				getActionBar().setIcon(R.drawable.cancel);
 				f.getActivity().invalidateOptionsMenu();
 			}
 		});
