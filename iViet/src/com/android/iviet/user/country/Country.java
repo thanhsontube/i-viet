@@ -3,6 +3,17 @@ package com.android.iviet.user.country;
 public class Country {
 	private String code;
 	private String name;
+	
+	private boolean isSelected;
+	
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
+	}
 
 	public Country(String code, String name) {
 		super();

@@ -133,10 +133,21 @@ public class EditProfileFragment extends BaseFragment implements OnClickListener
 		case R.id.editprofile_edt_nationality:
 			View nationalityView = ((LayoutInflater) getActivity().getBaseContext().getSystemService(
 					Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.editprofile_country_dialog, null);
-			ArrayList<Country> countries = getAllContries();
+			final ArrayList<Country> countries = getAllContries();
 			ListView lvCountry = (ListView) nationalityView.findViewById(R.id.editprofile_lv_country);
-			CountryListAdapter adapter = new CountryListAdapter(getActivity(), countries);
+			final CountryListAdapter adapter = new CountryListAdapter(getActivity(), countries);
 			lvCountry.setAdapter(adapter);
+			lvCountry.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					for (Country country : countries) {
+	                    country.setSelected(false);
+                    }
+	                countries.get(position).setSelected(true);
+	                adapter.notifyDataSetChanged();
+                }
+			});
 			Collections.sort(countries, new Comparator<Country>() {
 
 				@Override

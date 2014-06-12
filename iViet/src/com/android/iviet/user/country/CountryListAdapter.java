@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.iviet.R;
+import com.android.iviet.R.color;
 import com.android.iviet.R.drawable;
 
 public class CountryListAdapter extends BaseAdapter {
@@ -104,6 +106,12 @@ public class CountryListAdapter extends BaseAdapter {
 		String drawableName = "f_"
 				+ country.getCode().toLowerCase(Locale.ENGLISH);
 		cell.imageView.setImageResource(getResId(drawableName));
+		
+		if (country.isSelected()) {
+			cellView.setBackgroundColor(Color.LTGRAY);
+		} else {
+			cellView.setBackgroundColor(Color.WHITE);
+		}
 		return cellView;
 	}
 
