@@ -53,6 +53,7 @@ import com.android.iviet.webview.DetailQuestionFragment.IDetailQuestionFragmentL
 import com.android.iviet.webview.PolicyFragment;
 import com.android.iviet.webview.RuleFragment;
 import com.android.iviet.webview.WriteQuestionFragment;
+import com.android.iviet.zoom.ZoomInZoomOut;
 
 public class MainActivity extends BaseFragmentActivity implements 
 		MainFragment.IMainFragmentListener, IAboutFragment, ISearchFragmentListener, IProfileFragmentListener, 
@@ -440,6 +441,28 @@ public class MainActivity extends BaseFragmentActivity implements
 		f.getActivity().invalidateOptionsMenu();
 	    
     }
+	
+	@Override
+	public void onDetailQuestionFragmentImageClick(final DetailQuestionFragment f) {
+		log.d("log>>>" + "onDetailQuestionFragmentImageClick");
+//		f.getActivity().runOnUiThread(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				f.setShowSendMenu(true);
+//				f.iAddImage = View.VISIBLE;
+//				f.iShowTop = View.GONE;
+//				getActionBar().setDisplayHomeAsUpEnabled(false);
+//				getActionBar().setIcon(R.drawable.cancel);
+//				f.getActivity().invalidateOptionsMenu();
+//			}
+//		});
+		
+		ZoomInZoomOut f1 = new ZoomInZoomOut();
+		showFragment(f1, true);
+		
+		// f.getActivity().invalidateOptionsMenu();
+	}
 	// TODO profile listener
 	@Override
 	public void onProfileFragmentInteraction(int id) {

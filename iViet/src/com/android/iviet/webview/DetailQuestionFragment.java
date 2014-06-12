@@ -34,6 +34,8 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 
 	public interface IDetailQuestionFragmentListener {
 		public void onDetailQuestionFragmentAnswer(DetailQuestionFragment f);
+		
+		public void onDetailQuestionFragmentImageClick(DetailQuestionFragment f);
 
 		public void onDetailQuestionFragmentBack(DetailQuestionFragment f);
 	}
@@ -114,7 +116,9 @@ public class DetailQuestionFragment extends BaseWebViewFragment {
 		
 		@JavascriptInterface
 		public void onPictureClick() {
-			Toast.makeText(getActivity(), "onPictureClick", Toast.LENGTH_SHORT).show();
+			if (listener != null) {
+				listener.onDetailQuestionFragmentImageClick(DetailQuestionFragment.this);
+			}
 
 		}
 	}
